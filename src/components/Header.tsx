@@ -17,8 +17,12 @@ export const Header = () => {
               alt="Clear Funded"
               className="h-8 w-auto"
               onError={(e) => {
-                e.currentTarget.style.display = 'none';
-                e.currentTarget.nextElementSibling!.style.display = 'block';
+                const target = e.currentTarget as HTMLImageElement;
+                target.style.display = 'none';
+                const nextSibling = target.nextElementSibling as HTMLElement;
+                if (nextSibling) {
+                  nextSibling.style.display = 'block';
+                }
               }}
             />
             <div className="hidden text-2xl font-bold text-green-600">
