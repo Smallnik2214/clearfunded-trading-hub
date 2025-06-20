@@ -17,8 +17,8 @@ const Index = () => {
     "1-Phase": {
       "Trading period": "Unlimited",
       "Profit target": "10%",
-      "Maximum daily loss": "5%",
-      "Maximum loss": "10%",
+      "Maximum daily loss": "4%",
+      "Maximum loss": "8%",
       "Account leverage": "1:100",
       "Rewards": "Weekly",
       "Profit Split": "90%"
