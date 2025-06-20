@@ -55,6 +55,15 @@ const Register = () => {
     }
 
     console.log("Registration data:", formData);
+    
+    // Save user info to localStorage for dashboard display
+    const userInfo = {
+      email: formData.email,
+      firstName: formData.firstName,
+      lastName: formData.lastName
+    };
+    localStorage.setItem('userInfo', JSON.stringify(userInfo));
+    
     toast.success("Registration successful! Redirecting to dashboard...");
     
     // Simulate registration and redirect to dashboard

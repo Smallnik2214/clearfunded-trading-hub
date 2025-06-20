@@ -1,38 +1,31 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Plus, TrendingUp, DollarSign, Calendar, User } from "lucide-react";
+import { Plus, TrendingUp, DollarSign, Calendar, User, Mail } from "lucide-react";
 
 const Dashboard = () => {
-  const [userName] = useState("John Doe"); // This would come from auth context
+  const [userInfo, setUserInfo] = useState({
+    email: "",
+    firstName: "",
+    lastName: ""
+  });
+
+  useEffect(() => {
+    // Get user info from localStorage (set during registration)
+    const savedUserInfo = localStorage.getItem('userInfo');
+    if (savedUserInfo) {
+      setUserInfo(JSON.parse(savedUserInfo));
+    }
+  }, []);
 
   const userStats = {
-    activeAccounts: 2,
-    totalProfit: 1250.75,
-    successRate: 85,
-    totalTrades: 48
+    activeAccounts: 0,
+    totalProfit: 0,
+    successRate: 0,
+    totalTrades: 0
   };
-
-  const accounts = [
-    {
-      id: 1,
-      type: "1-Phase Challenge",
-      balance: "$10,000",
-      profit: "$847.50",
-      status: "Active",
-      platform: "cTrader"
-    },
-    {
-      id: 2,
-      type: "Funded Account",
-      balance: "$25,000",
-      profit: "$2,150.25",
-      status: "Funded",
-      platform: "MT5"
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -47,7 +40,9 @@ const Dashboard = () => {
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2">
                 <User className="h-5 w-5 text-gray-600" />
-                <span className="text-gray-700 font-medium">{userName}</span>
+                <span className="text-gray-700 font-medium">
+                  {userInfo.firstName} {userInfo.lastName}
+                </span>
               </div>
               <Button variant="outline" size="sm">
                 Logout
@@ -58,17 +53,21 @@ const Dashboard = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Welcome Section */}
+        {/* Welcome Section with User Info */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Welcome back, {userName}!
+            Welcome, {userInfo.firstName} {userInfo.lastName}!
           </h1>
-          <p className="text-gray-600">
-            Track your progress and manage your trading accounts
+          <div className="flex items-center gap-2 text-gray-600">
+            <Mail className="h-4 w-4" />
+            <span>{userInfo.email}</span>
+          </div>
+          <p className="text-gray-600 mt-2">
+            Get started by creating your first trading challenge
           </p>
         </div>
 
-        {/* Stats Overview */}
+        {/* Stats Overview - All zeros for new user */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <Card>
             <CardContent className="p-6">
@@ -77,7 +76,7 @@ const Dashboard = () => {
                   <p className="text-sm font-medium text-gray-600">Active Accounts</p>
                   <p className="text-3xl font-bold text-gray-900">{userStats.activeAccounts}</p>
                 </div>
-                <TrendingUp className="h-8 w-8 text-green-600" />
+                <TrendingUp className="h-8 w-8 text-gray-400" />
               </div>
             </CardContent>
           </Card>
@@ -87,9 +86,9 @@ const Dashboard = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-600">Total Profit</p>
-                  <p className="text-3xl font-bold text-green-600">${userStats.totalProfit}</p>
+                  <p className="text-3xl font-bold text-gray-900">${userStats.totalProfit}</p>
                 </div>
-                <DollarSign className="h-8 w-8 text-green-600" />
+                <DollarSign className="h-8 w-8 text-gray-400" />
               </div>
             </CardContent>
           </Card>
@@ -99,9 +98,9 @@ const Dashboard = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-600">Success Rate</p>
-                  <p className="text-3xl font-bold text-blue-600">{userStats.successRate}%</p>
+                  <p className="text-3xl font-bold text-gray-900">{userStats.successRate}%</p>
                 </div>
-                <TrendingUp className="h-8 w-8 text-blue-600" />
+                <TrendingUp className="h-8 w-8 text-gray-400" />
               </div>
             </CardContent>
           </Card>
@@ -113,7 +112,7 @@ const Dashboard = () => {
                   <p className="text-sm font-medium text-gray-600">Total Trades</p>
                   <p className="text-3xl font-bold text-gray-900">{userStats.totalTrades}</p>
                 </div>
-                <Calendar className="h-8 w-8 text-gray-600" />
+                <Calendar className="h-8 w-8 text-gray-400" />
               </div>
             </CardContent>
           </Card>
@@ -126,61 +125,44 @@ const Dashboard = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Plus className="h-5 w-5" />
-                Start New Challenge
+                Start Your First Challenge
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-gray-600 text-sm">
-                Ready to take on a new trading challenge? Choose your account size and get started.
+                Ready to begin your trading journey? Choose your account size and start your first challenge.
               </p>
               <Button
                 className="w-full bg-green-600 hover:bg-green-700"
                 onClick={() => window.location.href = "/challenge-details"}
               >
-                NEW CHALLENGE
+                START FIRST CHALLENGE
               </Button>
             </CardContent>
           </Card>
 
-          {/* Active Accounts */}
+          {/* No Active Accounts Message */}
           <Card className="lg:col-span-2">
             <CardHeader>
               <CardTitle>Your Trading Accounts</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
-                {accounts.map((account) => (
-                  <div
-                    key={account.id}
-                    className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
-                  >
-                    <div className="flex items-center gap-4">
-                      <div>
-                        <div className="font-semibold text-gray-900">{account.type}</div>
-                        <div className="text-sm text-gray-600">
-                          {account.balance} • {account.platform}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-4">
-                      <div className="text-right">
-                        <div className="font-semibold text-green-600">{account.profit}</div>
-                        <Badge
-                          className={
-                            account.status === "Funded"
-                              ? "bg-green-100 text-green-800"
-                              : "bg-blue-100 text-blue-800"
-                          }
-                        >
-                          {account.status}
-                        </Badge>
-                      </div>
-                      <Button variant="outline" size="sm">
-                        View Details
-                      </Button>
-                    </div>
-                  </div>
-                ))}
+              <div className="text-center py-12">
+                <div className="mx-auto w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                  <TrendingUp className="h-12 w-12 text-gray-400" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  No Trading Accounts Yet
+                </h3>
+                <p className="text-gray-500 mb-6">
+                  You don't have any active trading accounts. Start your first challenge to begin trading with us.
+                </p>
+                <Button
+                  className="bg-green-600 hover:bg-green-700"
+                  onClick={() => window.location.href = "/challenge-details"}
+                >
+                  Create Your First Account
+                </Button>
               </div>
             </CardContent>
           </Card>
@@ -196,21 +178,25 @@ const Dashboard = () => {
               onClick={() => window.location.href = "/challenge-details"}
             >
               <Plus className="h-8 w-8 text-green-600" />
-              <span>New Challenge</span>
+              <span>Start Challenge</span>
             </Button>
             <Button
               variant="outline"
-              className="p-6 h-auto flex flex-col items-center gap-2"
+              className="p-6 h-auto flex flex-col items-center gap-2 opacity-50 cursor-not-allowed"
+              disabled
             >
-              <DollarSign className="h-8 w-8 text-blue-600" />
+              <DollarSign className="h-8 w-8 text-gray-400" />
               <span>Request Payout</span>
+              <span className="text-xs text-gray-400">No funded accounts</span>
             </Button>
             <Button
               variant="outline"
-              className="p-6 h-auto flex flex-col items-center gap-2"
+              className="p-6 h-auto flex flex-col items-center gap-2 opacity-50 cursor-not-allowed"
+              disabled
             >
-              <TrendingUp className="h-8 w-8 text-purple-600" />
+              <TrendingUp className="h-8 w-8 text-gray-400" />
               <span>Trading Stats</span>
+              <span className="text-xs text-gray-400">No trading history</span>
             </Button>
           </div>
         </div>
