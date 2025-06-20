@@ -5,21 +5,21 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ArrowLeft, ArrowRight, HelpCircle } from "lucide-react";
+import { ArrowLeft, ArrowRight, HelpCircle, Monitor, TrendingUp, BarChart3 } from "lucide-react";
+import { PromoBanner } from "@/components/PromoBanner";
 
 const ChallengeDetails = () => {
   const [challengeType, setChallengeType] = useState<"1-Phase" | "2-Phase">("1-Phase");
-  const [platform, setPlatform] = useState<"cTrader" | "MT5">("cTrader");
+  const [platform, setPlatform] = useState<"MT5" | "TradeLocker" | "cTrader">("MT5");
   const [balance, setBalance] = useState<string>("5000");
-  const [promoCode, setPromoCode] = useState("");
+  const [promoCode, setPromoCode] = useState("NFP");
 
   const balanceOptions = [
     { value: "5000", label: "$5,000.00" },
     { value: "10000", label: "$10,000.00" },
     { value: "25000", label: "$25,000.00" },
     { value: "50000", label: "$50,000.00" },
-    { value: "100000", label: "$100,000.00" },
-    { value: "200000", label: "$200,000.00" }
+    { value: "100000", label: "$100,000.00" }
   ];
 
   const pricing = {
@@ -28,21 +28,37 @@ const ChallengeDetails = () => {
       "10000": 30,
       "25000": 125,
       "50000": 245,
-      "100000": 400,
-      "200000": 800
+      "100000": 400
     },
     "2-Phase": {
       "5000": 18,
       "10000": 30,
       "25000": 115,
       "50000": 230,
-      "100000": 380,
-      "200000": 760
+      "100000": 380
     }
   };
 
   const getPrice = () => {
-    return pricing[challengeType][balance as keyof typeof pricing["1-Phase"]] || 0;
+    const basePrice = pricing[challengeType][balance as keyof typeof pricing["1-Phase"]] || 0;
+    // Apply 30% discount for NFP promo code
+    if (promoCode.toUpperCase() === "NFP") {
+      return Math.round(basePrice * 0.7);
+    }
+    return basePrice;
+  };
+
+  const getDiscount = () => {
+    if (promoCode.toUpperCase() === "NFP") {
+      return 30;
+    }
+    return 0;
+  };
+
+  const platformIcons = {
+    "MT5": <Monitor className="h-5 w-5" />,
+    "TradeLocker": <TrendingUp className="h-5 w-5" />,
+    "cTrader": <BarChart3 className="h-5 w-5" />
   };
 
   const handleNext = () => {
@@ -61,11 +77,16 @@ const ChallengeDetails = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Promo Banner */}
+      <PromoBanner />
+      
       {/* Header */}
       <div className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <div className="text-2xl font-bold text-green-600">Clear Funded</div>
+            <div className="text-2xl font-bold text-green-600 cursor-pointer" onClick={() => window.location.href = "/"}>
+              Clear Funded
+            </div>
             
             {/* Progress Steps */}
             <div className="flex items-center gap-4">
@@ -127,20 +148,19 @@ const ChallengeDetails = () => {
                 <div className="mb-8">
                   <h3 className="text-lg font-semibold mb-4">Trading Platform</h3>
                   <div className="flex gap-4">
-                    <Button
-                      variant={platform === "cTrader" ? "default" : "outline"}
-                      onClick={() => setPlatform("cTrader")}
-                      className={platform === "cTrader" ? "bg-green-600 hover:bg-green-700" : ""}
-                    >
-                      cTrader
-                    </Button>
-                    <Button
-                      variant={platform === "MT5" ? "default" : "outline"}
-                      onClick={() => setPlatform("MT5")}
-                      className={platform === "MT5" ? "bg-green-600 hover:bg-green-700" : ""}
-                    >
-                      MT5
-                    </Button>
+                    {(["MT5", "TradeLocker", "cTrader"] as const).map((platformOption) => (
+                      <Button
+                        key={platformOption}
+                        variant={platform === platformOption ? "default" : "outline"}
+                        onClick={() => setPlatform(platformOption)}
+                        className={platform === platformOption ? "bg-green-600 hover:bg-green-700" : ""}
+                      >
+                        <span className="flex items-center gap-2">
+                          {platformIcons[platformOption]}
+                          {platformOption}
+                        </span>
+                      </Button>
+                    ))}
                   </div>
                 </div>
 
@@ -175,7 +195,7 @@ const ChallengeDetails = () => {
                       <div className="grid grid-cols-2 gap-4 text-sm">
                         <div className="flex justify-between">
                           <span>Daily drawdown:</span>
-                          <span className="font-semibold">5%</span>
+                          <span className="font-semibold">4%</span>
                         </div>
                         <div className="flex justify-between">
                           <span>Target Profit:</span>
@@ -183,7 +203,7 @@ const ChallengeDetails = () => {
                         </div>
                         <div className="flex justify-between">
                           <span>Overall drawdown:</span>
-                          <span className="font-semibold">10%</span>
+                          <span className="font-semibold">8%</span>
                         </div>
                         <div className="flex justify-between">
                           <span>Duration (Days):</span>
@@ -282,7 +302,10 @@ const ChallengeDetails = () => {
                   </div>
                   <div className="flex justify-between">
                     <span>Trading Platform:</span>
-                    <span className="font-semibold">{platform}</span>
+                    <span className="font-semibold flex items-center gap-1">
+                      {platformIcons[platform]}
+                      {platform}
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span>Currency:</span>
@@ -311,7 +334,19 @@ const ChallengeDetails = () => {
                         Apply
                       </Button>
                     </div>
+                    {promoCode.toUpperCase() === "NFP" && (
+                      <div className="mt-2 p-2 bg-green-50 border border-green-200 rounded text-sm text-green-700">
+                        🎉 NFP Special: 30% discount applied!
+                      </div>
+                    )}
                   </div>
+
+                  {getDiscount() > 0 && (
+                    <div className="flex justify-between items-center text-sm text-gray-600 mb-2">
+                      <span>Original Price:</span>
+                      <span className="line-through">${pricing[challengeType][balance as keyof typeof pricing["1-Phase"]]}</span>
+                    </div>
+                  )}
 
                   <div className="flex justify-between items-center text-lg font-bold">
                     <span>Total</span>
