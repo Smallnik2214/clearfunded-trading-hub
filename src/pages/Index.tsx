@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Header } from "@/components/Header";
+import { PromoBanner } from "@/components/PromoBanner";
+import { Footer } from "@/components/Footer";
 import { ReviewsSection } from "@/components/ReviewsSection";
 import { PricingSection } from "@/components/PricingSection";
 import { TradingRulesSection } from "@/components/TradingRulesSection";
@@ -25,7 +27,7 @@ const Index = () => {
     },
     "2-Phase": {
       "Trading period": "Unlimited", 
-      "Profit target": "10%",
+      "Profit target": "8% / 5%",
       "Maximum daily loss": "5%",
       "Maximum loss": "10%",
       "Account leverage": "1:100",
@@ -87,6 +89,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <PromoBanner />
       <Header />
       
       {/* Hero Section */}
@@ -189,6 +192,7 @@ const Index = () => {
       <ReviewsSection />
       <PricingSection />
       <TradingRulesSection />
+      <Footer />
     </div>
   );
 };

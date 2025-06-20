@@ -56,7 +56,10 @@ export const PricingSection = () => {
                   </div>
                 </div>
               ))}
-              <Button className="w-full bg-green-600 hover:bg-green-700">
+              <Button 
+                className="w-full bg-green-600 hover:bg-green-700"
+                onClick={() => window.location.href = "/register"}
+              >
                 Choose 1-Phase
               </Button>
             </CardContent>
@@ -83,7 +86,10 @@ export const PricingSection = () => {
                   </div>
                 </div>
               ))}
-              <Button className="w-full bg-blue-600 hover:bg-blue-700">
+              <Button 
+                className="w-full bg-blue-600 hover:bg-blue-700"
+                onClick={() => window.location.href = "/register"}
+              >
                 Choose 2-Phase
               </Button>
             </CardContent>
