@@ -45,6 +45,46 @@ const Index = () => {
 
   const priceOptions = ["5k", "10k", "25k", "50k", "100k"];
 
+  const getPriceForPhase = (phase: "1-Phase" | "2-Phase", size: string) => {
+    const pricing = {
+      "1-Phase": {
+        "5k": 23,
+        "10k": 30,
+        "25k": 125,
+        "50k": 245,
+        "100k": 400
+      },
+      "2-Phase": {
+        "5k": 18,
+        "10k": 30,
+        "25k": 115,
+        "50k": 230,
+        "100k": 380
+      }
+    };
+    return pricing[phase][size as keyof typeof pricing[typeof phase]];
+  };
+
+  const getOriginalPrice = (phase: "1-Phase" | "2-Phase", size: string) => {
+    const originalPricing = {
+      "1-Phase": {
+        "5k": 35,
+        "10k": 45,
+        "25k": 180,
+        "50k": 285,
+        "100k": 500
+      },
+      "2-Phase": {
+        "5k": 30,
+        "10k": 40,
+        "25k": 170,
+        "50k": 270,
+        "100k": 480
+      }
+    };
+    return originalPricing[phase][size as keyof typeof originalPricing[typeof phase]];
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -66,14 +106,14 @@ const Index = () => {
               <Button
                 variant={selectedPhase === "1-Phase" ? "default" : "outline"}
                 onClick={() => setSelectedPhase("1-Phase")}
-                className={selectedPhase === "1-Phase" ? "bg-green-600 hover:bg-green-700" : ""}
+                className={selectedPhase === "1-Phase" ? "bg-green-600 hover:bg-green-700 text-white" : ""}
               >
                 1-Phase
               </Button>
               <Button
                 variant={selectedPhase === "2-Phase" ? "default" : "outline"}
                 onClick={() => setSelectedPhase("2-Phase")}
-                className={selectedPhase === "2-Phase" ? "bg-green-600 hover:bg-green-700" : ""}
+                className={selectedPhase === "2-Phase" ? "bg-green-600 hover:bg-green-700 text-white" : ""}
               >
                 2-Phase
               </Button>
@@ -86,7 +126,7 @@ const Index = () => {
                   key={price}
                   variant={selectedPrice === price ? "default" : "outline"}
                   onClick={() => setSelectedPrice(price)}
-                  className={selectedPrice === price ? "bg-green-600 hover:bg-green-700" : ""}
+                  className={selectedPrice === price ? "bg-green-600 hover:bg-green-700 text-white" : ""}
                 >
                   ${price}
                 </Button>
@@ -124,10 +164,10 @@ const Index = () => {
                     <div className="mb-6">
                       <Badge className="bg-green-100 text-green-800 mb-2">Special Offer</Badge>
                       <div className="text-2xl font-bold text-gray-900">
-                        {selectedPhase === "1-Phase" ? "$23" : "$18"}
+                        ${getPriceForPhase(selectedPhase, selectedPrice)}
                       </div>
                       <div className="text-sm text-gray-500 line-through">
-                        {selectedPhase === "1-Phase" ? "$35" : "$30"}
+                        ${getOriginalPrice(selectedPhase, selectedPrice)}
                       </div>
                     </div>
                     <Button
