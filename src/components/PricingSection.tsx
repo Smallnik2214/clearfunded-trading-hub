@@ -51,7 +51,7 @@ export const PricingSection = () => {
                     <span className="font-semibold">${item.size} Account</span>
                   </div>
                   <div className="text-right">
-                    <div className="text-lg font-bold text-green-600">${item.price}</div>
+                    <div className="text-2xl font-bold text-green-600">${item.price}</div>
                   </div>
                 </div>
               ))}

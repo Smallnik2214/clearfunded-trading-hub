@@ -11,28 +11,84 @@ import { useEffect, useState } from "react";
 export const ReviewsSection = () => {
   const reviews = [
     {
-      name: "Marco Schmidt",
-      country: "Germany",
-      text: "Excellent platform with transparent rules. Got my payout within 24 hours!",
-      rating: 5
+      name: "Ezequiel Ignacio Yannelli",
+      country: "Argentina",
+      text: "From the beginning, everything worked out great!",
+      rating: 5,
+      avatar: "EY",
+      verified: true
     },
     {
-      name: "Pierre Dubois",
-      country: "France", 
-      text: "Very professional service. The trading conditions are exactly as advertised.",
-      rating: 5
+      name: "tsoomm",
+      country: "Mongolia", 
+      text: "fast and reliable service",
+      rating: 5,
+      avatar: "TS",
+      verified: false
     },
     {
-      name: "Sofia Andersson",
-      country: "Sweden",
-      text: "Clear Funded lives up to its name - everything is crystal clear and fair.",
-      rating: 5
+      name: "Zahra Masood",
+      country: "Pakistan",
+      text: "This firm is. Greatest of all time",
+      rating: 5,
+      avatar: "ZM",
+      verified: false
     },
     {
-      name: "Alessandro Rossi",
-      country: "Italy",
-      text: "Best prop firm I've worked with. Highly recommend to serious traders.",
-      rating: 5
+      name: "Samyk Jain",
+      country: "India",
+      text: "Nice customer care support and great firm Tbh.",
+      rating: 5,
+      avatar: "SJ",
+      verified: false
+    },
+    {
+      name: "Noah Leemans",
+      country: "Belgium",
+      text: "best support from Umar please give him a pay raise",
+      rating: 5,
+      avatar: "NL",
+      verified: false
+    },
+    {
+      name: "Mima Jane Nadeak",
+      country: "Indonesia",
+      text: "The best prop firm out there! Payout was super fast everything sorted out within 24 hours. Kyc processing was swift, discord community is helpful, customer service always ready to serve you 24/7.",
+      rating: 5,
+      avatar: "MJ",
+      verified: false
+    },
+    {
+      name: "shampa sutradhar",
+      country: "Bangladesh",
+      text: "It is really a trustworthy and reliable company. I think it is very rare to find such an honest trading company, along with best available technology.",
+      rating: 5,
+      avatar: "SS",
+      verified: false
+    },
+    {
+      name: "m. yigit demirci",
+      country: "Turkey",
+      text: "experience and spreads are great so far, customer service may be a little slow at times due to queue's; lets see if they will pay they will tho, giant propfirm",
+      rating: 5,
+      avatar: "MY",
+      verified: false
+    },
+    {
+      name: "Huseyin",
+      country: "Turkey",
+      text: "Best Spreads. Average rules. Good contact.",
+      rating: 5,
+      avatar: "H",
+      verified: true
+    },
+    {
+      name: "TWT",
+      country: "Lithuania",
+      text: "super! Very good prop firm 👌",
+      rating: 5,
+      avatar: "TW",
+      verified: true
     }
   ];
 
@@ -58,36 +114,38 @@ export const ReviewsSection = () => {
           </div>
         </div>
 
-        <Carousel
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          className="w-full"
-        >
-          <CarouselContent className="animate-[scroll_20s_linear_infinite]">
+        <div className="overflow-hidden">
+          <div className="flex animate-[scroll_30s_linear_infinite] gap-6">
             {[...reviews, ...reviews].map((review, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
-                <Card className="bg-white shadow-lg hover:shadow-xl transition-shadow h-full">
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-1 mb-3">
-                      {[...Array(review.rating)].map((_, i) => (
-                        <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                      ))}
+              <Card key={index} className="bg-white shadow-lg hover:shadow-xl transition-shadow flex-shrink-0 w-80">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-semibold text-sm">
+                      {review.avatar}
                     </div>
-                    <p className="text-gray-700 mb-4 text-sm">
-                      "{review.text}"
-                    </p>
-                    <div className="border-t pt-3">
-                      <div className="font-semibold text-gray-900">{review.name}</div>
+                    <div>
+                      <div className="font-semibold text-gray-900 flex items-center gap-2">
+                        {review.name}
+                        {review.verified && (
+                          <span className="text-green-600 text-xs">✓ Verified</span>
+                        )}
+                      </div>
                       <div className="text-sm text-gray-500">{review.country}</div>
                     </div>
-                  </CardContent>
-                </Card>
-              </CarouselItem>
+                  </div>
+                  <div className="flex items-center gap-1 mb-3">
+                    {[...Array(review.rating)].map((_, i) => (
+                      <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                    ))}
+                  </div>
+                  <p className="text-gray-700 text-sm">
+                    "{review.text}"
+                  </p>
+                </CardContent>
+              </Card>
             ))}
-          </CarouselContent>
-        </Carousel>
+          </div>
+        </div>
       </div>
     </section>
   );
