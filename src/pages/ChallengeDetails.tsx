@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,7 +11,7 @@ const ChallengeDetails = () => {
   const [challengeType, setChallengeType] = useState<"1-Phase" | "2-Phase">("1-Phase");
   const [platform, setPlatform] = useState<"MT5" | "TradeLocker" | "cTrader">("MT5");
   const [balance, setBalance] = useState<string>("5000");
-  const [promoCode, setPromoCode] = useState("NFP");
+  const [promoCode, setPromoCode] = useState("STAY CLEAR");
 
   const balanceOptions = [
     { value: "5000", label: "$5,000.00" },
@@ -40,7 +39,19 @@ const ChallengeDetails = () => {
   };
 
   const getPrice = () => {
-    return pricing[challengeType][balance as keyof typeof pricing["1-Phase"]] || 0;
+    const basePrice = pricing[challengeType][balance as keyof typeof pricing["1-Phase"]] || 0;
+    // Apply 30% discount for STAY CLEAR promo code (auto-applied)
+    if (promoCode.toUpperCase() === "STAY CLEAR") {
+      return Math.round(basePrice * 0.7);
+    }
+    return basePrice;
+  };
+
+  const getDiscount = () => {
+    if (promoCode.toUpperCase() === "STAY CLEAR") {
+      return 30;
+    }
+    return 0;
   };
 
   const platformIcons = {
@@ -306,6 +317,36 @@ const ChallengeDetails = () => {
                 </div>
 
                 <div className="border-t pt-4">
+                  <div className="mb-4">
+                    <Label htmlFor="promo" className="text-sm text-gray-600">
+                      Have a discount code?
+                    </Label>
+                    <div className="flex gap-2 mt-1">
+                      <Input
+                        id="promo"
+                        value={promoCode}
+                        onChange={(e) => setPromoCode(e.target.value)}
+                        placeholder="Enter Promo Code"
+                        className="flex-1"
+                      />
+                      <Button variant="outline" size="sm">
+                        Apply
+                      </Button>
+                    </div>
+                    {promoCode.toUpperCase() === "STAY CLEAR" && (
+                      <div className="mt-2 p-2 bg-green-50 border border-green-200 rounded text-sm text-green-700">
+                        🎉 STAY CLEAR Special: 30% discount applied!
+                      </div>
+                    )}
+                  </div>
+
+                  {getDiscount() > 0 && (
+                    <div className="flex justify-between items-center text-sm text-gray-600 mb-2">
+                      <span>Original Price:</span>
+                      <span className="line-through">${pricing[challengeType][balance as keyof typeof pricing["1-Phase"]]}</span>
+                    </div>
+                  )}
+
                   <div className="flex justify-between items-center text-lg font-bold">
                     <span>Total</span>
                     <span className="text-green-600">${getPrice()}</span>
