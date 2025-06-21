@@ -7,18 +7,18 @@ import { Check } from "lucide-react";
 export const PricingSection = () => {
   const pricingData = {
     "1-Phase": [
-      { size: "5k", originalPrice: 35 },
-      { size: "10k", originalPrice: 45 },
-      { size: "25k", originalPrice: 180 },
-      { size: "50k", originalPrice: 285 },
-      { size: "100k", originalPrice: 500 }
+      { size: "5k", price: 23 },
+      { size: "10k", price: 30 },
+      { size: "25k", price: 125 },
+      { size: "50k", price: 245 },
+      { size: "100k", price: 400 }
     ],
     "2-Phase": [
-      { size: "5k", originalPrice: 30 },
-      { size: "10k", originalPrice: 40 },
-      { size: "25k", originalPrice: 170 },
-      { size: "50k", originalPrice: 270 },
-      { size: "100k", originalPrice: 480 }
+      { size: "5k", price: 18 },
+      { size: "10k", price: 30 },
+      { size: "25k", price: 115 },
+      { size: "50k", price: 230 },
+      { size: "100k", price: 380 }
     ]
   };
 
@@ -55,7 +55,7 @@ export const PricingSection = () => {
                     <span className="font-semibold">${item.size} Account</span>
                   </div>
                   <div className="text-right">
-                    <div className="text-3xl font-bold text-gray-500 line-through">${item.originalPrice}</div>
+                    <div className="text-3xl font-bold text-gray-900">${item.price}</div>
                   </div>
                 </div>
               ))}
@@ -88,7 +88,7 @@ export const PricingSection = () => {
                     <span className="font-semibold">${item.size} Account</span>
                   </div>
                   <div className="text-right">
-                    <div className="text-3xl font-bold text-gray-500 line-through">${item.originalPrice}</div>
+                    <div className="text-3xl font-bold text-gray-900">${item.price}</div>
                   </div>
                 </div>
               ))}
