@@ -12,36 +12,12 @@ export const Header = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo - clickable to return home */}
           <div
-            className="flex-shrink-0 cursor-pointer"
+            className="flex-shrink-0 cursor-pointer text-2xl font-bold"
             onClick={() => window.location.href = "/"}
           >
-            <img
-              src="https://i.postimg.cc/FHKD4cLX/clearfunded-logo-larger.png"
-              alt="ClearFunded Logo"
-              className="h-10 w-auto"
-            />
+            <span className="text-green-600">Clear</span>
+            <span className="text-gray-900"> Funded</span>
           </div>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            <a href="/" className="text-gray-700 hover:text-green-600 transition-colors">
-              Home
-            </a>
-            <a href="/about" className="text-gray-700 hover:text-green-600 transition-colors">
-              About Us
-            </a>
-            <a href="/rules" className="text-gray-700 hover:text-green-600 transition-colors">
-              Trading Rules
-            </a>
-            <a href="/faq" className="text-gray-700 hover:text-green-600 transition-colors">
-              FAQ
-            </a>
-          </nav>
-        </div>
-      </div>
-    </header>
-  );
-};
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
