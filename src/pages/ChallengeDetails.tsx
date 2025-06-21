@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -86,9 +85,9 @@ const ChallengeDetails = () => {
           <div className="flex items-center justify-between h-16">
             <div className="cursor-pointer" onClick={() => window.location.href = "/"}>
               <img
-                src="/lovable-uploads/8f119a70-625e-442b-9b92-0e086d0d4fa6.png"
+                src="/lovable-uploads/ab62176f-dabc-4a42-85ae-f6c171796362.png"
                 alt="Clear Funded"
-                className="h-8 w-auto"
+                className="h-10 w-auto"
                 onError={(e) => {
                   const target = e.currentTarget as HTMLImageElement;
                   target.style.display = 'none';

@@ -13,9 +13,9 @@ export const Header = () => {
           {/* Logo - clickable to return home */}
           <div className="flex-shrink-0 cursor-pointer" onClick={() => window.location.href = "/"}>
             <img
-              src="/lovable-uploads/8f119a70-625e-442b-9b92-0e086d0d4fa6.png"
+              src="/lovable-uploads/ab62176f-dabc-4a42-85ae-f6c171796362.png"
               alt="Clear Funded"
-              className="h-8 w-auto"
+              className="h-10 w-auto"
               onError={(e) => {
                 const target = e.currentTarget as HTMLImageElement;
                 target.style.display = 'none';
