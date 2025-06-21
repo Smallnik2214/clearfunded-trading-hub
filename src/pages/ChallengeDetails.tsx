@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -83,8 +84,24 @@ const ChallengeDetails = () => {
       <div className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <div className="text-2xl font-bold text-green-600 cursor-pointer" onClick={() => window.location.href = "/"}>
-              Clear Funded
+            <div className="cursor-pointer" onClick={() => window.location.href = "/"}>
+              <img
+                src="/lovable-uploads/8f119a70-625e-442b-9b92-0e086d0d4fa6.png"
+                alt="Clear Funded"
+                className="h-8 w-auto"
+                onError={(e) => {
+                  const target = e.currentTarget as HTMLImageElement;
+                  target.style.display = 'none';
+                  const nextSibling = target.nextElementSibling as HTMLElement;
+                  if (nextSibling) {
+                    nextSibling.style.display = 'block';
+                  }
+                }}
+              />
+              <div className="hidden text-2xl font-bold">
+                <span className="text-green-600">Clear</span>
+                <span className="text-gray-900"> Funded</span>
+              </div>
             </div>
             
             {/* Progress Steps */}

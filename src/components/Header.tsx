@@ -13,7 +13,7 @@ export const Header = () => {
           {/* Logo - clickable to return home */}
           <div className="flex-shrink-0 cursor-pointer" onClick={() => window.location.href = "/"}>
             <img
-              src="/lovable-uploads/logo.png"
+              src="/lovable-uploads/8f119a70-625e-442b-9b92-0e086d0d4fa6.png"
               alt="Clear Funded"
               className="h-8 w-auto"
               onError={(e) => {
@@ -25,8 +25,9 @@ export const Header = () => {
                 }
               }}
             />
-            <div className="hidden text-2xl font-bold text-green-600">
-              Clear Funded
+            <div className="hidden text-2xl font-bold">
+              <span className="text-green-600">Clear</span>
+              <span className="text-gray-900"> Funded</span>
             </div>
           </div>
 
