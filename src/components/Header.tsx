@@ -16,9 +16,9 @@ export const Header = () => {
             onClick={() => window.location.href = "/"}
           >
             <img
-              src="https://i.postimg.cc/MZgnxfrf/Gemini-Generated-Image-b5awn3b5awn3b5aw.png"
+              src="https://i.postimg.cc/Jnk54Cmb/Logo.jpg"
               alt="Clear Funded Logo"
-              className="h-25 w-25"
+              className="h-12 w-12"
             />
           </div>
 
