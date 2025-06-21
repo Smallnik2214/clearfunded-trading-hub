@@ -25,21 +25,13 @@ export const PricingSection = () => {
   return (
     <section className="py-16 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12 relative">
+        <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Challenge Pricing
+            Our Evaluations
           </h2>
           <p className="text-gray-600">
             Choose your challenge size and start your trading journey
           </p>
-          
-          {/* Red arrow and text in top right */}
-          <div className="absolute top-0 right-0 flex items-center text-red-500">
-            <span className="text-sm font-medium mr-2">Change to Our Evaluations</span>
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
