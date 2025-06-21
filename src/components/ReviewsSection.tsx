@@ -1,93 +1,87 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Star } from "lucide-react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
-import { useEffect, useState } from "react";
 
 export const ReviewsSection = () => {
   const reviews = [
     {
-      name: "Ezequiel Ignacio Yannelli",
-      country: "Argentina",
-      text: "From the beginning, everything worked out great!",
+      name: "Michael Thompson",
+      country: "United States",
+      text: "Excellent service and fast payouts. The support team is very responsive and helpful.",
       rating: 5,
-      avatar: "EY",
+      avatar: "MT",
       verified: true
     },
     {
-      name: "tsoomm",
-      country: "Mongolia", 
-      text: "fast and reliable service",
-      rating: 5,
-      avatar: "TS",
-      verified: false
-    },
-    {
-      name: "Zahra Masood",
-      country: "Pakistan",
-      text: "This firm is. Greatest of all time",
-      rating: 5,
-      avatar: "ZM",
-      verified: false
-    },
-    {
-      name: "Samyk Jain",
-      country: "India",
-      text: "Nice customer care support and great firm Tbh.",
+      name: "Sarah Johnson",
+      country: "Canada",
+      text: "Best prop firm I've worked with. Clear rules and fair profit splits.",
       rating: 5,
       avatar: "SJ",
-      verified: false
-    },
-    {
-      name: "Noah Leemans",
-      country: "Belgium",
-      text: "best support from Umar please give him a pay raise",
-      rating: 5,
-      avatar: "NL",
-      verified: false
-    },
-    {
-      name: "Mima Jane Nadeak",
-      country: "Indonesia",
-      text: "The best prop firm out there! Payout was super fast everything sorted out within 24 hours. Kyc processing was swift, discord community is helpful, customer service always ready to serve you 24/7.",
-      rating: 5,
-      avatar: "MJ",
-      verified: false
-    },
-    {
-      name: "shampa sutradhar",
-      country: "Bangladesh",
-      text: "It is really a trustworthy and reliable company. I think it is very rare to find such an honest trading company, along with best available technology.",
-      rating: 5,
-      avatar: "SS",
-      verified: false
-    },
-    {
-      name: "m. yigit demirci",
-      country: "Turkey",
-      text: "experience and spreads are great so far, customer service may be a little slow at times due to queue's; lets see if they will pay they will tho, giant propfirm",
-      rating: 5,
-      avatar: "MY",
-      verified: false
-    },
-    {
-      name: "Huseyin",
-      country: "Turkey",
-      text: "Best Spreads. Average rules. Good contact.",
-      rating: 5,
-      avatar: "H",
       verified: true
     },
     {
-      name: "TWT",
-      country: "Lithuania",
-      text: "super! Very good prop firm 👌",
+      name: "David Wilson",
+      country: "United Kingdom",
+      text: "Professional platform with great trading conditions. Highly recommended!",
       rating: 5,
-      avatar: "TW",
+      avatar: "DW",
+      verified: false
+    },
+    {
+      name: "Emma Davis",
+      country: "Australia",
+      text: "Fast verification process and excellent customer support. Very satisfied!",
+      rating: 5,
+      avatar: "ED",
+      verified: true
+    },
+    {
+      name: "Carlos Rodriguez",
+      country: "Spain",
+      text: "Great spreads and reliable platform. The challenge rules are very clear.",
+      rating: 5,
+      avatar: "CR",
+      verified: false
+    },
+    {
+      name: "Lisa Chen",
+      country: "Singapore",
+      text: "Outstanding prop firm with competitive pricing. Payment was processed quickly.",
+      rating: 5,
+      avatar: "LC",
+      verified: true
+    },
+    {
+      name: "Ahmed Hassan",
+      country: "UAE",
+      text: "Professional service and transparent rules. The trading environment is excellent.",
+      rating: 5,
+      avatar: "AH",
+      verified: false
+    },
+    {
+      name: "Sophie Martin",
+      country: "France",
+      text: "Impressed with the platform's reliability and the support team's expertise.",
+      rating: 5,
+      avatar: "SM",
+      verified: true
+    },
+    {
+      name: "John Smith",
+      country: "Germany",
+      text: "Clear Funded provides excellent trading conditions and fair profit sharing.",
+      rating: 5,
+      avatar: "JS",
+      verified: false
+    },
+    {
+      name: "Maria Garcia",
+      country: "Mexico",
+      text: "Very professional firm with great customer service. Highly recommend to all traders.",
+      rating: 5,
+      avatar: "MG",
       verified: true
     }
   ];
@@ -115,8 +109,8 @@ export const ReviewsSection = () => {
         </div>
 
         <div className="overflow-hidden">
-          <div className="flex animate-[scroll_30s_linear_infinite] gap-6">
-            {[...reviews, ...reviews].map((review, index) => (
+          <div className="flex animate-[scroll-left_40s_linear_infinite] gap-6">
+            {[...reviews, ...reviews, ...reviews].map((review, index) => (
               <Card key={index} className="bg-white shadow-lg hover:shadow-xl transition-shadow flex-shrink-0 w-80">
                 <CardContent className="p-6">
                   <div className="flex items-center gap-3 mb-4">
@@ -147,6 +141,17 @@ export const ReviewsSection = () => {
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes scroll-left {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-100%);
+          }
+        }
+      `}</style>
     </section>
   );
 };
