@@ -18,7 +18,7 @@ export const Header = () => {
             <img
               src="https://i.postimg.cc/cJ17pkFc/Create-same-logo-on.png"
               alt="Clear Funded Logo"
-              className="h-24 w-24"
+              className="h-25 w-25"
             />
           </div>
 
