@@ -3,8 +3,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Check } from "lucide-react";
+import { useState } from "react";
 
 export const PricingSection = () => {
+  const [selected1Phase, setSelected1Phase] = useState<string | null>(null);
+  const [selected2Phase, setSelected2Phase] = useState<string | null>(null);
+
   const pricingData = {
     "1-Phase": [
       { size: "5k", originalPrice: 35, discountPrice: 23 },
@@ -20,6 +24,24 @@ export const PricingSection = () => {
       { size: "50k", originalPrice: 270, discountPrice: 230 },
       { size: "100k", originalPrice: 480, discountPrice: 380 }
     ]
+  };
+
+  const handleAccountSelect = (phase: "1-Phase" | "2-Phase", size: string) => {
+    if (phase === "1-Phase") {
+      setSelected1Phase(size);
+    } else {
+      setSelected2Phase(size);
+    }
+  };
+
+  const handlePhaseChoose = (phase: "1-Phase" | "2-Phase") => {
+    const selectedSize = phase === "1-Phase" ? selected1Phase : selected2Phase;
+    if (selectedSize) {
+      // Store the selection in localStorage for the registration page
+      localStorage.setItem('selectedPhase', phase);
+      localStorage.setItem('selectedSize', selectedSize);
+      window.location.href = "/register";
+    }
   };
 
   return (
@@ -45,9 +67,17 @@ export const PricingSection = () => {
             </CardHeader>
             <CardContent className="space-y-4">
               {pricingData["1-Phase"].map((item, index) => (
-                <div key={index} className="flex items-center justify-between p-4 bg-white rounded-lg">
+                <div 
+                  key={index} 
+                  className={`flex items-center justify-between p-4 rounded-lg cursor-pointer transition-all duration-200 hover:shadow-md ${
+                    selected1Phase === item.size 
+                      ? "bg-green-100 border-2 border-green-500 shadow-md" 
+                      : "bg-white hover:bg-green-50"
+                  }`}
+                  onClick={() => handleAccountSelect("1-Phase", item.size)}
+                >
                   <div className="flex items-center gap-3">
-                    <Check className="h-5 w-5 text-green-600" />
+                    <Check className={`h-5 w-5 ${selected1Phase === item.size ? "text-green-700" : "text-green-600"}`} />
                     <span className="font-semibold">${item.size} Account</span>
                   </div>
                   <div className="text-right">
@@ -57,8 +87,13 @@ export const PricingSection = () => {
                 </div>
               ))}
               <Button 
-                className="w-full bg-green-600 hover:bg-green-700"
-                onClick={() => window.location.href = "/register"}
+                className={`w-full transition-all duration-200 ${
+                  selected1Phase 
+                    ? "bg-green-600 hover:bg-green-700" 
+                    : "bg-gray-400 cursor-not-allowed"
+                }`}
+                onClick={() => handlePhaseChoose("1-Phase")}
+                disabled={!selected1Phase}
               >
                 Choose 1-Phase
               </Button>
@@ -75,9 +110,17 @@ export const PricingSection = () => {
             </CardHeader>
             <CardContent className="space-y-4">
               {pricingData["2-Phase"].map((item, index) => (
-                <div key={index} className="flex items-center justify-between p-4 bg-white rounded-lg">
+                <div 
+                  key={index} 
+                  className={`flex items-center justify-between p-4 rounded-lg cursor-pointer transition-all duration-200 hover:shadow-md ${
+                    selected2Phase === item.size 
+                      ? "bg-blue-100 border-2 border-blue-500 shadow-md" 
+                      : "bg-white hover:bg-blue-50"
+                  }`}
+                  onClick={() => handleAccountSelect("2-Phase", item.size)}
+                >
                   <div className="flex items-center gap-3">
-                    <Check className="h-5 w-5 text-blue-600" />
+                    <Check className={`h-5 w-5 ${selected2Phase === item.size ? "text-blue-700" : "text-blue-600"}`} />
                     <span className="font-semibold">${item.size} Account</span>
                   </div>
                   <div className="text-right">
@@ -87,8 +130,13 @@ export const PricingSection = () => {
                 </div>
               ))}
               <Button 
-                className="w-full bg-blue-600 hover:bg-blue-700"
-                onClick={() => window.location.href = "/register"}
+                className={`w-full transition-all duration-200 ${
+                  selected2Phase 
+                    ? "bg-blue-600 hover:bg-blue-700" 
+                    : "bg-gray-400 cursor-not-allowed"
+                }`}
+                onClick={() => handlePhaseChoose("2-Phase")}
+                disabled={!selected2Phase}
               >
                 Choose 2-Phase
               </Button>
