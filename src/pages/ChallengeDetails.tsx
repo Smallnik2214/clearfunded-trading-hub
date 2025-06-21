@@ -24,35 +24,23 @@ const ChallengeDetails = () => {
 
   const pricing = {
     "1-Phase": {
-      "5000": 23,
-      "10000": 30,
-      "25000": 125,
-      "50000": 245,
-      "100000": 400
+      "5000": 30,
+      "10000": 45,
+      "25000": 180,
+      "50000": 285,
+      "100000": 500
     },
     "2-Phase": {
-      "5000": 18,
-      "10000": 30,
-      "25000": 115,
-      "50000": 230,
-      "100000": 380
+      "5000": 25,
+      "10000": 39,
+      "25000": 170,
+      "50000": 270,
+      "100000": 480
     }
   };
 
   const getPrice = () => {
-    const basePrice = pricing[challengeType][balance as keyof typeof pricing["1-Phase"]] || 0;
-    // Apply 30% discount for NFP promo code
-    if (promoCode.toUpperCase() === "NFP") {
-      return Math.round(basePrice * 0.7);
-    }
-    return basePrice;
-  };
-
-  const getDiscount = () => {
-    if (promoCode.toUpperCase() === "NFP") {
-      return 30;
-    }
-    return 0;
+    return pricing[challengeType][balance as keyof typeof pricing["1-Phase"]] || 0;
   };
 
   const platformIcons = {
@@ -318,36 +306,6 @@ const ChallengeDetails = () => {
                 </div>
 
                 <div className="border-t pt-4">
-                  <div className="mb-4">
-                    <Label htmlFor="promo" className="text-sm text-gray-600">
-                      Have a discount code?
-                    </Label>
-                    <div className="flex gap-2 mt-1">
-                      <Input
-                        id="promo"
-                        value={promoCode}
-                        onChange={(e) => setPromoCode(e.target.value)}
-                        placeholder="Enter Promo Code"
-                        className="flex-1"
-                      />
-                      <Button variant="outline" size="sm">
-                        Apply
-                      </Button>
-                    </div>
-                    {promoCode.toUpperCase() === "NFP" && (
-                      <div className="mt-2 p-2 bg-green-50 border border-green-200 rounded text-sm text-green-700">
-                        🎉 NFP Special: 30% discount applied!
-                      </div>
-                    )}
-                  </div>
-
-                  {getDiscount() > 0 && (
-                    <div className="flex justify-between items-center text-sm text-gray-600 mb-2">
-                      <span>Original Price:</span>
-                      <span className="line-through">${pricing[challengeType][balance as keyof typeof pricing["1-Phase"]]}</span>
-                    </div>
-                  )}
-
                   <div className="flex justify-between items-center text-lg font-bold">
                     <span>Total</span>
                     <span className="text-green-600">${getPrice()}</span>
