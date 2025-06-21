@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -165,21 +164,18 @@ const Index = () => {
                   {/* Call to Action */}
                   <div className="text-center flex flex-col justify-center">
                     <div className="mb-6">
-                      <Badge className="bg-green-100 text-green-800 mb-2">Special Offer</Badge>
-                      <div className="text-2xl font-bold text-gray-900">
+                      <Badge className="bg-green-100 text-green-800 mb-4 text-lg px-4 py-2">Special Offer</Badge>
+                      <div className="text-4xl font-bold text-gray-900 mb-2">
                         ${getPriceForPhase(selectedPhase, selectedPrice)}
-                      </div>
-                      <div className="text-sm text-gray-500 line-through">
-                        ${getOriginalPrice(selectedPhase, selectedPrice)}
                       </div>
                     </div>
                     <Button
                       size="lg"
-                      className="bg-green-600 hover:bg-green-700 text-white"
+                      className="bg-green-600 hover:bg-green-700 text-white py-4 px-8 text-xl font-bold shadow-lg transform hover:scale-105 transition-all"
                       onClick={() => window.location.href = "/register"}
                     >
                       Start Trading
-                      <ArrowRight className="ml-2 h-4 w-4" />
+                      <ArrowRight className="ml-2 h-6 w-6" />
                     </Button>
                   </div>
                 </div>

@@ -13,9 +13,9 @@ export const PromoBanner = () => {
         <div className="animate-pulse mr-2">🔥</div>
         <div className="text-sm font-semibold tracking-wide">
           <span className="animate-bounce inline-block">NFP SPECIAL:</span>
-          <span className="ml-2">Get 30% to 50% OFF on all challenges!</span>
+          <span className="ml-2">Get 30% OFF on all challenges!</span>
           <span className="ml-2 bg-white text-red-600 px-2 py-1 rounded text-xs font-bold">
-            Use Code: NFP
+            Use Code: STAY CLEAR!
           </span>
         </div>
         <button
