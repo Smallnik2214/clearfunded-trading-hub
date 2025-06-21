@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -49,18 +50,18 @@ const Index = () => {
   const getPriceForPhase = (phase: "1-Phase" | "2-Phase", size: string) => {
     const pricing = {
       "1-Phase": {
-        "5k": 23,
-        "10k": 30,
-        "25k": 125,
-        "50k": 245,
-        "100k": 400
+        "5k": 30,
+        "10k": 45,
+        "25k": 180,
+        "50k": 285,
+        "100k": 500
       },
       "2-Phase": {
-        "5k": 18,
-        "10k": 30,
-        "25k": 115,
-        "50k": 230,
-        "100k": 380
+        "5k": 25,
+        "10k": 39,
+        "25k": 170,
+        "50k": 270,
+        "100k": 480
       }
     };
     return pricing[phase][size as keyof typeof pricing[typeof phase]];
@@ -69,15 +70,15 @@ const Index = () => {
   const getOriginalPrice = (phase: "1-Phase" | "2-Phase", size: string) => {
     const originalPricing = {
       "1-Phase": {
-        "5k": 35,
+        "5k": 30,
         "10k": 45,
         "25k": 180,
         "50k": 285,
         "100k": 500
       },
       "2-Phase": {
-        "5k": 30,
-        "10k": 40,
+        "5k": 25,
+        "10k": 39,
         "25k": 170,
         "50k": 270,
         "100k": 480
