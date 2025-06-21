@@ -9,23 +9,10 @@ export const Header = () => {
   return (
     <header className="bg-white shadow-sm border-b">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-40">
+        <div className="flex justify-between items-center h-16">
           {/* Logo - clickable to return home */}
           <div className="flex-shrink-0 cursor-pointer" onClick={() => window.location.href = "/"}>
-            <img
-              src="/lovable-uploads/ab62176f-dabc-4a42-85ae-f6c171796362.png"
-              alt="Clear Funded"
-              className="h-32 w-auto"
-              onError={(e) => {
-                const target = e.currentTarget as HTMLImageElement;
-                target.style.display = 'none';
-                const nextSibling = target.nextElementSibling as HTMLElement;
-                if (nextSibling) {
-                  nextSibling.style.display = 'block';
-                }
-              }}
-            />
-            <div className="hidden text-2xl font-bold">
+            <div className="text-2xl font-bold">
               <span className="text-green-600">Clear</span>
               <span className="text-gray-900"> Funded</span>
             </div>

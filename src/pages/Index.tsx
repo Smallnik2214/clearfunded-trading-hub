@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -96,13 +95,9 @@ const Index = () => {
       <section className="relative bg-gradient-to-br from-green-50 to-green-100 py-20 px-4">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-10" />
         <div className="relative max-w-7xl mx-auto text-center">
-          <div className="mb-6 flex justify-center">
-            <img
-              src="/lovable-uploads/ab62176f-dabc-4a42-85ae-f6c171796362.png"
-              alt="Clear Funded"
-              className="h-60 w-auto"
-            />
-          </div>
+          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
+            <span className="text-green-600">Clear</span> Funded
+          </h1>
           <p className="text-xl md:text-2xl text-gray-700 mb-12">
             Clear rules. Real growth.
           </p>
