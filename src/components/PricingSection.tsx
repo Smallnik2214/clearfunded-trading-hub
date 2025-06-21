@@ -7,18 +7,18 @@ import { Check } from "lucide-react";
 export const PricingSection = () => {
   const pricingData = {
     "1-Phase": [
-      { size: "5k", price: 23 },
-      { size: "10k", price: 30 },
-      { size: "25k", price: 125 },
-      { size: "50k", price: 245 },
-      { size: "100k", price: 400 }
+      { size: "5000", price: 30 },
+      { size: "10000", price: 45 },
+      { size: "25000", price: 180 },
+      { size: "50000", price: 285 },
+      { size: "100000", price: 500 }
     ],
     "2-Phase": [
-      { size: "5k", price: 18 },
-      { size: "10k", price: 30 },
-      { size: "25k", price: 115 },
-      { size: "50k", price: 230 },
-      { size: "100k", price: 380 }
+      { size: "5000", price: 25 },
+      { size: "10000", price: 39 },
+      { size: "25000", price: 170 },
+      { size: "50000", price: 270 },
+      { size: "100000", price: 480 }
     ]
   };
 
@@ -48,14 +48,14 @@ export const PricingSection = () => {
                 <div 
                   key={index} 
                   className="flex items-center justify-between p-4 bg-white rounded-lg hover:bg-green-100 hover:border-green-300 border-2 border-transparent transition-all cursor-pointer hover:shadow-md"
-                  onClick={() => console.log(`Selected 1-Phase ${item.size} account`)}
+                  onClick={() => console.log(`Selected 1-Phase ${item.size}$ account`)}
                 >
                   <div className="flex items-center gap-3">
                     <Check className="h-5 w-5 text-green-600" />
-                    <span className="font-semibold">${item.size} Account</span>
+                    <span className="font-semibold">{item.size}$ Account</span>
                   </div>
                   <div className="text-right">
-                    <div className="text-3xl font-bold text-gray-900">${item.price}</div>
+                    <div className="text-3xl font-bold text-gray-900">{item.price}</div>
                   </div>
                 </div>
               ))}
@@ -81,14 +81,14 @@ export const PricingSection = () => {
                 <div 
                   key={index} 
                   className="flex items-center justify-between p-4 bg-white rounded-lg border border-blue-200 hover:bg-blue-100 hover:border-blue-400 border-2 transition-all cursor-pointer hover:shadow-md"
-                  onClick={() => console.log(`Selected 2-Phase ${item.size} account`)}
+                  onClick={() => console.log(`Selected 2-Phase ${item.size}$ account`)}
                 >
                   <div className="flex items-center gap-3">
                     <Check className="h-5 w-5 text-blue-600" />
-                    <span className="font-semibold">${item.size} Account</span>
+                    <span className="font-semibold">{item.size}$ Account</span>
                   </div>
                   <div className="text-right">
-                    <div className="text-3xl font-bold text-gray-900">${item.price}</div>
+                    <div className="text-3xl font-bold text-gray-900">{item.price}</div>
                   </div>
                 </div>
               ))}
