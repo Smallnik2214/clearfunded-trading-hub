@@ -7,18 +7,18 @@ import { Check } from "lucide-react";
 export const PricingSection = () => {
   const pricingData = {
     "1-Phase": [
-      { size: "5k", price: 23, originalPrice: 35 },
-      { size: "10k", price: 30, originalPrice: 45 },
-      { size: "25k", price: 125, originalPrice: 180 },
-      { size: "50k", price: 245, originalPrice: 285 },
-      { size: "100k", price: 400, originalPrice: 500 }
+      { size: "5k", originalPrice: 35 },
+      { size: "10k", originalPrice: 45 },
+      { size: "25k", originalPrice: 180 },
+      { size: "50k", originalPrice: 285 },
+      { size: "100k", originalPrice: 500 }
     ],
     "2-Phase": [
-      { size: "5k", price: 18, originalPrice: 30 },
-      { size: "10k", price: 30, originalPrice: 40 },
-      { size: "25k", price: 115, originalPrice: 170 },
-      { size: "50k", price: 230, originalPrice: 270 },
-      { size: "100k", price: 380, originalPrice: 480 }
+      { size: "5k", originalPrice: 30 },
+      { size: "10k", originalPrice: 40 },
+      { size: "25k", originalPrice: 170 },
+      { size: "50k", originalPrice: 270 },
+      { size: "100k", originalPrice: 480 }
     ]
   };
 
@@ -51,8 +51,7 @@ export const PricingSection = () => {
                     <span className="font-semibold">${item.size} Account</span>
                   </div>
                   <div className="text-right">
-                    <div className="text-sm text-gray-500 line-through">${item.originalPrice}</div>
-                    <div className="text-3xl font-bold text-green-600">${item.price}</div>
+                    <div className="text-3xl font-bold text-gray-500 line-through">${item.originalPrice}</div>
                   </div>
                 </div>
               ))}
@@ -65,12 +64,12 @@ export const PricingSection = () => {
             </CardContent>
           </Card>
 
-          {/* 2-Phase Pricing - Highlighted */}
-          <Card className="bg-blue-50 border-blue-200 ring-2 ring-blue-400 shadow-lg transform scale-105">
+          {/* 2-Phase Pricing */}
+          <Card className="bg-blue-50 border-blue-200">
             <CardHeader className="text-center">
               <CardTitle className="text-2xl text-blue-700">2-Phase Challenge</CardTitle>
               <div className="flex justify-center">
-                <Badge className="bg-blue-600 text-white animate-pulse">Best Value</Badge>
+                <Badge className="bg-blue-600 text-white">Best Value</Badge>
               </div>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -81,16 +80,15 @@ export const PricingSection = () => {
                     <span className="font-semibold">${item.size} Account</span>
                   </div>
                   <div className="text-right">
-                    <div className="text-sm text-gray-500 line-through">${item.originalPrice}</div>
-                    <div className="text-3xl font-bold text-blue-600">${item.price}</div>
+                    <div className="text-3xl font-bold text-gray-500 line-through">${item.originalPrice}</div>
                   </div>
                 </div>
               ))}
               <Button 
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 text-lg shadow-lg animate-pulse"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 text-lg"
                 onClick={() => window.location.href = "/register"}
               >
-                Choose 2-Phase ⭐
+                Choose 2-Phase
               </Button>
             </CardContent>
           </Card>
