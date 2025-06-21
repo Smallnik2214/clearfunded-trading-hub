@@ -12,11 +12,14 @@ export const Header = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo - clickable to return home */}
           <div
-            className="flex-shrink-0 cursor-pointer text-2xl font-bold"
+            className="flex-shrink-0 cursor-pointer"
             onClick={() => window.location.href = "/"}
           >
-            <span className="text-green-600">Clear</span>
-            <span className="text-gray-900"> Funded</span>
+            <img
+              src="https://i.postimg.cc/FHKD4cLX/clearfunded-logo-larger.png"
+              alt="Clear Funded Logo"
+              className="h-10 w-auto"
+            />
           </div>
 
           {/* Desktop Navigation */}
