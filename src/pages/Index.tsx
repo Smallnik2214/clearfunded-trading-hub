@@ -99,7 +99,7 @@ const Index = () => {
           <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 flex items-center justify-center gap-4">
             <span className="text-green-600"></span> 
             <img
-              src="https://i.postimg.cc/CxSPWCTj/Chat-GPT-Image-Jun-22-2025-12-56-52-PM.png"
+              src="https://i.postimg.cc/DZZRRrGC/Clear-Funded-logo-transparent.png"
               alt="Clear Funded Logo"
               className="h-24 md:h-24 w-auto"
             />
