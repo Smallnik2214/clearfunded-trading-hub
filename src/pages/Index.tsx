@@ -9,6 +9,7 @@ import { Footer } from "@/components/Footer";
 import { ReviewsSection } from "@/components/ReviewsSection";
 import { PricingSection } from "@/components/PricingSection";
 import { TradingRulesSection } from "@/components/TradingRulesSection";
+import { CertificatesSection } from "@/components/CertificatesSection";
 import { ArrowRight } from "lucide-react";
 
 const Index = () => {
@@ -192,6 +193,7 @@ const Index = () => {
 
       <TradingRulesSection />
       <PricingSection />
+      <CertificatesSection />
       <ReviewsSection />
       <Footer />
     </div>
