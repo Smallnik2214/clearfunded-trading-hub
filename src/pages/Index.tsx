@@ -99,7 +99,7 @@ const Index = () => {
             <img
               src="https://i.postimg.cc/vmMv1GHf/Clear-Funded-logo-540x540-custom-green.png"
               alt="Clear Funded Logo"
-              className="h-32 md:h-40 w-auto mx-auto"
+              className="h-24 md:h-24 w-auto mx-auto"
             />
           </div>
           <p className="text-xl md:text-2xl text-gray-700 mb-12">
