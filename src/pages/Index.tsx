@@ -99,7 +99,7 @@ const Index = () => {
             <img
               src="https://i.postimg.cc/wjqgxmYp/Chat-GPT-Image-Jun-22-2025-12-35-56-PM.png"
               alt="Clear Funded Logo"
-              className="h-12 md:h-18 w-auto mx-auto"
+              className="h-23 md:h-23 w-auto mx-auto"
             />
           </h1>
           <p className="text-xl md:text-2xl text-gray-700 mb-12">
