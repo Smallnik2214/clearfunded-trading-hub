@@ -60,7 +60,7 @@ export const PricingSection = () => {
                 </div>
               ))}
               <Button 
-                className="w-full bg-green-600 hover:bg-green-700"
+                className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 text-lg"
                 onClick={() => window.location.href = "/register"}
               >
                 Choose 1-Phase
