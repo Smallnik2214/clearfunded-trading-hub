@@ -38,8 +38,18 @@ const Dashboard = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center gap-4">
-              <div className="text-2xl font-bold text-green-600 cursor-pointer" onClick={() => window.location.href = "/"}>
-                Clear Funded
+              <div 
+                className="flex items-center cursor-pointer" 
+                onClick={() => window.location.href = "/"}
+              >
+                <img
+                  src="https://i.postimg.cc/5ySSfG8b/Chat-GPT-Image-Jun-22-2025-12-24-31-PM.png"
+                  alt="Clear Funded Logo"
+                  className="h-12 w-16 mr-2"
+                />
+                <div className="text-2xl font-bold text-green-600">
+                  Clear Funded
+                </div>
               </div>
               <Badge className="bg-green-100 text-green-800">Dashboard</Badge>
             </div>
