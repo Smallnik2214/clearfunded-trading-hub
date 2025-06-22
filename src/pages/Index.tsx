@@ -97,9 +97,9 @@ const Index = () => {
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-10" />
         <div className="relative max-w-7xl mx-auto text-center">
           <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 flex items-center justify-center gap-4">
-            <span className="text-green-600">Clear</span> 
+            <span className="text-green-600"></span> 
             <img
-              src="https://i.postimg.cc/wjqgxmYp/Chat-GPT-Image-Jun-22-2025-12-35-56-PM.png"
+              src="https://i.postimg.cc/CxSPWCTj/Chat-GPT-Image-Jun-22-2025-12-56-52-PM.png"
               alt="Clear Funded Logo"
               className="h-24 md:h-24 w-auto"
             />
