@@ -66,10 +66,10 @@ export const CertificatesSection = () => {
   ];
 
   return (
-    <section className="py-8 px-4 bg-white">
+    <section className="py-16 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">
             Recent Verified Rewards
           </h2>
           <p className="text-gray-600">
@@ -78,9 +78,9 @@ export const CertificatesSection = () => {
         </div>
 
         <div className="overflow-hidden">
-          <div className="flex animate-[scroll-certificates_60s_linear_infinite] gap-3">
+          <div className="flex animate-[scroll-certificates_60s_linear_infinite] gap-6">
             {[...certificates, ...certificates, ...certificates].map((certificate, index) => (
-              <Card key={index} className="bg-white shadow-lg hover:shadow-xl transition-shadow flex-shrink-0 w-40">
+              <Card key={index} className="bg-white shadow-lg hover:shadow-xl transition-shadow flex-shrink-0 w-80">
                 <CardContent className="p-0">
                   <img
                     src={certificate.image}
