@@ -18,7 +18,7 @@ export const Header = () => {
             <img
               src="https://i.postimg.cc/5ySSfG8b/Chat-GPT-Image-Jun-22-2025-12-24-31-PM.png"
               alt="Clear Funded Logo"
-              className="h-12 w-16 md:h-23 md:w-32"
+              className="h-23 w-32"
             />
           </div>
 
