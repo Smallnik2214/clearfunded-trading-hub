@@ -1,4 +1,3 @@
-
 export const countries = [
   "Afghanistan", "Åland Islands", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", 
   "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan",
@@ -589,9 +588,7 @@ export const regionsByCountry: { [key: string]: string[] } = {
     "Aizkraukle", "Aluksne", "Balvi", "Bauska", "Cesis", "Daugavpils", "Dobele", 
     "Gulbene", "Jekabpils", "Jelgava", "Kraslava", "Kuldiga", "Liepaja", "Limbazi", 
     "Ludza", "Madona", "Ogre", "Preili", "Rezekne", "Riga", "Saldus", "Talsi", 
-    "Tukums", "Valka", "Valm
-
-iera", "Ventspils"
+    "Tukums", "Valka", "Valmiera", "Ventspils"
   ],
   "Lebanon": [
     "Akkar", "Baalbek-Hermel", "Beirut", "Beqaa", "Mount Lebanon", "Nabatieh", 
@@ -720,7 +717,7 @@ iera", "Ventspils"
     "Mon", "Naypyidaw", "Rakhine", "Sagaing", "Shan", "Tanintharyi", "Yangon"
   ],
   "Namibia": [
-    "Erongo", "Hardap", "//Karas", "Kavango East", "Kavango West", "Khomas", 
+    "Erongo", "Hardap", "Karas", "Kavango East", "Kavango West", "Khomas", 
     "Kunene", "Ohangwena", "Omaheke", "Omusati", "Oshana", "Oshikoto", "Otjozondjupa", "Zambezi"
   ],
   "Nauru": ["Aiwo", "Anabar", "Anetan", "Anibare", "Baiti", "Boe", "Buada", "Denigomodu", "Ewa", "Ijuw", "Meneng", "Nibok", "Uaboe", "Yaren"],
