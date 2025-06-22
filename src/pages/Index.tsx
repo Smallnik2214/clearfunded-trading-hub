@@ -189,9 +189,9 @@ const Index = () => {
         </div>
       </section>
 
+      <TradingRulesSection />
       <ReviewsSection />
       <PricingSection />
-      <TradingRulesSection />
       <Footer />
     </div>
   );
