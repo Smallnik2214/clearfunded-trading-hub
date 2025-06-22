@@ -16,7 +16,7 @@ export const Header = () => {
             onClick={() => window.location.href = "/"}
           >
             <img
-              src="https://i.postimg.cc/5ySSfG8b/Chat-GPT-Image-Jun-22-2025-12-24-31-PM.png"
+              src="https://i.postimg.cc/2Sz88jkD/clearfunded-logo-1024x1024.png"
               alt="Clear Funded Logo"
               className="h-12 w-12"
             />
