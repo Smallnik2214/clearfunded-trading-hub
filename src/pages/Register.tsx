@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -121,77 +122,138 @@ const Register = () => {
     { code: "+995", country: "GE" }, { code: "+996", country: "KG" }, { code: "+998", country: "UZ" }
   ];
 
-  const regions = [
-    // United States
-    "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware",
-    "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky",
-    "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi",
-    "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico",
-    "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania",
-    "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont",
-    "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming", "Washington D.C.",
-    
-    // Canada
-    "Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador",
-    "Northwest Territories", "Nova Scotia", "Nunavut", "Ontario", "Prince Edward Island",
-    "Quebec", "Saskatchewan", "Yukon",
-    
-    // United Kingdom
-    "England", "Scotland", "Wales", "Northern Ireland",
-    
-    // Australia
-    "Australian Capital Territory", "New South Wales", "Northern Territory", "Queensland",
-    "South Australia", "Tasmania", "Victoria", "Western Australia",
-    
-    // Germany
-    "Baden-Württemberg", "Bavaria", "Berlin", "Brandenburg", "Bremen", "Hamburg", "Hesse",
-    "Lower Saxony", "Mecklenburg-Vorpommern", "North Rhine-Westphalia", "Rhineland-Palatinate",
-    "Saarland", "Saxony", "Saxony-Anhalt", "Schleswig-Holstein", "Thuringia",
-    
-    // France
-    "Auvergne-Rhône-Alpes", "Bourgogne-Franche-Comté", "Brittany", "Centre-Val de Loire",
-    "Corsica", "Grand Est", "Hauts-de-France", "Île-de-France", "Normandy", "Nouvelle-Aquitaine",
-    "Occitanie", "Pays de la Loire", "Provence-Alpes-Côte d'Azur",
-    
-    // Italy
-    "Abruzzo", "Basilicata", "Calabria", "Campania", "Emilia-Romagna", "Friuli-Venezia Giulia",
-    "Lazio", "Liguria", "Lombardy", "Marche", "Molise", "Piedmont", "Puglia", "Sardinia",
-    "Sicily", "Trentino-Alto Adige", "Tuscany", "Umbria", "Valle d'Aosta", "Veneto",
-    
-    // Spain
-    "Andalusia", "Aragon", "Asturias", "Balearic Islands", "Basque Country", "Canary Islands",
-    "Cantabria", "Castile and León", "Castile-La Mancha", "Catalonia", "Ceuta", "Extremadura",
-    "Galicia", "La Rioja", "Madrid", "Melilla", "Murcia", "Navarre", "Valencia",
-    
-    // India
-    "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat",
-    "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh",
-    "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab",
-    "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand",
-    "West Bengal", "Andaman and Nicobar Islands", "Chandigarh", "Dadra and Nagar Haveli",
-    "Daman and Diu", "Delhi", "Jammu and Kashmir", "Ladakh", "Lakshadweep", "Puducherry",
-    
-    // Brazil
-    "Acre", "Alagoas", "Amapá", "Amazonas", "Bahia", "Ceará", "Distrito Federal", "Espírito Santo",
-    "Goiás", "Maranhão", "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Pará", "Paraíba",
-    "Paraná", "Pernambuco", "Piauí", "Rio de Janeiro", "Rio Grande do Norte", "Rio Grande do Sul",
-    "Rondônia", "Roraima", "Santa Catarina", "São Paulo", "Sergipe", "Tocantins",
-    
-    // Mexico
-    "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua",
-    "Coahuila", "Colima", "Durango", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "México",
-    "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro",
-    "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala",
-    "Veracruz", "Yucatán", "Zacatecas", "Mexico City",
-    
-    // Japan
-    "Aichi", "Akita", "Aomori", "Chiba", "Ehime", "Fukui", "Fukuoka", "Fukushima", "Gifu",
-    "Gunma", "Hiroshima", "Hokkaido", "Hyogo", "Ibaraki", "Ishikawa", "Iwate", "Kagawa",
-    "Kagoshima", "Kanagawa", "Kochi", "Kumamoto", "Kyoto", "Mie", "Miyagi", "Miyazaki",
-    "Nagano", "Nagasaki", "Nara", "Niigata", "Oita", "Okayama", "Okinawa", "Osaka", "Saga",
-    "Saitama", "Shiga", "Shimane", "Shizuoka", "Tochigi", "Tokushima", "Tokyo", "Tottori",
-    "Toyama", "Wakayama", "Yamagata", "Yamaguchi", "Yamanashi"
-  ];
+  const regionsByCountry: { [key: string]: string[] } = {
+    "United States": [
+      "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware",
+      "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky",
+      "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi",
+      "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico",
+      "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania",
+      "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont",
+      "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming", "Washington D.C."
+    ],
+    "Canada": [
+      "Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador",
+      "Northwest Territories", "Nova Scotia", "Nunavut", "Ontario", "Prince Edward Island",
+      "Quebec", "Saskatchewan", "Yukon"
+    ],
+    "United Kingdom": [
+      "England", "Scotland", "Wales", "Northern Ireland"
+    ],
+    "Australia": [
+      "Australian Capital Territory", "New South Wales", "Northern Territory", "Queensland",
+      "South Australia", "Tasmania", "Victoria", "Western Australia"
+    ],
+    "Germany": [
+      "Baden-Württemberg", "Bavaria", "Berlin", "Brandenburg", "Bremen", "Hamburg", "Hesse",
+      "Lower Saxony", "Mecklenburg-Vorpommern", "North Rhine-Westphalia", "Rhineland-Palatinate",
+      "Saarland", "Saxony", "Saxony-Anhalt", "Schleswig-Holstein", "Thuringia"
+    ],
+    "France": [
+      "Auvergne-Rhône-Alpes", "Bourgogne-Franche-Comté", "Brittany", "Centre-Val de Loire",
+      "Corsica", "Grand Est", "Hauts-de-France", "Île-de-France", "Normandy", "Nouvelle-Aquitaine",
+      "Occitanie", "Pays de la Loire", "Provence-Alpes-Côte d'Azur"
+    ],
+    "Italy": [
+      "Abruzzo", "Basilicata", "Calabria", "Campania", "Emilia-Romagna", "Friuli-Venezia Giulia",
+      "Lazio", "Liguria", "Lombardy", "Marche", "Molise", "Piedmont", "Puglia", "Sardinia",
+      "Sicily", "Trentino-Alto Adige", "Tuscany", "Umbria", "Valle d'Aosta", "Veneto"
+    ],
+    "Spain": [
+      "Andalusia", "Aragon", "Asturias", "Balearic Islands", "Basque Country", "Canary Islands",
+      "Cantabria", "Castile and León", "Castile-La Mancha", "Catalonia", "Ceuta", "Extremadura",
+      "Galicia", "La Rioja", "Madrid", "Melilla", "Murcia", "Navarre", "Valencia"
+    ],
+    "India": [
+      "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat",
+      "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh",
+      "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab",
+      "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand",
+      "West Bengal", "Andaman and Nicobar Islands", "Chandigarh", "Dadra and Nagar Haveli",
+      "Daman and Diu", "Delhi", "Jammu and Kashmir", "Ladakh", "Lakshadweep", "Puducherry"
+    ],
+    "Brazil": [
+      "Acre", "Alagoas", "Amapá", "Amazonas", "Bahia", "Ceará", "Distrito Federal", "Espírito Santo",
+      "Goiás", "Maranhão", "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Pará", "Paraíba",
+      "Paraná", "Pernambuco", "Piauí", "Rio de Janeiro", "Rio Grande do Norte", "Rio Grande do Sul",
+      "Rondônia", "Roraima", "Santa Catarina", "São Paulo", "Sergipe", "Tocantins"
+    ],
+    "Mexico": [
+      "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua",
+      "Coahuila", "Colima", "Durango", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "México",
+      "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro",
+      "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala",
+      "Veracruz", "Yucatán", "Zacatecas", "Mexico City"
+    ],
+    "Japan": [
+      "Aichi", "Akita", "Aomori", "Chiba", "Ehime", "Fukui", "Fukuoka", "Fukushima", "Gifu",
+      "Gunma", "Hiroshima", "Hokkaido", "Hyogo", "Ibaraki", "Ishikawa", "Iwate", "Kagawa",
+      "Kagoshima", "Kanagawa", "Kochi", "Kumamoto", "Kyoto", "Mie", "Miyagi", "Miyazaki",
+      "Nagano", "Nagasaki", "Nara", "Niigata", "Oita", "Okayama", "Okinawa", "Osaka", "Saga",
+      "Saitama", "Shiga", "Shimane", "Shizuoka", "Tochigi", "Tokushima", "Tokyo", "Tottori",
+      "Toyama", "Wakayama", "Yamagata", "Yamaguchi", "Yamanashi"
+    ],
+    "Ukraine": [
+      "Cherkasy Oblast", "Chernihiv Oblast", "Chernivtsi Oblast", "Dnipropetrovsk Oblast", 
+      "Donetsk Oblast", "Ivano-Frankivsk Oblast", "Kharkiv Oblast", "Kherson Oblast", 
+      "Khmelnytskyi Oblast", "Kiev Oblast", "Kirovohrad Oblast", "Luhansk Oblast", 
+      "Lviv Oblast", "Mykolaiv Oblast", "Odessa Oblast", "Poltava Oblast", 
+      "Rivne Oblast", "Sumy Oblast", "Ternopil Oblast", "Vinnytsia Oblast", 
+      "Volyn Oblast", "Zakarpattia Oblast", "Zaporizhzhia Oblast", "Zhytomyr Oblast", "Kiev City"
+    ],
+    "Russia": [
+      "Adygea", "Altai Krai", "Altai Republic", "Amur Oblast", "Arkhangelsk Oblast", 
+      "Astrakhan Oblast", "Bashkortostan", "Belgorod Oblast", "Bryansk Oblast", "Buryatia", 
+      "Chelyabinsk Oblast", "Chechnya", "Chukotka", "Chuvashia", "Dagestan", 
+      "Ingushetia", "Irkutsk Oblast", "Ivanovo Oblast", "Kabardino-Balkaria", 
+      "Kaliningrad Oblast", "Kalmykia", "Kaluga Oblast", "Kamchatka Krai", 
+      "Karachay-Cherkessia", "Karelia", "Kemerovo Oblast", "Khabarovsk Krai", 
+      "Khakassia", "Khanty-Mansi", "Kirov Oblast", "Komi", "Kostroma Oblast", 
+      "Krasnodar Krai", "Krasnoyarsk Krai", "Kurgan Oblast", "Kursk Oblast", 
+      "Leningrad Oblast", "Lipetsk Oblast", "Magadan Oblast", "Mari El", 
+      "Mordovia", "Moscow", "Moscow Oblast", "Murmansk Oblast", "Nenets", 
+      "Nizhny Novgorod Oblast", "North Ossetia", "Novgorod Oblast", "Novosibirsk Oblast", 
+      "Omsk Oblast", "Orel Oblast", "Orenburg Oblast", "Penza Oblast", "Perm Krai", 
+      "Primorsky Krai", "Pskov Oblast", "Rostov Oblast", "Ryazan Oblast", 
+      "Sakha Republic", "Sakhalin Oblast", "Samara Oblast", "Saratov Oblast", 
+      "Smolensk Oblast", "St. Petersburg", "Stavropol Krai", "Sverdlovsk Oblast", 
+      "Tambov Oblast", "Tatarstan", "Tomsk Oblast", "Tula Oblast", "Tuva", 
+      "Tver Oblast", "Tyumen Oblast", "Udmurtia", "Ulyanovsk Oblast", "Vladimir Oblast", 
+      "Volgograd Oblast", "Vologda Oblast", "Voronezh Oblast", "Yamalo-Nenets", 
+      "Yaroslavl Oblast", "Zabaykalsky Krai"
+    ],
+    "China": [
+      "Anhui", "Beijing", "Chongqing", "Fujian", "Gansu", "Guangdong", "Guangxi", 
+      "Guizhou", "Hainan", "Hebei", "Heilongjiang", "Henan", "Hong Kong", "Hubei", 
+      "Hunan", "Inner Mongolia", "Jiangsu", "Jiangxi", "Jilin", "Liaoning", "Macau", 
+      "Ningxia", "Qinghai", "Shaanxi", "Shandong", "Shanghai", "Shanxi", "Sichuan", 
+      "Tianjin", "Tibet", "Xinjiang", "Yunnan", "Zhejiang"
+    ],
+    "Poland": [
+      "Greater Poland", "Kuyavian-Pomeranian", "Lesser Poland", "Lodz", "Lower Silesian", 
+      "Lublin", "Lubusz", "Masovian", "Opole", "Podlaskie", "Pomeranian", "Silesian", 
+      "Subcarpathian", "Swietokrzyskie", "Warmian-Masurian", "West Pomeranian"
+    ],
+    "Turkey": [
+      "Adana", "Adıyaman", "Afyonkarahisar", "Ağrı", "Amasya", "Ankara", "Antalya", 
+      "Artvin", "Aydın", "Balıkesir", "Bilecik", "Bingöl", "Bitlis", "Bolu", "Burdur", 
+      "Bursa", "Çanakkale", "Çankırı", "Çorum", "Denizli", "Diyarbakır", "Edirne", 
+      "Elazığ", "Erzincan", "Erzurum", "Eskişehir", "Gaziantep", "Giresun", "Gümüşhane", 
+      "Hakkâri", "Hatay", "Isparta", "Mersin", "Istanbul", "Izmir", "Kars", "Kastamonu", 
+      "Kayseri", "Kırklareli", "Kırşehir", "Kocaeli", "Konya", "Kütahya", "Malatya", 
+      "Manisa", "Kahramanmaraş", "Mardin", "Muğla", "Muş", "Nevşehir", "Niğde", "Ordu", 
+      "Rize", "Sakarya", "Samsun", "Siirt", "Sinop", "Sivas", "Tekirdağ", "Tokat", 
+      "Trabzon", "Tunceli", "Şanlıurfa", "Uşak", "Van", "Yozgat", "Zonguldak", "Aksaray", 
+      "Bayburt", "Karaman", "Kırıkkale", "Batman", "Şırnak", "Bartın", "Ardahan", 
+      "Iğdır", "Yalova", "Karabük", "Kilis", "Osmaniye", "Düzce"
+    ]
+  };
+
+  // Get available regions based on selected country
+  const getAvailableRegions = () => {
+    if (!formData.country) return [];
+    return regionsByCountry[formData.country] || [];
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -226,7 +288,14 @@ const Register = () => {
   };
 
   const handleChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData(prev => {
+      const newData = { ...prev, [field]: value };
+      // Reset residence when country changes
+      if (field === 'country') {
+        newData.residence = '';
+      }
+      return newData;
+    });
   };
 
   return (
@@ -343,15 +412,19 @@ const Register = () => {
                   </Select>
                 </div>
 
-                {/* Residence */}
+                {/* Residence - Filtered based on selected country */}
                 <div>
                   <Label htmlFor="residence">Place of Residence</Label>
-                  <Select value={formData.residence} onValueChange={(value) => handleChange("residence", value)}>
+                  <Select 
+                    value={formData.residence} 
+                    onValueChange={(value) => handleChange("residence", value)}
+                    disabled={!formData.country}
+                  >
                     <SelectTrigger className="mt-1">
-                      <SelectValue placeholder="Select your region/state" />
+                      <SelectValue placeholder={formData.country ? "Select your region/state" : "Please select a country first"} />
                     </SelectTrigger>
                     <SelectContent className="max-h-40">
-                      {regions.map((region) => (
+                      {getAvailableRegions().map((region) => (
                         <SelectItem key={region} value={region}>
                           {region}
                         </SelectItem>
