@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -98,7 +99,7 @@ const Index = () => {
           <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 flex items-center justify-center gap-4">
             <span className="text-green-600">Clear</span> 
             <img
-              src="YOUR_LOGO_URL_HERE"
+              src="https://i.postimg.cc/wjqgxmYp/Chat-GPT-Image-Jun-22-2025-12-35-56-PM.png"
               alt="Clear Funded Logo"
               className="h-12 md:h-18 w-auto"
             />
