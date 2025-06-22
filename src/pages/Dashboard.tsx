@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -39,19 +38,18 @@ const Dashboard = () => {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center gap-4">
               <div 
-                className="flex items-center cursor-pointer" 
+                className="flex-shrink-0 cursor-pointer" 
                 onClick={() => window.location.href = "/"}
               >
                 <img
                   src="https://i.postimg.cc/5ySSfG8b/Chat-GPT-Image-Jun-22-2025-12-24-31-PM.png"
                   alt="Clear Funded Logo"
-                  className="h-12 w-16 mr-2"
+                  className="h-23 w-32"
                 />
-                <div className="text-2xl font-bold text-green-600">
-                  Clear Funded
-                </div>
               </div>
-              <Badge className="bg-green-100 text-green-800">Dashboard</Badge>
+            </div>
+            <div className="flex-1 flex justify-center">
+              <Badge className="bg-green-100 text-green-800 text-2xl px-6 py-3">Dashboard</Badge>
             </div>
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2">
