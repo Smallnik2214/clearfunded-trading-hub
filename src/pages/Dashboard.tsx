@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Plus, TrendingUp, DollarSign, Calendar, User, Mail } from "lucide-react";
+import { Plus, TrendingUp, DollarSign, Calendar, User, Mail, FileText } from "lucide-react";
 import { PromoBanner } from "@/components/PromoBanner";
 
 const Dashboard = () => {
@@ -205,6 +205,52 @@ const Dashboard = () => {
               <span className="text-xs text-gray-400">No trading history</span>
             </Button>
           </div>
+        </div>
+
+        {/* Legal Information Section */}
+        <div className="mt-12 border-t border-gray-200 pt-8">
+          <Card className="bg-gray-50">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-lg">
+                <FileText className="h-5 w-5" />
+                Important Legal Information
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600 text-sm mb-4">
+                Please review our legal documents to understand your rights and obligations when using Clear Funded services.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <Button
+                  variant="outline"
+                  className="h-auto p-4 flex flex-col items-center gap-2"
+                  onClick={() => window.location.href = "/terms"}
+                >
+                  <FileText className="h-6 w-6 text-gray-600" />
+                  <span className="font-medium">Terms & Conditions</span>
+                  <span className="text-xs text-gray-500">Trading rules and obligations</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  className="h-auto p-4 flex flex-col items-center gap-2"
+                  onClick={() => window.location.href = "/privacy"}
+                >
+                  <FileText className="h-6 w-6 text-gray-600" />
+                  <span className="font-medium">Privacy Policy</span>
+                  <span className="text-xs text-gray-500">How we protect your data</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  className="h-auto p-4 flex flex-col items-center gap-2"
+                  onClick={() => window.location.href = "/refund"}
+                >
+                  <FileText className="h-6 w-6 text-gray-600" />
+                  <span className="font-medium">Refund Policy</span>
+                  <span className="text-xs text-gray-500">Payment and refund terms</span>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>
