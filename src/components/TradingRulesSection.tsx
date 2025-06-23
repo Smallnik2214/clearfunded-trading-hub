@@ -48,13 +48,13 @@ export const TradingRulesSection = () => {
           {benefits.slice(0, 3).map((benefit, index) => (
             <Card key={index} className="glass-card border-aurora-cyan/20 hover:border-aurora-cyan/40 transition-all duration-300 hover:scale-105">
               <CardContent className="p-8 text-center">
-                <div className="flex justify-center mb-4">
+                <div className="flex justify-center mb-6">
                   {benefit.icon}
                 </div>
-                <h3 className="text-xl font-orbitron font-bold text-aurora mb-3">
+                <h3 className="text-xl font-orbitron font-bold text-aurora mb-4">
                   {benefit.title}
                 </h3>
-                <p className="text-white/70 font-inter">
+                <p className="text-white/70 font-inter text-base leading-relaxed">
                   {benefit.description}
                 </p>
               </CardContent>
@@ -66,13 +66,13 @@ export const TradingRulesSection = () => {
           {benefits.slice(3).map((benefit, index) => (
             <Card key={index + 3} className="glass-card border-aurora-cyan/20 hover:border-aurora-cyan/40 transition-all duration-300 hover:scale-105">
               <CardContent className="p-8 text-center">
-                <div className="flex justify-center mb-4">
+                <div className="flex justify-center mb-6">
                   {benefit.icon}
                 </div>
-                <h3 className="text-xl font-orbitron font-bold text-aurora mb-3">
+                <h3 className="text-xl font-orbitron font-bold text-aurora mb-4">
                   {benefit.title}
                 </h3>
-                <p className="text-white/70 font-inter">
+                <p className="text-white/70 font-inter text-base leading-relaxed">
                   {benefit.description}
                 </p>
               </CardContent>
