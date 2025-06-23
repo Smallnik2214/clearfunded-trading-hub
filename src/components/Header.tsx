@@ -7,7 +7,7 @@ export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 aurora-bg border-b border-white/20">
+    <header className="fixed top-0 left-0 right-0 z-50 space-bg border-b border-white/20">
       <div className="stars-header"></div>
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         <div className="flex justify-between items-center h-16">
@@ -16,23 +16,23 @@ export const Header = () => {
             className="flex-shrink-0 cursor-pointer"
             onClick={() => window.location.href = "/"}
           >
-            <h1 className="text-2xl font-orbitron font-bold text-aurora">
+            <h1 className="text-2xl font-orbitron font-bold text-space">
               CLEAR FUNDED
             </h1>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            <a href="/" className="text-white/80 hover:text-aurora transition-colors font-inter">
+            <a href="/" className="text-white/80 hover:text-space transition-colors font-inter">
               Home
             </a>
-            <a href="/about" className="text-white/80 hover:text-aurora transition-colors font-inter">
+            <a href="/about" className="text-white/80 hover:text-space transition-colors font-inter">
               About Us
             </a>
-            <a href="/rules" className="text-white/80 hover:text-aurora transition-colors font-inter">
+            <a href="/rules" className="text-white/80 hover:text-space transition-colors font-inter">
               Trading Rules
             </a>
-            <a href="/faq" className="text-white/80 hover:text-aurora transition-colors font-inter">
+            <a href="/faq" className="text-white/80 hover:text-space transition-colors font-inter">
               FAQ
             </a>
           </nav>
@@ -40,7 +40,7 @@ export const Header = () => {
           {/* CTA Button */}
           <div className="hidden md:block">
             <Button
-              className="aurora-button text-white font-orbitron font-semibold"
+              className="space-button text-white font-orbitron font-semibold"
               onClick={() => window.location.href = "/auth"}
             >
               Start Trading
@@ -64,20 +64,20 @@ export const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-white/20">
             <div className="flex flex-col space-y-4">
-              <a href="/" className="text-white/80 hover:text-aurora transition-colors font-inter">
+              <a href="/" className="text-white/80 hover:text-space transition-colors font-inter">
                 Home
               </a>
-              <a href="/about" className="text-white/80 hover:text-aurora transition-colors font-inter">
+              <a href="/about" className="text-white/80 hover:text-space transition-colors font-inter">
                 About Us
               </a>
-              <a href="/rules" className="text-white/80 hover:text-aurora transition-colors font-inter">
+              <a href="/rules" className="text-white/80 hover:text-space transition-colors font-inter">
                 Trading Rules
               </a>
-              <a href="/faq" className="text-white/80 hover:text-aurora transition-colors font-inter">
+              <a href="/faq" className="text-white/80 hover:text-space transition-colors font-inter">
                 FAQ
               </a>
               <Button
-                className="aurora-button text-white font-orbitron font-semibold w-full"
+                className="space-button text-white font-orbitron font-semibold w-full"
                 onClick={() => window.location.href = "/auth"}
               >
                 Start Trading
