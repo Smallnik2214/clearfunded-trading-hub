@@ -21,7 +21,7 @@ export const LocationSection = ({ formData, onFieldChange, availableRegions }: L
           <SelectTrigger className="mt-1">
             <SelectValue placeholder="Select your country" />
           </SelectTrigger>
-          <SelectContent className="max-h-40">
+          <SelectContent className="max-h-96 bg-white border border-gray-300 shadow-lg z-50">
             {countries.map((country) => (
               <SelectItem key={country} value={country}>
                 {country}
@@ -42,7 +42,7 @@ export const LocationSection = ({ formData, onFieldChange, availableRegions }: L
           <SelectTrigger className="mt-1">
             <SelectValue placeholder={formData.country ? "Select your region/state" : "Please select a country first"} />
           </SelectTrigger>
-          <SelectContent className="max-h-40">
+          <SelectContent className="max-h-96 bg-white border border-gray-300 shadow-lg z-50">
             {availableRegions.map((region) => (
               <SelectItem key={region} value={region}>
                 {region}

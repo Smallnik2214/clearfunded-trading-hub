@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -10,7 +9,8 @@ import { PromoBanner } from "@/components/PromoBanner";
 import { Footer } from "@/components/Footer";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { countryCodes } from "@/data/countries";
+import { countryCodes } from "@/data/countryCodes";
+import { countries, regionsByCountry } from "@/data/countries";
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
