@@ -11,18 +11,30 @@ interface PhoneSectionProps {
 }
 
 export const PhoneSection = ({ formData, onFieldChange }: PhoneSectionProps) => {
+  const selectedCountry = countryCodes.find(country => country.code === formData.countryCode);
+  
   return (
     <div>
       <Label htmlFor="phone">Phone Number</Label>
       <div className="flex gap-2 mt-1">
         <Select value={formData.countryCode} onValueChange={(value) => onFieldChange("countryCode", value)}>
-          <SelectTrigger className="w-40">
-            <SelectValue />
+          <SelectTrigger className="w-48">
+            <SelectValue>
+              {selectedCountry ? (
+                <span className="flex items-center gap-2">
+                  {selectedCountry.flag} {selectedCountry.code}
+                </span>
+              ) : (
+                "Select code"
+              )}
+            </SelectValue>
           </SelectTrigger>
-          <SelectContent className="max-h-40">
+          <SelectContent className="max-h-60 bg-white border border-gray-300 shadow-lg z-50">
             {countryCodes.map((item) => (
-              <SelectItem key={item.code} value={item.code}>
-                {item.flag} {item.code} {item.name}
+              <SelectItem key={item.code} value={item.code} className="flex items-center gap-2">
+                <span className="flex items-center gap-2">
+                  {item.flag} {item.code} {item.name}
+                </span>
               </SelectItem>
             ))}
           </SelectContent>

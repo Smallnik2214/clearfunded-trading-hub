@@ -158,13 +158,15 @@ const Auth = () => {
                       <Label htmlFor="phone">Phone Number</Label>
                       <div className="flex gap-2">
                         <Select value={countryCode} onValueChange={setCountryCode}>
-                          <SelectTrigger className="w-24">
-                            <SelectValue />
+                          <SelectTrigger className="w-32">
+                            <SelectValue>
+                              {countryCodes.find(c => c.code === countryCode)?.flag} {countryCode}
+                            </SelectValue>
                           </SelectTrigger>
-                          <SelectContent>
+                          <SelectContent className="max-h-40 bg-white border border-gray-300 shadow-lg z-50">
                             {countryCodes.map((code) => (
                               <SelectItem key={code.code} value={code.code}>
-                                {code.code}
+                                {code.flag} {code.code} {code.name}
                               </SelectItem>
                             ))}
                           </SelectContent>
@@ -182,37 +184,39 @@ const Auth = () => {
 
                     <div className="space-y-2">
                       <Label htmlFor="country">Country</Label>
-                      <Select value={country} onValueChange={setCountry}>
+                      <Select value={country} onValueChange={(value) => {
+                        setCountry(value);
+                        setResidence(""); // Reset residence when country changes
+                      }}>
                         <SelectTrigger>
                           <SelectValue placeholder="Select your country" />
                         </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="US">United States</SelectItem>
-                          <SelectItem value="CA">Canada</SelectItem>
-                          <SelectItem value="UK">United Kingdom</SelectItem>
-                          <SelectItem value="AU">Australia</SelectItem>
-                          <SelectItem value="DE">Germany</SelectItem>
-                          <SelectItem value="FR">France</SelectItem>
-                          <SelectItem value="JP">Japan</SelectItem>
-                          <SelectItem value="SG">Singapore</SelectItem>
+                        <SelectContent className="max-h-96 bg-white border border-gray-300 shadow-lg z-50">
+                          {countries.map((countryName) => (
+                            <SelectItem key={countryName} value={countryName}>
+                              {countryName}
+                            </SelectItem>
+                          ))}
                         </SelectContent>
                       </Select>
                     </div>
 
                     <div className="space-y-2">
                       <Label htmlFor="residence">Place of Residence</Label>
-                      <Select value={residence} onValueChange={setResidence}>
+                      <Select 
+                        value={residence} 
+                        onValueChange={setResidence}
+                        disabled={!country}
+                      >
                         <SelectTrigger>
-                          <SelectValue placeholder="Please select a country first" />
+                          <SelectValue placeholder={country ? "Select your region/state" : "Please select a country first"} />
                         </SelectTrigger>
-                        <SelectContent>
-                          {country && (
-                            <>
-                              <SelectItem value="state1">State/Province 1</SelectItem>
-                              <SelectItem value="state2">State/Province 2</SelectItem>
-                              <SelectItem value="state3">State/Province 3</SelectItem>
-                            </>
-                          )}
+                        <SelectContent className="max-h-96 bg-white border border-gray-300 shadow-lg z-50">
+                          {country && regionsByCountry[country] && regionsByCountry[country].map((region) => (
+                            <SelectItem key={region} value={region}>
+                              {region}
+                            </SelectItem>
+                          ))}
                         </SelectContent>
                       </Select>
                     </div>
