@@ -54,7 +54,7 @@ export const TradingRulesSection = () => {
                 <h3 className="text-xl font-orbitron font-bold text-aurora mb-4">
                   {benefit.title}
                 </h3>
-                <p className="text-space font-inter text-base leading-relaxed">
+                <p className="text-space font-inter text-base leading-relaxed drop-shadow-lg" style={{textShadow: '0 2px 4px rgba(0,0,0,0.5)'}}>
                   {benefit.description}
                 </p>
               </CardContent>
@@ -72,7 +72,7 @@ export const TradingRulesSection = () => {
                 <h3 className="text-xl font-orbitron font-bold text-aurora mb-4">
                   {benefit.title}
                 </h3>
-                <p className="text-space font-inter text-base leading-relaxed">
+                <p className="text-space font-inter text-base leading-relaxed drop-shadow-lg" style={{textShadow: '0 2px 4px rgba(0,0,0,0.5)'}}>
                   {benefit.description}
                 </p>
               </CardContent>

@@ -159,12 +159,13 @@
 }
 
 .text-space {
-  background: linear-gradient(45deg, #ffffff, #e0e7ff, #c7d2fe, #a5b4fc);
+  background: linear-gradient(45deg, #c7d2fe, #a5b4fc, #8b5cf6, #7c3aed, #6d28d9, #a5b4fc, #c7d2fe);
   background-size: 400% 400%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: gradient-shift 3s ease infinite;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
 @keyframes gradient-shift {
