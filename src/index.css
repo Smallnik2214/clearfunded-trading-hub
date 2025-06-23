@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;900&display=swap');
 
 @tailwind base;
@@ -90,18 +91,21 @@
   }
 }
 
-/* Pinterest-style Aurora Background */
+/* Deep Space Aurora Background */
 .aurora-bg {
   position: relative;
   background: linear-gradient(135deg, 
-    #667eea 0%, 
-    #764ba2 25%, 
-    #f093fb 50%, 
-    #f5576c 75%, 
-    #4facfe 100%);
+    #0f0f23 0%, 
+    #1a1a2e 15%, 
+    #16213e 30%, 
+    #0f3460 45%, 
+    #533483 60%, 
+    #7209b7 75%, 
+    #2d1b69 90%, 
+    #0f0f23 100%);
   background-size: 400% 400%;
   overflow: hidden;
-  animation: gradient-flow 15s ease infinite;
+  animation: deep-space-flow 20s ease-in-out infinite;
 }
 
 .aurora-bg::before {
@@ -112,10 +116,10 @@
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.4) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255, 118, 117, 0.4) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(99, 255, 137, 0.3) 0%, transparent 50%);
-  animation: aurora-flow 12s ease-in-out infinite alternate;
+    radial-gradient(circle at 20% 80%, rgba(147, 51, 234, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+  animation: aurora-flow 15s ease-in-out infinite alternate;
 }
 
 .aurora-bg::after {
@@ -126,13 +130,13 @@
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 60% 70%, rgba(147, 51, 234, 0.3) 0%, transparent 60%),
-    radial-gradient(circle at 10% 10%, rgba(59, 130, 246, 0.3) 0%, transparent 60%),
-    radial-gradient(circle at 90% 90%, rgba(16, 185, 129, 0.2) 0%, transparent 60%);
-  animation: aurora-flow 18s ease-in-out infinite alternate-reverse;
+    radial-gradient(circle at 60% 70%, rgba(139, 92, 246, 0.15) 0%, transparent 60%),
+    radial-gradient(circle at 10% 10%, rgba(34, 197, 94, 0.1) 0%, transparent 60%),
+    radial-gradient(circle at 90% 90%, rgba(168, 85, 247, 0.1) 0%, transparent 60%);
+  animation: aurora-flow 25s ease-in-out infinite alternate-reverse;
 }
 
-@keyframes gradient-flow {
+@keyframes deep-space-flow {
   0% { background-position: 0% 50%; }
   25% { background-position: 100% 50%; }
   50% { background-position: 100% 100%; }
@@ -143,27 +147,27 @@
 @keyframes aurora-flow {
   0% {
     transform: rotate(0deg) scale(1);
-    opacity: 0.7;
+    opacity: 0.4;
   }
   25% {
-    transform: rotate(2deg) scale(1.1);
-    opacity: 0.5;
+    transform: rotate(1deg) scale(1.05);
+    opacity: 0.3;
   }
   50% {
-    transform: rotate(-1deg) scale(1.05);
-    opacity: 0.8;
+    transform: rotate(-0.5deg) scale(1.02);
+    opacity: 0.5;
   }
   75% {
-    transform: rotate(1.5deg) scale(1.02);
-    opacity: 0.6;
+    transform: rotate(0.8deg) scale(1.01);
+    opacity: 0.2;
   }
   100% {
     transform: rotate(0deg) scale(1);
-    opacity: 0.7;
+    opacity: 0.4;
   }
 }
 
-/* Flowing starfield effect */
+/* Stationary twinkling stars */
 .stars {
   position: absolute;
   top: 0;
@@ -171,14 +175,17 @@
   width: 100%;
   height: 100%;
   background-image: 
-    radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.8), transparent),
-    radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.6), transparent),
-    radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.9), transparent),
-    radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.4), transparent),
-    radial-gradient(2px 2px at 160px 30px, rgba(255,255,255,0.7), transparent);
+    radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.9), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.5), transparent),
+    radial-gradient(2px 2px at 160px 30px, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 200px 50px, rgba(255,255,255,0.4), transparent),
+    radial-gradient(2px 2px at 250px 20px, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 300px 60px, rgba(255,255,255,0.5), transparent);
   background-repeat: repeat;
-  background-size: 200px 100px;
-  animation: gentle-twinkle 6s ease-in-out infinite alternate, slow-drift 20s linear infinite;
+  background-size: 350px 200px;
+  animation: gentle-twinkle 4s ease-in-out infinite alternate;
 }
 
 /* Header specific stars */
@@ -189,28 +196,26 @@
   width: 100%;
   height: 100%;
   background-image: 
-    radial-gradient(1px 1px at 15px 20px, rgba(255,255,255,0.6), transparent),
-    radial-gradient(1px 1px at 35px 45px, rgba(255,255,255,0.4), transparent),
-    radial-gradient(1px 1px at 75px 25px, rgba(255,255,255,0.7), transparent),
-    radial-gradient(1px 1px at 120px 50px, rgba(255,255,255,0.3), transparent),
-    radial-gradient(1px 1px at 180px 35px, rgba(255,255,255,0.5), transparent);
+    radial-gradient(1px 1px at 15px 20px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 35px 45px, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 75px 25px, rgba(255,255,255,0.9), transparent),
+    radial-gradient(1px 1px at 120px 50px, rgba(255,255,255,0.4), transparent),
+    radial-gradient(1px 1px at 180px 35px, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 220px 60px, rgba(255,255,255,0.5), transparent);
   background-repeat: repeat;
-  background-size: 200px 80px;
-  animation: gentle-twinkle 8s ease-in-out infinite alternate;
+  background-size: 250px 80px;
+  animation: gentle-twinkle 6s ease-in-out infinite alternate;
 }
 
 @keyframes gentle-twinkle {
   0% { opacity: 0.3; }
-  20% { opacity: 0.7; }
-  40% { opacity: 0.2; }
-  60% { opacity: 0.8; }
-  80% { opacity: 0.4; }
+  15% { opacity: 0.8; }
+  30% { opacity: 0.2; }
+  45% { opacity: 0.9; }
+  60% { opacity: 0.4; }
+  75% { opacity: 0.7; }
+  90% { opacity: 0.3; }
   100% { opacity: 0.6; }
-}
-
-@keyframes slow-drift {
-  from { transform: translateX(0) translateY(0); }
-  to { transform: translateX(-50px) translateY(-30px); }
 }
 
 /* Glass morphism effect */

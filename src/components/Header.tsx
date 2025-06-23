@@ -7,7 +7,7 @@ export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="aurora-bg border-b border-white/20">
+    <header className="aurora-bg border-b border-white/20 sticky top-0 z-50">
       <div className="stars-header"></div>
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         <div className="flex justify-between items-center h-16">
