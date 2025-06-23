@@ -46,7 +46,7 @@ const Auth = () => {
           window.location.href = "/dashboard";
         }
       } else {
-        // Sign up with all user data
+        // Sign up without email confirmation
         const { error } = await supabase.auth.signUp({
           email,
           password,
@@ -68,7 +68,11 @@ const Auth = () => {
         if (error) {
           toast.error(error.message);
         } else {
-          toast.success("Account created successfully! Please check your email to verify your account.");
+          toast.success("Account created successfully! Redirecting to dashboard...");
+          // Redirect immediately without waiting for email confirmation
+          setTimeout(() => {
+            window.location.href = "/dashboard";
+          }, 1500);
         }
       }
     } catch (error) {
