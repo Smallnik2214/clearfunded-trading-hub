@@ -1,23 +1,93 @@
 
 export const countryCodes = [
-  { code: "+1", country: "United States/Canada" },
-  { code: "+44", country: "United Kingdom" },
-  { code: "+49", country: "Germany" },
-  { code: "+33", country: "France" },
-  { code: "+81", country: "Japan" },
-  { code: "+65", country: "Singapore" },
-  { code: "+61", country: "Australia" },
-  { code: "+86", country: "China" },
-  { code: "+91", country: "India" },
-  { code: "+55", country: "Brazil" },
-  { code: "+7", country: "Russia" },
-  { code: "+39", country: "Italy" },
-  { code: "+34", country: "Spain" },
-  { code: "+31", country: "Netherlands" },
-  { code: "+46", country: "Sweden" },
-  { code: "+47", country: "Norway" },
-  { code: "+45", country: "Denmark" },
-  { code: "+41", country: "Switzerland" },
-  { code: "+43", country: "Austria" },
-  { code: "+32", country: "Belgium" },
+  {
+    name: "Australia",
+    code: "+61",
+    flag: "🇦🇺",
+    iso: "AU"
+  },
+  {
+    name: "Brazil",
+    code: "+55",
+    flag: "🇧🇷",
+    iso: "BR"
+  },
+  {
+    name: "Canada",
+    code: "+1",
+    flag: "🇨🇦",
+    iso: "CA"
+  },
+  {
+    name: "China",
+    code: "+86",
+    flag: "🇨🇳",
+    iso: "CN"
+  },
+  {
+    name: "Germany",
+    code: "+49",
+    flag: "🇩🇪",
+    iso: "DE"
+  },
+  {
+    name: "Spain",
+    code: "+34",
+    flag: "🇪🇸",
+    iso: "ES"
+  },
+  {
+    name: "France",
+    code: "+33",
+    flag: "🇫🇷",
+    iso: "FR"
+  },
+  {
+    name: "United Kingdom",
+    code: "+44",
+    flag: "🇬🇧",
+    iso: "GB"
+  },
+  {
+    name: "India",
+    code: "+91",
+    flag: "🇮🇳",
+    iso: "IN"
+  },
+  {
+    name: "Italy",
+    code: "+39",
+    flag: "🇮🇹",
+    iso: "IT"
+  },
+  {
+    name: "Japan",
+    code: "+81",
+    flag: "🇯🇵",
+    iso: "JP"
+  },
+  {
+    name: "Mexico",
+    code: "+52",
+    flag: "🇲🇽",
+    iso: "MX"
+  },
+  {
+    name: "Russian Federation",
+    code: "+7",
+    flag: "🇷🇺",
+    iso: "RU"
+  },
+  {
+    name: "Ukraine",
+    code: "+380",
+    flag: "🇺🇦",
+    iso: "UA"
+  },
+  {
+    name: "United States",
+    code: "+1",
+    flag: "🇺🇸",
+    iso: "US"
+  }
 ];

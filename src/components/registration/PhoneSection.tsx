@@ -3,7 +3,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { FormData } from "@/types/registration";
-import { countryCodes } from "@/data/countries";
+import { countryCodes } from "@/data/countryCodes";
 
 interface PhoneSectionProps {
   formData: FormData;
@@ -16,13 +16,13 @@ export const PhoneSection = ({ formData, onFieldChange }: PhoneSectionProps) => 
       <Label htmlFor="phone">Phone Number</Label>
       <div className="flex gap-2 mt-1">
         <Select value={formData.countryCode} onValueChange={(value) => onFieldChange("countryCode", value)}>
-          <SelectTrigger className="w-32">
+          <SelectTrigger className="w-40">
             <SelectValue />
           </SelectTrigger>
           <SelectContent className="max-h-40">
             {countryCodes.map((item) => (
               <SelectItem key={item.code} value={item.code}>
-                {item.code} {item.country}
+                {item.flag} {item.code} {item.name}
               </SelectItem>
             ))}
           </SelectContent>

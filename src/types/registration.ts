@@ -13,6 +13,8 @@ export interface FormData {
 }
 
 export interface CountryCode {
+  name: string;
   code: string;
-  country: string;
+  flag: string;
+  iso: string;
 }
