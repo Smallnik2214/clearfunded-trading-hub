@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -9,21 +8,34 @@ export const useAuth = () => {
   const login = async (email: string, password: string) => {
     setLoading(true);
     try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
+      console.log("Attempting login for email:", email);
+      
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: email.toLowerCase().trim(), // Normalize email
         password,
       });
 
       if (error) {
-        toast.error(error.message);
+        console.error("Login error:", error);
+        
+        // Provide more specific error messages
+        if (error.message.includes("Invalid login credentials")) {
+          toast.error("Invalid email or password. Please check your credentials and try again.");
+        } else if (error.message.includes("Email not confirmed")) {
+          toast.error("Please check your email and click the confirmation link before logging in.");
+        } else {
+          toast.error(error.message);
+        }
         return false;
       } else {
+        console.log("Login successful for user:", data.user?.email);
         toast.success("Login successful!");
         window.location.href = "/dashboard";
         return true;
       }
     } catch (error) {
-      toast.error("An unexpected error occurred");
+      console.error("Unexpected login error:", error);
+      toast.error("An unexpected error occurred during login");
       return false;
     } finally {
       setLoading(false);
@@ -44,8 +56,10 @@ export const useAuth = () => {
   }) => {
     setLoading(true);
     try {
-      const { error } = await supabase.auth.signUp({
-        email: formData.email,
+      console.log("Attempting signup for email:", formData.email);
+      
+      const { data, error } = await supabase.auth.signUp({
+        email: formData.email.toLowerCase().trim(), // Normalize email
         password: formData.password,
         options: {
           emailRedirectTo: `${window.location.origin}/dashboard`,
@@ -63,17 +77,30 @@ export const useAuth = () => {
       });
 
       if (error) {
-        toast.error(error.message);
+        console.error("Signup error:", error);
+        
+        if (error.message.includes("User already registered")) {
+          toast.error("An account with this email already exists. Please try logging in instead.");
+        } else {
+          toast.error(error.message);
+        }
         return false;
       } else {
-        toast.success("Account created successfully! Redirecting to dashboard...");
-        setTimeout(() => {
-          window.location.href = "/dashboard";
-        }, 1500);
+        console.log("Signup response:", data);
+        
+        if (data.user && !data.user.email_confirmed_at) {
+          toast.success("Account created! Please check your email and click the confirmation link to complete registration.");
+        } else {
+          toast.success("Account created successfully! Redirecting to dashboard...");
+          setTimeout(() => {
+            window.location.href = "/dashboard";
+          }, 1500);
+        }
         return true;
       }
     } catch (error) {
-      toast.error("An unexpected error occurred");
+      console.error("Unexpected signup error:", error);
+      toast.error("An unexpected error occurred during registration");
       return false;
     } finally {
       setLoading(false);

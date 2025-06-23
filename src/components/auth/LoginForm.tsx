@@ -17,7 +17,20 @@ export const LoginForm = ({ onSubmit, onForgotPassword, onToggleMode, loading }:
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(email, password);
+    
+    // Basic validation
+    if (!email.trim()) {
+      toast.error("Please enter your email address");
+      return;
+    }
+    
+    if (!password) {
+      toast.error("Please enter your password");
+      return;
+    }
+    
+    console.log("Form submission - Email:", email.trim());
+    onSubmit(email.trim(), password);
   };
 
   return (
@@ -31,6 +44,7 @@ export const LoginForm = ({ onSubmit, onForgotPassword, onToggleMode, loading }:
           onChange={(e) => setEmail(e.target.value)}
           required
           placeholder="Enter your email"
+          autoComplete="email"
         />
       </div>
 
@@ -44,6 +58,7 @@ export const LoginForm = ({ onSubmit, onForgotPassword, onToggleMode, loading }:
           required
           placeholder="Enter your password"
           minLength={6}
+          autoComplete="current-password"
         />
       </div>
 
@@ -67,6 +82,9 @@ export const LoginForm = ({ onSubmit, onForgotPassword, onToggleMode, loading }:
       </Button>
 
       <div className="text-center">
+        <p className="text-sm text-gray-600 mb-2">
+          Don't have an account?
+        </p>
         <Button
           type="button"
           variant="link"
