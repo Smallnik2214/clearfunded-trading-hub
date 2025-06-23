@@ -25,6 +25,7 @@ const Auth = () => {
   const [zipCode, setZipCode] = useState("");
   const [countryCode, setCountryCode] = useState("+1");
   const [loading, setLoading] = useState(false);
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -76,6 +77,94 @@ const Auth = () => {
       setLoading(false);
     }
   };
+
+  const handleForgotPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email) {
+      toast.error("Please enter your email address");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/auth`,
+      });
+
+      if (error) {
+        toast.error(error.message);
+      } else {
+        toast.success("Password reset email sent! Please check your inbox.");
+        setShowForgotPassword(false);
+      }
+    } catch (error) {
+      toast.error("An unexpected error occurred");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (showForgotPassword) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <PromoBanner />
+        <Header />
+        
+        <div className="py-12 px-4">
+          <div className="max-w-md mx-auto">
+            <Card className="shadow-xl">
+              <CardHeader className="text-center">
+                <CardTitle className="text-3xl font-bold text-gray-900">
+                  Reset Your Password
+                </CardTitle>
+                <p className="text-gray-600 mt-2">
+                  Enter your email address and we'll send you a reset link
+                </p>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleForgotPassword} className="space-y-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email Address *</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      placeholder="Enter your email"
+                    />
+                  </div>
+
+                  <Button
+                    type="submit"
+                    className="w-full py-3 text-lg font-semibold bg-green-600 hover:bg-green-700 text-white"
+                    disabled={loading}
+                  >
+                    {loading ? "Sending..." : "Send Reset Link"}
+                  </Button>
+
+                  <div className="text-center">
+                    <Button
+                      type="button"
+                      variant="link"
+                      onClick={() => setShowForgotPassword(false)}
+                      className="text-green-600 hover:text-green-700"
+                    >
+                      Back to Login
+                    </Button>
+                  </div>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -151,6 +240,19 @@ const Auth = () => {
                     <p className="text-sm text-gray-500">Minimum 6 characters</p>
                   )}
                 </div>
+
+                {isLogin && (
+                  <div className="text-right">
+                    <Button
+                      type="button"
+                      variant="link"
+                      onClick={() => setShowForgotPassword(true)}
+                      className="text-green-600 hover:text-green-700 p-0 h-auto"
+                    >
+                      Forgot password?
+                    </Button>
+                  </div>
+                )}
 
                 {!isLogin && (
                   <>
