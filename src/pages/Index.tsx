@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -92,19 +93,24 @@ const Index = () => {
       <PromoBanner />
       <Header />
       
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-green-50 to-green-100 py-20 px-4">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-10" />
-        <div className="relative max-w-7xl mx-auto text-center">
-          <div className="mb-6">
+      {/* Hero Section with Aurora Background */}
+      <section className="relative aurora-bg py-20 px-4 min-h-screen flex items-center">
+        <div className="stars"></div>
+        <div className="relative max-w-7xl mx-auto text-center z-10">
+          <div className="mb-8">
             <img
               src="https://i.postimg.cc/vmMv1GHf/Clear-Funded-logo-540x540-custom-green.png"
               alt="Clear Funded Logo"
-              className="h-12 md:h-24 w-auto mx-auto"
+              className="h-16 md:h-32 w-auto mx-auto filter brightness-0 invert"
             />
           </div>
-          <p className="text-xl md:text-2xl text-gray-700 mb-12">
-            Clear rules. Real growth.
+          
+          <h1 className="text-5xl md:text-7xl font-orbitron font-bold text-aurora mb-6">
+            CLEAR FUNDED
+          </h1>
+          
+          <p className="text-xl md:text-3xl text-white/90 mb-16 font-inter font-light">
+            Clear rules. Real growth. <span className="text-aurora">Infinite possibilities.</span>
           </p>
           
           {/* Challenge Selection */}
@@ -113,27 +119,33 @@ const Index = () => {
               <Button
                 variant={selectedPhase === "1-Phase" ? "default" : "outline"}
                 onClick={() => setSelectedPhase("1-Phase")}
-                className={selectedPhase === "1-Phase" ? "bg-green-600 hover:bg-green-700 text-white" : ""}
+                className={selectedPhase === "1-Phase" 
+                  ? "aurora-button text-white font-orbitron font-semibold px-8 py-4 text-lg" 
+                  : "glass-card text-white border-white/30 hover:border-white/50 font-orbitron font-semibold px-8 py-4 text-lg"}
               >
-                1-Phase
+                1-Phase Challenge
               </Button>
               <Button
                 variant={selectedPhase === "2-Phase" ? "default" : "outline"}
                 onClick={() => setSelectedPhase("2-Phase")}
-                className={selectedPhase === "2-Phase" ? "bg-green-600 hover:bg-green-700 text-white" : ""}
+                className={selectedPhase === "2-Phase" 
+                  ? "aurora-button text-white font-orbitron font-semibold px-8 py-4 text-lg" 
+                  : "glass-card text-white border-white/30 hover:border-white/50 font-orbitron font-semibold px-8 py-4 text-lg"}
               >
-                2-Phase
+                2-Phase Challenge
               </Button>
             </div>
 
             {/* Price Selection */}
-            <div className="flex flex-wrap justify-center gap-3 mb-8">
+            <div className="flex flex-wrap justify-center gap-3 mb-12">
               {priceOptions.map((price) => (
                 <Button
                   key={price}
                   variant={selectedPrice === price ? "default" : "outline"}
                   onClick={() => setSelectedPrice(price)}
-                  className={selectedPrice === price ? "bg-green-600 hover:bg-green-700 text-white" : ""}
+                  className={selectedPrice === price 
+                    ? "aurora-button text-white font-inter font-medium px-6 py-3" 
+                    : "glass-card text-white border-white/30 hover:border-white/50 font-inter font-medium px-6 py-3"}
                 >
                   ${price}
                 </Button>
@@ -141,46 +153,49 @@ const Index = () => {
             </div>
 
             {/* Challenge Table */}
-            <Card className="bg-white/95 backdrop-blur shadow-xl">
+            <Card className="glass-card border-white/20 shadow-2xl">
               <CardContent className="p-8">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   {/* Selected Phase Column */}
                   <div className="text-center">
-                    <h3 className="text-xl font-bold mb-4 text-green-600">{selectedPhase}</h3>
+                    <h3 className="text-2xl font-orbitron font-bold mb-6 text-aurora">{selectedPhase}</h3>
                     {Object.entries(challengeData[selectedPhase]).map(([key, value]) => (
-                      <div key={key} className="py-2 border-b border-gray-100 last:border-b-0">
-                        <div className="text-sm text-gray-600">{key}</div>
-                        <div className="font-semibold">{value}</div>
+                      <div key={key} className="py-3 border-b border-white/10 last:border-b-0">
+                        <div className="text-sm text-white/70 font-inter mb-1">{key}</div>
+                        <div className="font-semibold text-white font-inter text-lg">{value}</div>
                       </div>
                     ))}
                   </div>
 
                   {/* Funded Column */}
                   <div className="text-center">
-                    <h3 className="text-xl font-bold mb-4 text-green-600">Funded</h3>
+                    <h3 className="text-2xl font-orbitron font-bold mb-6 text-aurora">Funded Account</h3>
                     {Object.entries(challengeData.Funded).map(([key, value]) => (
-                      <div key={key} className="py-2 border-b border-gray-100 last:border-b-0">
-                        <div className="text-sm text-gray-600">{key}</div>
-                        <div className="font-semibold">{value}</div>
+                      <div key={key} className="py-3 border-b border-white/10 last:border-b-0">
+                        <div className="text-sm text-white/70 font-inter mb-1">{key}</div>
+                        <div className="font-semibold text-white font-inter text-lg">{value}</div>
                       </div>
                     ))}
                   </div>
 
                   {/* Call to Action */}
                   <div className="text-center flex flex-col justify-center">
-                    <div className="mb-6">
-                      <Badge className="bg-green-100 text-green-800 mb-4 text-lg px-4 py-2">Special Offer</Badge>
-                      <div className="text-4xl font-bold text-gray-900 mb-2">
+                    <div className="mb-8">
+                      <Badge className="glass-card border-white/30 text-aurora text-lg px-6 py-3 mb-6 font-orbitron font-semibold">
+                        Limited Time Offer
+                      </Badge>
+                      <div className="text-5xl font-orbitron font-bold text-white mb-2">
                         ${getPriceForPhase(selectedPhase, selectedPrice)}
                       </div>
+                      <div className="text-white/70 font-inter">Get started today</div>
                     </div>
                     <Button
                       size="lg"
-                      className="bg-green-600 hover:bg-green-700 text-white py-4 px-8 text-xl font-bold shadow-lg transform hover:scale-105 transition-all"
+                      className="aurora-button text-white py-6 px-12 text-xl font-orbitron font-bold shadow-2xl transform hover:scale-105 transition-all duration-300"
                       onClick={() => window.location.href = "/auth"}
                     >
-                      Start Trading
-                      <ArrowRight className="ml-2 h-6 w-6" />
+                      Begin Your Journey
+                      <ArrowRight className="ml-3 h-6 w-6" />
                     </Button>
                   </div>
                 </div>
