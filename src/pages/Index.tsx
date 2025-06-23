@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -97,14 +96,6 @@ const Index = () => {
       <section className="relative aurora-bg py-20 px-4 min-h-screen flex items-center">
         <div className="stars"></div>
         <div className="relative max-w-7xl mx-auto text-center z-10">
-          <div className="mb-8">
-            <img
-              src="https://i.postimg.cc/vmMv1GHf/Clear-Funded-logo-540x540-custom-green.png"
-              alt="Clear Funded Logo"
-              className="h-16 md:h-32 w-auto mx-auto filter brightness-0 invert"
-            />
-          </div>
-          
           <h1 className="text-5xl md:text-7xl font-orbitron font-bold text-aurora mb-6">
             CLEAR FUNDED
           </h1>
