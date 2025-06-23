@@ -80,7 +80,7 @@ export const useAuth = () => {
     }
   };
 
-  const resetPassword = async (email: string) => {
+  const requestPasswordReset = async (email: string) => {
     if (!email) {
       toast.error("Please enter your email address");
       return false;
@@ -89,14 +89,36 @@ export const useAuth = () => {
     setLoading(true);
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/auth`,
+        redirectTo: `${window.location.origin}/auth?mode=reset`,
       });
 
       if (error) {
         toast.error(error.message);
         return false;
       } else {
-        toast.success("Password reset email sent! Please check your inbox.");
+        toast.success("Password reset instructions sent to your email!");
+        return true;
+      }
+    } catch (error) {
+      toast.error("An unexpected error occurred");
+      return false;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const updatePassword = async (newPassword: string) => {
+    setLoading(true);
+    try {
+      const { error } = await supabase.auth.updateUser({
+        password: newPassword
+      });
+
+      if (error) {
+        toast.error(error.message);
+        return false;
+      } else {
+        toast.success("Password updated successfully!");
         return true;
       }
     } catch (error) {
@@ -111,6 +133,7 @@ export const useAuth = () => {
     loading,
     login,
     signUp,
-    resetPassword,
+    requestPasswordReset,
+    updatePassword,
   };
 };

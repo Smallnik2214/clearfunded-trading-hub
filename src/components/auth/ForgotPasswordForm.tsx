@@ -21,7 +21,7 @@ export const ForgotPasswordForm = ({ onSubmit, onBack, loading }: ForgotPassword
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="space-y-2">
-        <Label htmlFor="email">Email Address *</Label>
+        <Label htmlFor="email">Email Address</Label>
         <Input
           id="email"
           type="email"
@@ -37,7 +37,7 @@ export const ForgotPasswordForm = ({ onSubmit, onBack, loading }: ForgotPassword
         className="w-full py-3 text-lg font-semibold bg-green-600 hover:bg-green-700 text-white"
         disabled={loading}
       >
-        {loading ? "Sending..." : "Send Reset Link"}
+        {loading ? "Sending..." : "Reset Password"}
       </Button>
 
       <div className="text-center">
