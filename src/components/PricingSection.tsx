@@ -41,7 +41,9 @@ export const PricingSection = () => {
             <CardHeader className="text-center">
               <CardTitle className="text-2xl font-orbitron font-bold text-space">1-Phase Challenge</CardTitle>
               <div className="flex justify-center">
-                <Badge className="bg-aurora-cyan/20 text-aurora-cyan border-aurora-cyan/30">Most Popular</Badge>
+                <Badge className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black border-0 font-bold px-4 py-2 text-sm shadow-lg">
+                  Most Popular
+                </Badge>
               </div>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -74,7 +76,9 @@ export const PricingSection = () => {
             <CardHeader className="text-center">
               <CardTitle className="text-2xl font-orbitron font-bold text-space">2-Phase Challenge</CardTitle>
               <div className="flex justify-center">
-                <Badge className="bg-aurora-cyan/20 text-aurora-cyan border-aurora-cyan/30">Best Value</Badge>
+                <Badge className="bg-gradient-to-r from-green-400 to-emerald-500 text-black border-0 font-bold px-4 py-2 text-sm shadow-lg">
+                  Best Value
+                </Badge>
               </div>
             </CardHeader>
             <CardContent className="space-y-4">
