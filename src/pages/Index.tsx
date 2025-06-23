@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,6 +9,7 @@ import { Footer } from "@/components/Footer";
 import { ReviewsSection } from "@/components/ReviewsSection";
 import { PricingSection } from "@/components/PricingSection";
 import { TradingRulesSection } from "@/components/TradingRulesSection";
+import { EvaluationsSection } from "@/components/EvaluationsSection";
 import { CertificatesSection } from "@/components/CertificatesSection";
 import { ArrowRight } from "lucide-react";
 
@@ -197,6 +199,7 @@ const Index = () => {
       </section>
 
       <TradingRulesSection />
+      <EvaluationsSection />
       <PricingSection />
       <CertificatesSection />
       <ReviewsSection />

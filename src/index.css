@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;900&display=swap');
 
 @tailwind base;
@@ -160,6 +159,16 @@
 
 .text-space {
   background: linear-gradient(45deg, #c7d2fe, #a5b4fc, #8b5cf6, #7c3aed, #6d28d9, #a5b4fc, #c7d2fe);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 3s ease infinite;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.text-evaluation {
+  background: linear-gradient(45deg, #fbbf24, #f59e0b, #d97706, #b45309, #92400e, #f59e0b, #fbbf24);
   background-size: 400% 400%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
