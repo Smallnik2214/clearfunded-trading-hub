@@ -92,14 +92,9 @@ const Index = () => {
       <PromoBanner />
       <Header />
       
-      {/* Hero Section with Aurora Background - removed pt-16 since header is no longer fixed */}
-      <section className="relative aurora-bg py-20 px-4 min-h-screen flex items-center">
+      {/* Hero Section with Aurora Background - added pt-16 for fixed header */}
+      <section className="relative aurora-bg py-20 px-4 min-h-screen flex items-center pt-16">
         <div className="stars"></div>
-        <div className="falling-stars">
-          {[...Array(15)].map((_, i) => (
-            <div key={i} className="falling-star"></div>
-          ))}
-        </div>
         <div className="relative max-w-7xl mx-auto text-center z-10">
           <h1 className="text-5xl md:text-7xl font-orbitron font-bold text-aurora mb-6">
             CLEAR FUNDED

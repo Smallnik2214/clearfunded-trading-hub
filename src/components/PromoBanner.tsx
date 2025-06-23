@@ -8,14 +8,13 @@ export const PromoBanner = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="bg-gradient-to-r from-purple-900 via-blue-900 to-purple-900 text-white py-2 px-4 relative overflow-hidden">
-      <div className="absolute inset-0 bg-black opacity-30"></div>
-      <div className="flex items-center justify-center relative z-10">
-        <div className="animate-pulse mr-2">⭐</div>
+    <div className="bg-gradient-to-r from-red-600 to-red-700 text-white py-2 px-4 relative overflow-hidden">
+      <div className="flex items-center justify-center">
+        <div className="animate-pulse mr-2">🔥</div>
         <div className="text-sm font-semibold tracking-wide">
           <span className="animate-bounce inline-block">SPECIAL OFFER:</span>
           <span className="ml-2">Get 30% OFF on all challenges!</span>
-          <span className="ml-2 bg-gradient-to-r from-purple-400 to-blue-400 text-black px-2 py-1 rounded text-xs font-bold">
+          <span className="ml-2 bg-white text-red-600 px-2 py-1 rounded text-xs font-bold">
             Use Code: STAY CLEAR!
           </span>
         </div>

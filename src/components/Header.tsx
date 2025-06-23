@@ -7,11 +7,11 @@ export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="aurora-bg border-b border-white/20 sticky top-0 z-50">
+    <header className="fixed top-0 left-0 right-0 z-50 aurora-bg border-b border-white/20">
       <div className="stars-header"></div>
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         <div className="flex justify-between items-center h-16">
-          {/* Brand - clickable to return home */}
+          {/* Logo/Brand - clickable to return home */}
           <div
             className="flex-shrink-0 cursor-pointer"
             onClick={() => window.location.href = "/"}
