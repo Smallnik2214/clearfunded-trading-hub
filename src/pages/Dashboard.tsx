@@ -1,24 +1,67 @@
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Plus, TrendingUp, DollarSign, Calendar, User, Mail, FileText } from "lucide-react";
 import { PromoBanner } from "@/components/PromoBanner";
+import { useAuth } from "@/contexts/AuthContext";
+import { supabase } from "@/integrations/supabase/client";
+
+interface UserProfile {
+  first_name?: string;
+  last_name?: string;
+}
 
 const Dashboard = () => {
-  const [userInfo, setUserInfo] = useState({
-    email: "",
-    firstName: "",
-    lastName: ""
-  });
+  const { user, signOut, loading } = useAuth();
+  const [userProfile, setUserProfile] = useState<UserProfile>({});
 
   useEffect(() => {
-    // Get user info from localStorage (set during registration)
-    const savedUserInfo = localStorage.getItem('userInfo');
-    if (savedUserInfo) {
-      setUserInfo(JSON.parse(savedUserInfo));
+    if (user) {
+      // Get user profile from Supabase
+      const fetchProfile = async () => {
+        const { data, error } = await supabase
+          .from('profiles')
+          .select('first_name, last_name')
+          .eq('id', user.id)
+          .single();
+        
+        if (data) {
+          setUserProfile(data);
+        }
+      };
+      
+      fetchProfile();
     }
-  }, []);
+  }, [user]);
+
+  // Redirect to auth if not logged in
+  useEffect(() => {
+    if (!loading && !user) {
+      window.location.href = "/auth";
+    }
+  }, [user, loading]);
+
+  const handleLogout = async () => {
+    await signOut();
+    window.location.href = "/";
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return null;
+  }
 
   const userStats = {
     activeAccounts: 0,
@@ -26,6 +69,10 @@ const Dashboard = () => {
     successRate: 0,
     totalTrades: 0
   };
+
+  const displayName = userProfile.first_name && userProfile.last_name 
+    ? `${userProfile.first_name} ${userProfile.last_name}`
+    : user.email;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -55,10 +102,10 @@ const Dashboard = () => {
               <div className="flex items-center gap-2">
                 <User className="h-5 w-5 text-gray-600" />
                 <span className="text-gray-700 font-medium">
-                  {userInfo.firstName} {userInfo.lastName}
+                  {displayName}
                 </span>
               </div>
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" onClick={handleLogout}>
                 Logout
               </Button>
             </div>
@@ -70,11 +117,11 @@ const Dashboard = () => {
         {/* Welcome Section with User Info */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Welcome, {userInfo.firstName} {userInfo.lastName}!
+            Welcome, {userProfile.first_name || 'Trader'}!
           </h1>
           <div className="flex items-center gap-2 text-gray-600">
             <Mail className="h-4 w-4" />
-            <span>{userInfo.email}</span>
+            <span>{user.email}</span>
           </div>
           <p className="text-gray-600 mt-2">
             Get started by creating your first trading challenge

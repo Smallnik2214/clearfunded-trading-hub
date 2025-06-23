@@ -42,7 +42,7 @@ export const Header = () => {
           <div className="hidden md:block">
             <Button
               className="bg-green-600 hover:bg-green-700 text-white"
-              onClick={() => window.location.href = "/register"}
+              onClick={() => window.location.href = "/auth"}
             >
               Start Trading
             </Button>
@@ -78,7 +78,7 @@ export const Header = () => {
               </a>
               <Button
                 className="bg-green-600 hover:bg-green-700 text-white w-full"
-                onClick={() => window.location.href = "/register"}
+                onClick={() => window.location.href = "/auth"}
               >
                 Start Trading
               </Button>

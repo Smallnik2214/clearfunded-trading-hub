@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -178,7 +177,7 @@ const Index = () => {
                     <Button
                       size="lg"
                       className="bg-green-600 hover:bg-green-700 text-white py-4 px-8 text-xl font-bold shadow-lg transform hover:scale-105 transition-all"
-                      onClick={() => window.location.href = "/register"}
+                      onClick={() => window.location.href = "/auth"}
                     >
                       Start Trading
                       <ArrowRight className="ml-2 h-6 w-6" />
