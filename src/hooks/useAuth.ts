@@ -110,6 +110,14 @@ export const useAuth = () => {
   const updatePassword = async (newPassword: string) => {
     setLoading(true);
     try {
+      // Check if user is authenticated
+      const { data: { session } } = await supabase.auth.getSession();
+      
+      if (!session) {
+        toast.error("Authentication session expired. Please request a new password reset.");
+        return false;
+      }
+
       const { error } = await supabase.auth.updateUser({
         password: newPassword
       });
@@ -122,6 +130,7 @@ export const useAuth = () => {
         return true;
       }
     } catch (error) {
+      console.error("Password update error:", error);
       toast.error("An unexpected error occurred");
       return false;
     } finally {
