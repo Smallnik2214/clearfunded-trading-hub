@@ -7,33 +7,32 @@ export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white shadow-sm border-b">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="fixed top-0 left-0 right-0 z-50 aurora-bg border-b border-white/20">
+      <div className="stars-header"></div>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         <div className="flex justify-between items-center h-16">
-          {/* Logo - clickable to return home */}
+          {/* Logo/Brand - clickable to return home */}
           <div
             className="flex-shrink-0 cursor-pointer"
             onClick={() => window.location.href = "/"}
           >
-            <img
-              src="https://i.postimg.cc/5ySSfG8b/Chat-GPT-Image-Jun-22-2025-12-24-31-PM.png"
-              alt="Clear Funded Logo"
-              className="h-23 w-32"
-            />
+            <h1 className="text-2xl font-orbitron font-bold text-aurora">
+              CLEAR FUNDED
+            </h1>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            <a href="/" className="text-gray-700 hover:text-green-600 transition-colors">
+            <a href="/" className="text-white/80 hover:text-aurora transition-colors font-inter">
               Home
             </a>
-            <a href="/about" className="text-gray-700 hover:text-green-600 transition-colors">
+            <a href="/about" className="text-white/80 hover:text-aurora transition-colors font-inter">
               About Us
             </a>
-            <a href="/rules" className="text-gray-700 hover:text-green-600 transition-colors">
+            <a href="/rules" className="text-white/80 hover:text-aurora transition-colors font-inter">
               Trading Rules
             </a>
-            <a href="/faq" className="text-gray-700 hover:text-green-600 transition-colors">
+            <a href="/faq" className="text-white/80 hover:text-aurora transition-colors font-inter">
               FAQ
             </a>
           </nav>
@@ -41,7 +40,7 @@ export const Header = () => {
           {/* CTA Button */}
           <div className="hidden md:block">
             <Button
-              className="bg-green-600 hover:bg-green-700 text-white"
+              className="aurora-button text-white font-orbitron font-semibold"
               onClick={() => window.location.href = "/auth"}
             >
               Start Trading
@@ -54,6 +53,7 @@ export const Header = () => {
               variant="ghost"
               size="icon"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="text-white hover:bg-white/10"
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
@@ -62,22 +62,22 @@ export const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t">
+          <div className="md:hidden py-4 border-t border-white/20">
             <div className="flex flex-col space-y-4">
-              <a href="/" className="text-gray-700 hover:text-green-600 transition-colors">
+              <a href="/" className="text-white/80 hover:text-aurora transition-colors font-inter">
                 Home
               </a>
-              <a href="/about" className="text-gray-700 hover:text-green-600 transition-colors">
+              <a href="/about" className="text-white/80 hover:text-aurora transition-colors font-inter">
                 About Us
               </a>
-              <a href="/rules" className="text-gray-700 hover:text-green-600 transition-colors">
+              <a href="/rules" className="text-white/80 hover:text-aurora transition-colors font-inter">
                 Trading Rules
               </a>
-              <a href="/faq" className="text-gray-700 hover:text-green-600 transition-colors">
+              <a href="/faq" className="text-white/80 hover:text-aurora transition-colors font-inter">
                 FAQ
               </a>
               <Button
-                className="bg-green-600 hover:bg-green-700 text-white w-full"
+                className="aurora-button text-white font-orbitron font-semibold w-full"
                 onClick={() => window.location.href = "/auth"}
               >
                 Start Trading
