@@ -92,16 +92,16 @@ const Index = () => {
       <PromoBanner />
       <Header />
       
-      {/* Hero Section with Space Background - added pt-16 for fixed header */}
-      <section className="relative space-bg py-20 px-4 min-h-screen flex items-center pt-16">
+      {/* Hero Section with Aurora Background - added pt-16 for fixed header */}
+      <section className="relative aurora-bg py-20 px-4 min-h-screen flex items-center pt-16">
         <div className="stars"></div>
         <div className="relative max-w-7xl mx-auto text-center z-10">
-          <h1 className="text-5xl md:text-7xl font-orbitron font-bold text-space mb-6">
+          <h1 className="text-5xl md:text-7xl font-orbitron font-bold text-aurora mb-6">
             CLEAR FUNDED
           </h1>
           
           <p className="text-xl md:text-3xl text-white/90 mb-16 font-inter font-light">
-            Clear rules. Real growth. <span className="text-space">Infinite possibilities.</span>
+            Clear rules. Real growth. <span className="text-aurora">Infinite possibilities.</span>
           </p>
           
           {/* Challenge Selection */}
@@ -111,8 +111,8 @@ const Index = () => {
                 variant={selectedPhase === "1-Phase" ? "default" : "outline"}
                 onClick={() => setSelectedPhase("1-Phase")}
                 className={selectedPhase === "1-Phase" 
-                  ? "space-button text-white font-orbitron font-semibold px-8 py-4 text-lg" 
-                  : "glass-card text-white border-white/30 hover:border-white/50 font-orbitron font-semibold px-8 py-4 text-lg"}
+                  ? "aurora-button text-white font-orbitron font-semibold px-8 py-4 text-lg" 
+                  : "glass-card text-white border-cyan-300/30 hover:border-cyan-300/50 font-orbitron font-semibold px-8 py-4 text-lg"}
               >
                 1-Phase Challenge
               </Button>
@@ -120,8 +120,8 @@ const Index = () => {
                 variant={selectedPhase === "2-Phase" ? "default" : "outline"}
                 onClick={() => setSelectedPhase("2-Phase")}
                 className={selectedPhase === "2-Phase" 
-                  ? "space-button text-white font-orbitron font-semibold px-8 py-4 text-lg" 
-                  : "glass-card text-white border-white/30 hover:border-white/50 font-orbitron font-semibold px-8 py-4 text-lg"}
+                  ? "aurora-button text-white font-orbitron font-semibold px-8 py-4 text-lg" 
+                  : "glass-card text-white border-cyan-300/30 hover:border-cyan-300/50 font-orbitron font-semibold px-8 py-4 text-lg"}
               >
                 2-Phase Challenge
               </Button>
@@ -135,8 +135,8 @@ const Index = () => {
                   variant={selectedPrice === price ? "default" : "outline"}
                   onClick={() => setSelectedPrice(price)}
                   className={selectedPrice === price 
-                    ? "space-button text-white font-inter font-medium px-6 py-3" 
-                    : "glass-card text-white border-white/30 hover:border-white/50 font-inter font-medium px-6 py-3"}
+                    ? "aurora-button text-white font-inter font-medium px-6 py-3" 
+                    : "glass-card text-white border-cyan-300/30 hover:border-cyan-300/50 font-inter font-medium px-6 py-3"}
                 >
                   ${price}
                 </Button>
@@ -144,12 +144,12 @@ const Index = () => {
             </div>
 
             {/* Challenge Table */}
-            <Card className="glass-card border-white/20 shadow-2xl">
+            <Card className="glass-card border-cyan-300/20 shadow-2xl">
               <CardContent className="p-8">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   {/* Selected Phase Column */}
                   <div className="text-center">
-                    <h3 className="text-2xl font-orbitron font-bold mb-6 text-space">{selectedPhase}</h3>
+                    <h3 className="text-2xl font-orbitron font-bold mb-6 text-aurora">{selectedPhase}</h3>
                     {Object.entries(challengeData[selectedPhase]).map(([key, value]) => (
                       <div key={key} className="py-3 border-b border-white/10 last:border-b-0">
                         <div className="text-sm text-white/70 font-inter mb-1">{key}</div>
@@ -160,7 +160,7 @@ const Index = () => {
 
                   {/* Funded Column */}
                   <div className="text-center">
-                    <h3 className="text-2xl font-orbitron font-bold mb-6 text-space">Funded Account</h3>
+                    <h3 className="text-2xl font-orbitron font-bold mb-6 text-aurora">Funded Account</h3>
                     {Object.entries(challengeData.Funded).map(([key, value]) => (
                       <div key={key} className="py-3 border-b border-white/10 last:border-b-0">
                         <div className="text-sm text-white/70 font-inter mb-1">{key}</div>
@@ -172,7 +172,7 @@ const Index = () => {
                   {/* Call to Action */}
                   <div className="text-center flex flex-col justify-center">
                     <div className="mb-8">
-                      <Badge className="glass-card border-white/30 text-space text-lg px-6 py-3 mb-6 font-orbitron font-semibold">
+                      <Badge className="glass-card border-cyan-300/30 text-aurora text-lg px-6 py-3 mb-6 font-orbitron font-semibold">
                         Limited Time Offer
                       </Badge>
                       <div className="text-5xl font-orbitron font-bold text-white mb-2">
@@ -182,7 +182,7 @@ const Index = () => {
                     </div>
                     <Button
                       size="lg"
-                      className="space-button text-white py-6 px-12 text-xl font-orbitron font-bold shadow-2xl transform hover:scale-105 transition-all duration-300"
+                      className="aurora-button text-white py-6 px-12 text-xl font-orbitron font-bold shadow-2xl transform hover:scale-105 transition-all duration-300"
                       onClick={() => window.location.href = "/auth"}
                     >
                       Begin Your Journey
