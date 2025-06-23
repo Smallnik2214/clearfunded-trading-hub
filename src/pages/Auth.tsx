@@ -72,9 +72,8 @@ const Auth = () => {
   const handleForgotPassword = async (email: string) => {
     const success = await requestPasswordReset(email);
     if (success) {
-      setShowForgotPassword(false);
-      // Don't automatically show reset password form here
-      // User will get it via email link
+      // Stay on forgot password form but show success message
+      // User will get email with reset link
     }
   };
 
@@ -97,7 +96,7 @@ const Auth = () => {
 
   const getSubtitle = () => {
     if (showResetPassword) return "Enter your new password below";
-    if (showForgotPassword) return "Enter your email address to reset your password";
+    if (showForgotPassword) return "We'll send you instructions to reset your password";
     return isLogin ? "Welcome back! Please login to continue" : "Join thousands of successful traders";
   };
 
@@ -120,7 +119,10 @@ const Auth = () => {
       return (
         <ForgotPasswordForm
           onSubmit={handleForgotPassword}
-          onBack={() => setShowForgotPassword(false)}
+          onBack={() => {
+            setShowForgotPassword(false);
+            setIsLogin(true);
+          }}
           loading={loading}
         />
       );
@@ -130,7 +132,10 @@ const Auth = () => {
       return (
         <LoginForm
           onSubmit={handleLogin}
-          onForgotPassword={() => setShowForgotPassword(true)}
+          onForgotPassword={() => {
+            setShowForgotPassword(true);
+            setIsLogin(false);
+          }}
           onToggleMode={() => setIsLogin(false)}
           loading={loading}
         />

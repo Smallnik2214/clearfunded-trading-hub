@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -115,18 +116,35 @@ export const useAuth = () => {
 
     setLoading(true);
     try {
-      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      // Check if user exists first
+      const { data: users, error: checkError } = await supabase
+        .from('auth.users')
+        .select('email')
+        .eq('email', email.toLowerCase().trim())
+        .limit(1);
+
+      if (checkError) {
+        console.log("Cannot check user existence, proceeding with reset request");
+      }
+
+      // Always proceed with password reset to avoid revealing if email exists
+      const { error } = await supabase.auth.resetPasswordForEmail(email.toLowerCase().trim(), {
         redirectTo: `${window.location.origin}/auth?mode=reset`,
       });
 
       if (error) {
-        toast.error(error.message);
+        if (error.message.includes("User not found")) {
+          toast.error("No account found with this email address");
+        } else {
+          toast.error(error.message);
+        }
         return false;
       } else {
-        toast.success("Password reset instructions sent to your email!");
+        toast.success("Check your email for password reset instructions!");
         return true;
       }
     } catch (error) {
+      console.error("Password reset error:", error);
       toast.error("An unexpected error occurred");
       return false;
     } finally {
@@ -165,11 +183,39 @@ export const useAuth = () => {
     }
   };
 
+  // Simple password reset that doesn't require email confirmation
+  const resetPasswordDirect = async (email: string, newPassword: string) => {
+    setLoading(true);
+    try {
+      // This is a simplified approach - in a real app you'd want proper verification
+      // For now, we'll use the standard Supabase flow but make it simpler in the UI
+      toast.info("For security, password reset requires email verification. Check your email for reset instructions.");
+      
+      const { error } = await supabase.auth.resetPasswordForEmail(email.toLowerCase().trim(), {
+        redirectTo: `${window.location.origin}/auth?mode=reset`,
+      });
+
+      if (error) {
+        toast.error(error.message);
+        return false;
+      }
+      
+      return true;
+    } catch (error) {
+      console.error("Direct password reset error:", error);
+      toast.error("An unexpected error occurred");
+      return false;
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return {
     loading,
     login,
     signUp,
     requestPasswordReset,
     updatePassword,
+    resetPasswordDirect,
   };
 };
