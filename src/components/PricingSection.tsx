@@ -23,44 +23,45 @@ export const PricingSection = () => {
   };
 
   return (
-    <section className="py-16 px-4 bg-white">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-16 px-4 space-bg relative overflow-hidden">
+      <div className="stars"></div>
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Our Evaluations
+          <h2 className="text-3xl font-orbitron font-bold text-space mb-4">
+            Challenge Pricing
           </h2>
-          <p className="text-gray-600">
+          <p className="text-white/80 font-inter">
             Choose your challenge size and start your trading journey
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* 1-Phase Pricing */}
-          <Card className="bg-green-50 border-green-200">
+          <Card className="glass-card border-aurora-cyan/20 hover:border-aurora-cyan/40 transition-all duration-300 hover:scale-105">
             <CardHeader className="text-center">
-              <CardTitle className="text-2xl text-green-700">1-Phase Challenge</CardTitle>
+              <CardTitle className="text-2xl font-orbitron font-bold text-space">1-Phase Challenge</CardTitle>
               <div className="flex justify-center">
-                <Badge className="bg-green-600 text-white">Most Popular</Badge>
+                <Badge className="bg-aurora-cyan/20 text-aurora-cyan border-aurora-cyan/30">Most Popular</Badge>
               </div>
             </CardHeader>
             <CardContent className="space-y-4">
               {pricingData["1-Phase"].map((item, index) => (
                 <div 
                   key={index} 
-                  className="flex items-center justify-between p-4 bg-white rounded-lg hover:bg-green-100 hover:border-green-300 border-2 border-transparent transition-all cursor-pointer hover:shadow-md"
+                  className="flex items-center justify-between p-4 glass-card rounded-lg hover:border-aurora-cyan/40 border border-aurora-cyan/20 transition-all cursor-pointer hover:scale-105"
                   onClick={() => console.log(`Selected 1-Phase ${item.size}$ account`)}
                 >
                   <div className="flex items-center gap-3">
-                    <Check className="h-5 w-5 text-green-600" />
-                    <span className="font-semibold">{item.size}$ Account</span>
+                    <Check className="h-5 w-5 text-aurora-cyan" />
+                    <span className="font-semibold text-white font-inter">{item.size}$ Account</span>
                   </div>
                   <div className="text-right">
-                    <div className="text-2xl font-bold text-gray-900">{item.price}$</div>
+                    <div className="text-2xl font-bold text-white font-orbitron">{item.price}$</div>
                   </div>
                 </div>
               ))}
               <Button 
-                className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 text-lg"
+                className="w-full space-button text-white font-bold py-3 text-lg font-orbitron"
                 onClick={() => window.location.href = "/register"}
               >
                 Choose 1-Phase
@@ -69,31 +70,31 @@ export const PricingSection = () => {
           </Card>
 
           {/* 2-Phase Pricing */}
-          <Card className="bg-blue-50 border-blue-200">
+          <Card className="glass-card border-aurora-cyan/20 hover:border-aurora-cyan/40 transition-all duration-300 hover:scale-105">
             <CardHeader className="text-center">
-              <CardTitle className="text-2xl text-blue-700">2-Phase Challenge</CardTitle>
+              <CardTitle className="text-2xl font-orbitron font-bold text-space">2-Phase Challenge</CardTitle>
               <div className="flex justify-center">
-                <Badge className="bg-blue-600 text-white">Best Value</Badge>
+                <Badge className="bg-aurora-cyan/20 text-aurora-cyan border-aurora-cyan/30">Best Value</Badge>
               </div>
             </CardHeader>
             <CardContent className="space-y-4">
               {pricingData["2-Phase"].map((item, index) => (
                 <div 
                   key={index} 
-                  className="flex items-center justify-between p-4 bg-white rounded-lg border border-blue-200 hover:bg-blue-100 hover:border-blue-400 border-2 transition-all cursor-pointer hover:shadow-md"
+                  className="flex items-center justify-between p-4 glass-card rounded-lg hover:border-aurora-cyan/40 border border-aurora-cyan/20 transition-all cursor-pointer hover:scale-105"
                   onClick={() => console.log(`Selected 2-Phase ${item.size}$ account`)}
                 >
                   <div className="flex items-center gap-3">
-                    <Check className="h-5 w-5 text-blue-600" />
-                    <span className="font-semibold">{item.size}$ Account</span>
+                    <Check className="h-5 w-5 text-aurora-cyan" />
+                    <span className="font-semibold text-white font-inter">{item.size}$ Account</span>
                   </div>
                   <div className="text-right">
-                    <div className="text-2xl font-bold text-gray-900">{item.price}$</div>
+                    <div className="text-2xl font-bold text-white font-orbitron">{item.price}$</div>
                   </div>
                 </div>
               ))}
               <Button 
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 text-lg"
+                className="w-full space-button text-white font-bold py-3 text-lg font-orbitron"
                 onClick={() => window.location.href = "/register"}
               >
                 Choose 2-Phase
