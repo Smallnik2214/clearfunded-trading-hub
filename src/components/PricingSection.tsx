@@ -63,7 +63,7 @@ export const PricingSection = () => {
                 </div>
               ))}
               <Button 
-                className="w-full space-button text-white font-bold py-3 text-lg font-orbitron"
+                className="w-full moving-gradient text-white font-bold py-3 text-lg font-orbitron border-0"
                 onClick={() => window.location.href = "/register"}
               >
                 Choose 1-Phase
@@ -98,7 +98,7 @@ export const PricingSection = () => {
                 </div>
               ))}
               <Button 
-                className="w-full space-button text-white font-bold py-3 text-lg font-orbitron"
+                className="w-full moving-gradient text-white font-bold py-3 text-lg font-orbitron border-0"
                 onClick={() => window.location.href = "/register"}
               >
                 Choose 2-Phase
