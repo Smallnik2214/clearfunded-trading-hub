@@ -94,8 +94,8 @@ const Index = () => {
       <PromoBanner />
       <Header />
       
-      {/* Hero Section with Space Background - added pt-16 for fixed header */}
-      <section className="relative space-bg py-20 px-4 min-h-screen flex items-center pt-16">
+      {/* Hero Section with Space Background */}
+      <section className="relative space-bg py-20 px-4 min-h-screen flex items-center pt-20">
         <div className="stars"></div>
         <div className="relative max-w-7xl mx-auto text-center z-10">
           <h1 className="text-5xl md:text-7xl font-orbitron font-bold text-space mb-6">
@@ -116,7 +116,7 @@ const Index = () => {
                   ? "space-button text-white font-orbitron font-semibold px-8 py-4 text-lg" 
                   : "glass-card text-white border-white/30 hover:border-white/50 font-orbitron font-semibold px-8 py-4 text-lg"}
               >
-                1-Phase Challenge
+                <span className="moving-gradient-text">Choose 1-Phase</span>
               </Button>
               <Button
                 variant={selectedPhase === "2-Phase" ? "default" : "outline"}
@@ -125,7 +125,7 @@ const Index = () => {
                   ? "space-button text-white font-orbitron font-semibold px-8 py-4 text-lg" 
                   : "glass-card text-white border-white/30 hover:border-white/50 font-orbitron font-semibold px-8 py-4 text-lg"}
               >
-                2-Phase Challenge
+                <span className="moving-gradient-text">Choose 2-Phase</span>
               </Button>
             </div>
 
@@ -184,11 +184,11 @@ const Index = () => {
                     </div>
                     <Button
                       size="lg"
-                      className="moving-gradient text-white py-6 px-12 text-xl font-orbitron font-bold shadow-2xl transform hover:scale-105 transition-all duration-300 border-0"
+                      className="moving-gradient text-white py-8 px-16 text-2xl font-orbitron font-bold shadow-2xl transform hover:scale-105 transition-all duration-300 border-0"
                       onClick={() => window.location.href = "/auth"}
                     >
                       Begin Your Journey
-                      <ArrowRight className="ml-3 h-6 w-6" />
+                      <ArrowRight className="ml-3 h-8 w-8" />
                     </Button>
                   </div>
                 </div>
