@@ -188,7 +188,7 @@ const Index = () => {
                       onClick={() => window.location.href = "/auth"}
                     >
                       Begin Your Journey
-                      <ArrowRight className="ml-3 h-5 w-5" />
+                      <ArrowRight className="ml-3 h-4 w-4" />
                     </Button>
                   </div>
                 </div>
