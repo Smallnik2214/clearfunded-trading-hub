@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -98,10 +97,6 @@ const Index = () => {
       <section className="relative space-bg py-20 px-4 min-h-screen flex items-center pt-20">
         <div className="stars"></div>
         <div className="relative max-w-7xl mx-auto text-center z-10">
-          <h1 className="text-5xl md:text-7xl font-orbitron font-bold text-space mb-6">
-            CLEAR FUNDED
-          </h1>
-          
           <p className="text-xl md:text-3xl text-white/90 mb-16 font-orbitron font-light">
             Clear rules. Real growth. <span className="text-space">Infinite possibilities.</span>
           </p>
