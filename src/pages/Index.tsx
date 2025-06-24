@@ -104,7 +104,7 @@ const Index = () => {
           </p>
           
           <p className="text-lg md:text-xl text-white/80 mb-16 font-orbitron font-light">
-            Unlock your full Trader potential.
+            Unleash your full trader potential.
           </p>
           
           {/* Challenge Selection */}
