@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -259,6 +260,95 @@ const Index = () => {
       </section>
 
       <TradingRulesSection />
+      
+      {/* Multiple Trading Platforms Section */}
+      <section className="py-16 px-4 space-bg relative overflow-hidden">
+        <div className="stars"></div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-orbitron font-bold text-space mb-4">
+              Multiple Trading Platforms
+            </h2>
+            <p className="text-xl text-white/80 font-orbitron font-light mb-4">
+              Trade on our main label MT5, Match-Trader & Tradelocker
+            </p>
+            <p className="text-lg text-white/70 font-orbitron font-light max-w-4xl mx-auto">
+              Our Metaquotes license and mainlabel platforms provide a superior experience with enhanced security and operational efficiency.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* MetaTrader 5 */}
+            <Card className="glass-card border-white/20 hover:border-space/40 transition-all duration-300 hover:scale-105">
+              <CardContent className="p-8 text-center">
+                <div className="flex justify-center mb-6">
+                  <img 
+                    src="/lovable-uploads/69b190c0-a3d2-4ac7-933d-a0a62fd443b2.png" 
+                    alt="MetaTrader 5" 
+                    className="w-20 h-20 object-contain"
+                  />
+                </div>
+                <h3 className="text-2xl font-orbitron font-bold text-space mb-4">
+                  MetaTrader 5
+                </h3>
+                <p className="text-white/80 font-orbitron font-light leading-relaxed">
+                  Industry-leading platform with advanced charting tools, automated trading capabilities, and comprehensive market analysis features.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Match-Trader */}
+            <Card className="glass-card border-white/20 hover:border-space/40 transition-all duration-300 hover:scale-105">
+              <CardContent className="p-8 text-center">
+                <div className="flex justify-center mb-6">
+                  <img 
+                    src="/lovable-uploads/0c4898d7-0806-429e-8d43-95e6f1c56d00.png" 
+                    alt="Match-Trader" 
+                    className="w-20 h-20 object-contain"
+                  />
+                </div>
+                <h3 className="text-2xl font-orbitron font-bold text-space mb-4">
+                  Match-Trader
+                </h3>
+                <p className="text-white/80 font-orbitron font-light leading-relaxed">
+                  Powered by Meta-Trade Technologies, offering innovative trading solutions with enhanced performance and reliability.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* TradeLocker */}
+            <Card className="glass-card border-white/20 hover:border-space/40 transition-all duration-300 hover:scale-105">
+              <CardContent className="p-8 text-center">
+                <div className="flex justify-center mb-6">
+                  <img 
+                    src="/lovable-uploads/95652911-02bd-4cfc-b955-9140c831cf6d.png" 
+                    alt="TradeLocker" 
+                    className="w-20 h-20 object-contain"
+                  />
+                </div>
+                <h3 className="text-2xl font-orbitron font-bold text-space mb-4">
+                  TradeLocker
+                </h3>
+                <p className="text-white/80 font-orbitron font-light leading-relaxed">
+                  Modern, intuitive platform designed for today's traders with cutting-edge technology and seamless user experience.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="text-center mt-12">
+            <Button
+              size="lg"
+              className="moving-gradient text-white py-6 px-12 text-lg font-orbitron font-bold shadow-2xl transform hover:scale-105 transition-all duration-300 border-0"
+              onClick={() => window.location.href = "/auth"}
+            >
+              Start Trading Now
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </div>
+        </div>
+      </section>
+
       <PayoutsInfoSection />
       <EvaluationsSection />
       <PricingSection />
