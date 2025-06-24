@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -90,11 +89,9 @@ const Dashboard = () => {
                 className="flex-shrink-0 cursor-pointer" 
                 onClick={() => window.location.href = "/"}
               >
-                <img
-                  src="https://i.postimg.cc/5ySSfG8b/Chat-GPT-Image-Jun-22-2025-12-24-31-PM.png"
-                  alt="Clear Funded Logo"
-                  className="h-23 w-32"
-                />
+                <h1 className="text-2xl font-orbitron font-bold text-space">
+                  CLEAR FUNDED
+                </h1>
               </div>
             </div>
             <div className="flex-1 flex justify-center">
