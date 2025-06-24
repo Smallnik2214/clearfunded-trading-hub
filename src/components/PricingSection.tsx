@@ -55,7 +55,7 @@ export const PricingSection = () => {
                 >
                   <div className="flex items-center gap-3">
                     <Check className="h-5 w-5 text-aurora-cyan" />
-                    <span className="font-semibold text-white font-inter">{item.size}$ Account</span>
+                    <span className="font-semibold text-white font-orbitron">{item.size}$ Account</span>
                   </div>
                   <div className="text-right">
                     <div className="text-2xl font-bold text-white font-orbitron">{item.price}$</div>
@@ -90,7 +90,7 @@ export const PricingSection = () => {
                 >
                   <div className="flex items-center gap-3">
                     <Check className="h-5 w-5 text-aurora-cyan" />
-                    <span className="font-semibold text-white font-inter">{item.size}$ Account</span>
+                    <span className="font-semibold text-white font-orbitron">{item.size}$ Account</span>
                   </div>
                   <div className="text-right">
                     <div className="text-2xl font-bold text-white font-orbitron">{item.price}$</div>
