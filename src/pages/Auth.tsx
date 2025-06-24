@@ -154,28 +154,30 @@ const Auth = () => {
   // Show loading while setting up session for password reset
   if (!isSessionReady && showResetPassword) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Setting up password reset...</p>
+      <div className="min-h-screen space-bg flex items-center justify-center">
+        <div className="stars"></div>
+        <div className="text-center relative z-10">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-space mx-auto"></div>
+          <p className="mt-4 text-white/80 font-orbitron">Setting up password reset...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen space-bg">
+      <div className="stars"></div>
       <PromoBanner />
       <Header />
       
-      <div className="py-12 px-4">
+      <div className="py-12 px-4 relative z-10">
         <div className="max-w-md mx-auto">
-          <Card className="shadow-xl">
+          <Card className="glass-card border-white/20 shadow-2xl">
             <CardHeader className="text-center">
-              <CardTitle className="text-3xl font-bold text-gray-900">
+              <CardTitle className="text-3xl font-orbitron font-bold text-space">
                 {getTitle()}
               </CardTitle>
-              <p className="text-gray-600 mt-2">
+              <p className="text-white/80 mt-2 font-orbitron font-light">
                 {getSubtitle()}
               </p>
             </CardHeader>

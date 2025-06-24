@@ -37,7 +37,7 @@ export const LoginForm = ({ onSubmit, onForgotPassword, onToggleMode, loading }:
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="space-y-2">
-        <Label htmlFor="email">Email Address *</Label>
+        <Label htmlFor="email" className="text-white font-orbitron">Email Address *</Label>
         <Input
           id="email"
           type="email"
@@ -46,11 +46,12 @@ export const LoginForm = ({ onSubmit, onForgotPassword, onToggleMode, loading }:
           required
           placeholder="Enter your email"
           autoComplete="email"
+          className="glass-card border-white/30 text-white placeholder:text-white/50 font-orbitron"
         />
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="password">Password *</Label>
+        <Label htmlFor="password" className="text-white font-orbitron">Password *</Label>
         <Input
           id="password"
           type="password"
@@ -60,6 +61,7 @@ export const LoginForm = ({ onSubmit, onForgotPassword, onToggleMode, loading }:
           placeholder="Enter your password"
           minLength={6}
           autoComplete="current-password"
+          className="glass-card border-white/30 text-white placeholder:text-white/50 font-orbitron"
         />
       </div>
 
@@ -68,7 +70,7 @@ export const LoginForm = ({ onSubmit, onForgotPassword, onToggleMode, loading }:
           type="button"
           variant="link"
           onClick={onForgotPassword}
-          className="text-green-600 hover:text-green-700 p-0 h-auto"
+          className="text-space hover:text-space/80 p-0 h-auto font-orbitron"
         >
           Forgot password?
         </Button>
@@ -76,21 +78,21 @@ export const LoginForm = ({ onSubmit, onForgotPassword, onToggleMode, loading }:
 
       <Button
         type="submit"
-        className="w-full py-3 text-lg font-semibold bg-gray-600 hover:bg-gray-700 text-white"
+        className="w-full py-3 text-lg font-orbitron font-semibold moving-gradient text-white shadow-2xl transform hover:scale-105 transition-all duration-300 border-0"
         disabled={loading}
       >
         {loading ? "Processing..." : "Login"}
       </Button>
 
       <div className="text-center">
-        <p className="text-sm text-gray-600 mb-2">
+        <p className="text-sm text-white/60 mb-2 font-orbitron">
           Don't have an account?
         </p>
         <Button
           type="button"
           variant="link"
           onClick={onToggleMode}
-          className="text-green-600 hover:text-green-700"
+          className="text-space hover:text-space/80 font-orbitron"
         >
           Create Account
         </Button>

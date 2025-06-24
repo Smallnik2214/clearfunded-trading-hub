@@ -2,7 +2,9 @@
 import { Header } from "@/components/Header";
 import { PromoBanner } from "@/components/PromoBanner";
 import { Footer } from "@/components/Footer";
+import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { ArrowRight } from "lucide-react";
 
 const FAQ = () => {
   const faqs = [
@@ -89,15 +91,18 @@ const FAQ = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen space-bg">
+      <div className="stars"></div>
       <PromoBanner />
       <Header />
       
-      <div className="py-16 px-4">
+      <div className="py-16 px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">Clear Funded – FAQ</h1>
-            <p className="text-xl text-gray-600">
+            <h1 className="text-4xl md:text-5xl font-orbitron font-bold text-space mb-4">
+              Clear Funded – FAQ
+            </h1>
+            <p className="text-xl text-white/80 font-orbitron font-light">
               Find answers to common questions about Clear Funded
             </p>
           </div>
@@ -107,33 +112,34 @@ const FAQ = () => {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="border border-gray-200 rounded-lg px-6"
+                className="glass-card border-white/20 rounded-lg px-6"
               >
                 <AccordionTrigger className="text-left hover:no-underline">
-                  <span className="font-semibold text-gray-900">{faq.question}</span>
+                  <span className="font-orbitron font-semibold text-white">{faq.question}</span>
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 pt-2 pb-4">
+                <AccordionContent className="text-white/80 pt-2 pb-4 font-orbitron font-light">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
 
-          <div className="text-center mt-12 p-8 bg-green-50 rounded-lg">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Still Have Questions?</h2>
-            <p className="text-gray-600 mb-6">
+          <div className="text-center mt-12 p-8 glass-card border-white/20 rounded-lg">
+            <h2 className="text-2xl font-orbitron font-bold text-space mb-4">Still Have Questions?</h2>
+            <p className="text-white/80 mb-6 font-orbitron font-light">
               Our support team is available 24/7 to help you with any questions or concerns.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+              <Button className="moving-gradient text-white px-6 py-3 font-orbitron font-semibold shadow-2xl transform hover:scale-105 transition-all duration-300 border-0">
                 Contact Support
-              </button>
-              <button
-                onClick={() => window.location.href = "/register"}
-                className="border border-green-600 text-green-600 hover:bg-green-600 hover:text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+              </Button>
+              <Button
+                onClick={() => window.location.href = "/auth"}
+                className="glass-card border-white/30 text-white hover:border-space/50 px-6 py-3 font-orbitron font-semibold transition-all duration-300"
               >
                 Start Your Challenge
-              </button>
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
             </div>
           </div>
         </div>
