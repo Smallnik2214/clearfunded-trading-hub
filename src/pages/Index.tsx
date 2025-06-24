@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -107,99 +106,83 @@ const Index = () => {
             Unleash your full trader potential.
           </p>
           
-          {/* Challenge Selection */}
-          <div className="max-w-4xl mx-auto">
-            <div className="flex justify-center gap-4 mb-8">
-              <Button
-                variant={selectedPhase === "1-Phase" ? "default" : "outline"}
-                onClick={() => setSelectedPhase("1-Phase")}
-                className={selectedPhase === "1-Phase" 
-                  ? "moving-gradient text-white font-orbitron font-semibold px-8 py-4 text-lg border-0" 
-                  : "glass-card text-white border-white/30 hover:border-white/50 font-orbitron font-semibold px-8 py-4 text-lg"}
-              >
-                Choose 1-Phase
-              </Button>
-              <Button
-                variant={selectedPhase === "2-Phase" ? "default" : "outline"}
-                onClick={() => setSelectedPhase("2-Phase")}
-                className={selectedPhase === "2-Phase" 
-                  ? "moving-gradient text-white font-orbitron font-semibold px-8 py-4 text-lg border-0" 
-                  : "glass-card text-white border-white/30 hover:border-white/50 font-orbitron font-semibold px-8 py-4 text-lg"}
-              >
-                Choose 2-Phase
-              </Button>
+          {/* How to Begin Earning Section */}
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-orbitron font-bold text-space mb-4">
+                How to Begin Earning
+              </h2>
+              <p className="text-lg text-white/80 font-orbitron font-light">
+                From Signing Up to Scaling Your Profits with Clear Funded
+              </p>
             </div>
 
-            {/* Price Selection */}
-            <div className="flex flex-wrap justify-center gap-3 mb-12">
-              {priceOptions.map((price) => (
-                <Button
-                  key={price}
-                  variant={selectedPrice === price ? "default" : "outline"}
-                  onClick={() => setSelectedPrice(price)}
-                  className={selectedPrice === price 
-                    ? "space-button text-white font-orbitron font-medium px-6 py-3" 
-                    : "glass-card text-white border-white/30 hover:border-white/50 font-orbitron font-medium px-6 py-3"}
-                >
-                  ${price}
-                </Button>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+              {[
+                {
+                  number: "1",
+                  title: "Create Your Account",
+                  description: "Register with Clear Funded and select the evaluation model that matches your trading approach — choose from our 1-Phase or 2-Phase challenges to get started.",
+                  icon: "👤"
+                },
+                {
+                  number: "2", 
+                  title: "Prove Your Skills",
+                  description: "Demonstrate your ability to trade responsibly by meeting profit goals while respecting risk parameters. Show us you can stay consistent and in control.",
+                  icon: "📊"
+                },
+                {
+                  number: "3",
+                  title: "Unlock Payouts", 
+                  description: "Once you pass the challenge, receive a funded account and begin earning. Get paid up to 90% of your profits, with payout requests available in as little as 8 days.",
+                  icon: "💰"
+                },
+                {
+                  number: "4",
+                  title: "Grow Your Account",
+                  description: "As you trade consistently and meet objectives, you'll have the opportunity to scale your funded account and boost your earnings with Clear Funded's growth path.",
+                  icon: "📈"
+                }
+              ].map((step, index) => (
+                <Card key={index} className="glass-card border-white/20 hover:border-space/40 transition-all duration-300 hover:scale-105">
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0">
+                        <div className="w-12 h-12 rounded-full moving-gradient flex items-center justify-center text-white font-orbitron font-bold text-xl">
+                          {step.number}
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-xl font-orbitron font-bold text-space mb-3">
+                          {step.number}. {step.title}
+                        </h3>
+                        <p className="text-white/80 font-orbitron font-light leading-relaxed">
+                          {step.description}
+                        </p>
+                      </div>
+                      <div className="text-2xl opacity-20">
+                        {step.icon}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               ))}
             </div>
 
-            {/* Challenge Table */}
-            <Card className="glass-card border-white/20 shadow-2xl">
-              <CardContent className="p-8">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                  {/* Selected Phase Column */}
-                  <div className="text-center">
-                    <h3 className="text-2xl font-orbitron font-bold mb-6 text-space">{selectedPhase}</h3>
-                    {Object.entries(challengeData[selectedPhase]).map(([key, value]) => (
-                      <div key={key} className="py-3 border-b border-white/10 last:border-b-0">
-                        <div className="text-sm text-white/70 font-orbitron mb-1">{key}</div>
-                        <div className="font-semibold text-white font-orbitron text-lg">{value}</div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Funded Column */}
-                  <div className="text-center">
-                    <h3 className="text-2xl font-orbitron font-bold mb-6 text-space">Funded Account</h3>
-                    {Object.entries(challengeData.Funded).map(([key, value]) => (
-                      <div key={key} className="py-3 border-b border-white/10 last:border-b-0">
-                        <div className="text-sm text-white/70 font-orbitron mb-1">{key}</div>
-                        <div className="font-semibold text-white font-orbitron text-lg">{value}</div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Call to Action */}
-                  <div className="text-center flex flex-col justify-center">
-                    <div className="mb-8">
-                      <Badge className="glass-card border-white/30 text-space text-lg px-6 py-3 mb-6 font-orbitron font-semibold">
-                        Limited Time Offer
-                      </Badge>
-                      <div className="text-5xl font-orbitron font-bold text-white mb-2">
-                        ${getPriceForPhase(selectedPhase, selectedPrice)}
-                      </div>
-                      <div className="text-white/70 font-orbitron">Get started today</div>
-                    </div>
-                    <Button
-                      size="lg"
-                      className="moving-gradient text-white py-8 px-12 text-xl font-orbitron font-bold shadow-2xl transform hover:scale-105 transition-all duration-300 border-0 whitespace-nowrap"
-                      onClick={() => window.location.href = "/auth"}
-                    >
-                      Begin Your Journey
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            <div className="text-center">
+              <Button
+                size="lg"
+                className="moving-gradient text-white py-8 px-12 text-xl font-orbitron font-bold shadow-2xl transform hover:scale-105 transition-all duration-300 border-0 whitespace-nowrap"
+                onClick={() => window.location.href = "/auth"}
+              >
+                Begin Your Journey
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </div>
           </div>
         </div>
       </section>
 
-      <HowToEarnSection />
       <TradingRulesSection />
       <EvaluationsSection />
       <PricingSection />
