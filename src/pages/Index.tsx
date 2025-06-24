@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -154,8 +153,8 @@ const Index = () => {
                     <h3 className="text-2xl font-orbitron font-bold mb-6 text-space">{selectedPhase}</h3>
                     {Object.entries(challengeData[selectedPhase]).map(([key, value]) => (
                       <div key={key} className="py-3 border-b border-white/10 last:border-b-0">
-                        <div className="text-sm text-white/70 font-inter mb-1">{key}</div>
-                        <div className="font-semibold text-white font-inter text-lg">{value}</div>
+                        <div className="text-sm text-white/70 font-orbitron mb-1">{key}</div>
+                        <div className="font-semibold text-white font-orbitron text-lg">{value}</div>
                       </div>
                     ))}
                   </div>
@@ -165,8 +164,8 @@ const Index = () => {
                     <h3 className="text-2xl font-orbitron font-bold mb-6 text-space">Funded Account</h3>
                     {Object.entries(challengeData.Funded).map(([key, value]) => (
                       <div key={key} className="py-3 border-b border-white/10 last:border-b-0">
-                        <div className="text-sm text-white/70 font-inter mb-1">{key}</div>
-                        <div className="font-semibold text-white font-inter text-lg">{value}</div>
+                        <div className="text-sm text-white/70 font-orbitron mb-1">{key}</div>
+                        <div className="font-semibold text-white font-orbitron text-lg">{value}</div>
                       </div>
                     ))}
                   </div>
@@ -180,7 +179,7 @@ const Index = () => {
                       <div className="text-5xl font-orbitron font-bold text-white mb-2">
                         ${getPriceForPhase(selectedPhase, selectedPrice)}
                       </div>
-                      <div className="text-white/70 font-inter">Get started today</div>
+                      <div className="text-white/70 font-orbitron">Get started today</div>
                     </div>
                     <Button
                       size="lg"
