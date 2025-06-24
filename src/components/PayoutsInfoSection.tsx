@@ -1,10 +1,7 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { DollarSign, CreditCard } from "lucide-react";
-
 export const PayoutsInfoSection = () => {
-  return (
-    <section className="py-16 px-4 space-bg relative overflow-hidden">
+  return <section className="py-16 px-4 space-bg relative overflow-hidden">
       <div className="stars"></div>
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-12">
@@ -26,10 +23,7 @@ export const PayoutsInfoSection = () => {
                 <h3 className="text-2xl font-orbitron font-bold text-space mb-4">
                   Generous Profit Split
                 </h3>
-                <p className="text-white/80 font-orbitron font-light leading-relaxed">
-                  Start at an 80% profit split and scale up to 90% as you show consistency in 
-                  your trading, empowering you to keep more of your hard-earned gains.
-                </p>
+                <p className="text-white/80 font-orbitron font-light leading-relaxed">Maximize your earnings! We start you at a 90% profit split, allowing you to grow to a 90% share as your consistent trading performance is recognized, ensuring you keep more of what you earn</p>
               </div>
             </CardContent>
           </Card>
@@ -55,6 +49,5 @@ export const PayoutsInfoSection = () => {
           </Card>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
