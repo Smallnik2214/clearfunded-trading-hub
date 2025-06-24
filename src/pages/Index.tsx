@@ -8,6 +8,7 @@ import { Footer } from "@/components/Footer";
 import { ReviewsSection } from "@/components/ReviewsSection";
 import { PricingSection } from "@/components/PricingSection";
 import { TradingRulesSection } from "@/components/TradingRulesSection";
+import { PayoutsInfoSection } from "@/components/PayoutsInfoSection";
 import { EvaluationsSection } from "@/components/EvaluationsSection";
 import { CertificatesSection } from "@/components/CertificatesSection";
 import { HowToEarnSection } from "@/components/HowToEarnSection";
@@ -258,6 +259,7 @@ const Index = () => {
       </section>
 
       <TradingRulesSection />
+      <PayoutsInfoSection />
       <EvaluationsSection />
       <PricingSection />
       <CertificatesSection />
