@@ -57,7 +57,7 @@ export const CertificatesSection = () => {
           <h2 className="text-3xl font-orbitron font-bold text-space mb-4">
             Recent Verified Rewards
           </h2>
-          <p className="text-gray-600">
+          <p className="text-xl text-gray-600 font-orbitron">
             Real payouts to our successful traders
           </p>
         </div>
