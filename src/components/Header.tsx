@@ -37,10 +37,10 @@ export const Header = () => {
             </a>
           </nav>
 
-          {/* CTA Button */}
+          {/* CTA Button with moving gradient */}
           <div className="hidden md:block">
             <Button
-              className="space-button text-white font-orbitron font-semibold"
+              className="moving-gradient text-white font-orbitron font-semibold border-0 hover:scale-105 transition-transform duration-300"
               onClick={() => window.location.href = "/auth"}
             >
               Start Trading
@@ -77,7 +77,7 @@ export const Header = () => {
                 FAQ
               </a>
               <Button
-                className="space-button text-white font-orbitron font-semibold w-full"
+                className="moving-gradient text-white font-orbitron font-semibold w-full border-0"
                 onClick={() => window.location.href = "/auth"}
               >
                 Start Trading

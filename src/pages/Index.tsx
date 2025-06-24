@@ -184,7 +184,7 @@ const Index = () => {
                     </div>
                     <Button
                       size="lg"
-                      className="space-button text-white py-6 px-12 text-xl font-orbitron font-bold shadow-2xl transform hover:scale-105 transition-all duration-300"
+                      className="moving-gradient text-white py-6 px-12 text-xl font-orbitron font-bold shadow-2xl transform hover:scale-105 transition-all duration-300 border-0"
                       onClick={() => window.location.href = "/auth"}
                     >
                       Begin Your Journey
