@@ -1,57 +1,60 @@
 import { Card, CardContent } from "@/components/ui/card";
+
 export const CertificatesSection = () => {
   const certificates = [{
-    name: "Joris de Vries",
-    amount: "$371.77",
-    date: "06/04/25",
-    image: "/lovable-uploads/22ee88eb-faa5-4433-99a9-e2bfa0a22a5e.png"
-  }, {
-    name: "Marek Kowalski",
-    amount: "$3867.08",
-    date: "04/01/25",
-    image: "/lovable-uploads/ed9a07af-1f09-40d9-a8d6-2a8ce4e8aa3c.png"
-  }, {
-    name: "Elara Thorne",
-    amount: "$978.49",
+    name: "Miguel Romero",
+    amount: "$2,154.79",
     date: "05/23/25",
-    image: "/lovable-uploads/67147775-5982-4239-9359-69fa91802037.png"
-  }, {
-    name: "Kaelen Stone",
-    amount: "$478.23",
-    date: "05/06/25",
-    image: "/lovable-uploads/e483e425-cfcc-493c-9d27-ad940ccfca7e.png"
-  }, {
-    name: "Theron Ashworth",
-    amount: "$94.61",
-    date: "04/10/25",
-    image: "/lovable-uploads/800c8a33-8f5b-45e9-afa6-d37f79f19772.png"
-  }, {
-    name: "Stefan Petrov",
-    amount: "$1651.36",
-    date: "04/16/25",
-    image: "/lovable-uploads/c4fdc31e-448b-4593-b57b-e149ca112422.png"
-  }, {
-    name: "Silas Eriksson",
-    amount: "$532.18",
-    date: "04/12/25",
-    image: "/lovable-uploads/1ef0c1ac-5b3d-4399-927b-56739db3a033.png"
-  }, {
-    name: "Lukas Novak",
-    amount: "$4656.06",
-    date: "04/23/25",
-    image: "/lovable-uploads/cd174724-95e8-44e8-a0c7-137ff3c23934.png"
+    image: "/lovable-uploads/b92059d7-932e-47fe-bf71-7b1ec6956715.png"
   }, {
     name: "Bjorn Svendsen",
     amount: "$675.72",
     date: "06/14/25",
-    image: "/lovable-uploads/82be7d05-fc56-4bed-8344-551804c82ae6.png"
+    image: "/lovable-uploads/53a05eb7-635f-4c9a-a6e8-532becdb87d1.png"
+  }, {
+    name: "Joris de Vries",
+    amount: "$371.77",
+    date: "06/04/25",
+    image: "/lovable-uploads/41804717-d1d9-40fb-9ea7-97d6edce34a2.png"
+  }, {
+    name: "Marek Kowalski",
+    amount: "$3,867.08",
+    date: "04/01/25",
+    image: "/lovable-uploads/4074fcab-c035-4fd0-be60-ab7a3ca1a9f0.png"
+  }, {
+    name: "Nathalie Boyarchuk",
+    amount: "$740.00",
+    date: "03/07/25",
+    image: "/lovable-uploads/21d7b446-00d1-403c-af06-863bdfbb7f6d.png"
+  }, {
+    name: "Roman Musin",
+    amount: "$1,043.55",
+    date: "03/07/25",
+    image: "/lovable-uploads/d6423a69-d2ec-4bf7-9d3e-b26075a23c0e.png"
+  }, {
+    name: "Pawel Kostush",
+    amount: "$3,678.05",
+    date: "03/14/25",
+    image: "/lovable-uploads/89ec0734-f0c5-485c-b0cf-3162e115b988.png"
+  }, {
+    name: "Lukas Novak",
+    amount: "$4,656.06",
+    date: "04/23/25",
+    image: "/lovable-uploads/699b2287-03a4-4849-a26a-2eb3cbd763c4.png"
   }, {
     name: "Alvar Nieminen",
-    amount: "$1957.23",
+    amount: "$1,957.23",
     date: "06/14/25",
-    image: "/lovable-uploads/cb0329c1-7911-4e0b-834c-aaa973e7a2b8.png"
+    image: "/lovable-uploads/5a4bb11e-a7bc-4aca-a986-52cec53e58e3.png"
+  }, {
+    name: "Elara Thorne",
+    amount: "$978.49",
+    date: "05/23/25",
+    image: "/lovable-uploads/f583b119-b8e2-4690-956d-7563aebc4e8d.png"
   }];
-  return <section className="py-16 px-4 bg-white">
+
+  return (
+    <section className="py-16 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-orbitron font-bold text-space mb-4">
@@ -64,11 +67,17 @@ export const CertificatesSection = () => {
 
         <div className="overflow-hidden">
           <div className="flex animate-[scroll-certificates_60s_linear_infinite] gap-6">
-            {[...certificates, ...certificates, ...certificates].map((certificate, index) => <Card key={index} className="bg-white shadow-lg hover:shadow-xl transition-shadow flex-shrink-0 w-80">
+            {[...certificates, ...certificates, ...certificates].map((certificate, index) => (
+              <Card key={index} className="bg-white shadow-lg hover:shadow-xl transition-shadow flex-shrink-0 w-80">
                 <CardContent className="p-0">
-                  <img src={certificate.image} alt={`Payout Certificate for ${certificate.name}`} className="w-full h-auto rounded-lg" />
+                  <img 
+                    src={certificate.image} 
+                    alt={`Payout Certificate for ${certificate.name}`} 
+                    className="w-full h-auto rounded-lg" 
+                  />
                 </CardContent>
-              </Card>)}
+              </Card>
+            ))}
           </div>
         </div>
       </div>
@@ -83,5 +92,6 @@ export const CertificatesSection = () => {
           }
         }
       `}</style>
-    </section>;
+    </section>
+  );
 };
