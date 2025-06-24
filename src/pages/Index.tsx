@@ -11,6 +11,7 @@ import { PricingSection } from "@/components/PricingSection";
 import { TradingRulesSection } from "@/components/TradingRulesSection";
 import { EvaluationsSection } from "@/components/EvaluationsSection";
 import { CertificatesSection } from "@/components/CertificatesSection";
+import { HowToEarnSection } from "@/components/HowToEarnSection";
 import { ArrowRight } from "lucide-react";
 
 const Index = () => {
@@ -198,6 +199,7 @@ const Index = () => {
         </div>
       </section>
 
+      <HowToEarnSection />
       <TradingRulesSection />
       <EvaluationsSection />
       <PricingSection />
