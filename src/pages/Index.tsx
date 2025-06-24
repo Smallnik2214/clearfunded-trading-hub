@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -101,7 +102,7 @@ const Index = () => {
             CLEAR FUNDED
           </h1>
           
-          <p className="text-xl md:text-3xl text-white/90 mb-16 font-inter font-light">
+          <p className="text-xl md:text-3xl text-white/90 mb-16 font-orbitron font-light">
             Clear rules. Real growth. <span className="text-space">Infinite possibilities.</span>
           </p>
           
@@ -136,8 +137,8 @@ const Index = () => {
                   variant={selectedPrice === price ? "default" : "outline"}
                   onClick={() => setSelectedPrice(price)}
                   className={selectedPrice === price 
-                    ? "space-button text-white font-inter font-medium px-6 py-3" 
-                    : "glass-card text-white border-white/30 hover:border-white/50 font-inter font-medium px-6 py-3"}
+                    ? "space-button text-white font-orbitron font-medium px-6 py-3" 
+                    : "glass-card text-white border-white/30 hover:border-white/50 font-orbitron font-medium px-6 py-3"}
                 >
                   ${price}
                 </Button>
