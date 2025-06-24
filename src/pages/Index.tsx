@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -98,6 +99,75 @@ const Index = () => {
       {/* Hero Section with Space Background */}
       <section className="relative space-bg py-20 px-4 min-h-screen flex items-center pt-20">
         <div className="stars"></div>
+        
+        {/* Multiple Trading Platforms Section */}
+        <div className="relative max-w-7xl mx-auto z-10 mb-20">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-orbitron font-bold text-space mb-4">
+              Multiple Trading Platforms
+            </h2>
+            <p className="text-xl text-white/90 mb-6 font-orbitron font-light">
+              Trade on our main label MT5, Match-Trader & Tradelocker
+            </p>
+            <p className="text-lg text-white/80 font-orbitron font-light max-w-4xl mx-auto">
+              Our Metaquotes license and mainlabel platforms provide a superior experience with enhanced security and operational efficiency.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* MetaTrader 5 */}
+            <Card className="glass-card border-white/20 hover:border-space/40 transition-all duration-300 hover:scale-105">
+              <CardContent className="p-8 text-center">
+                <div className="mb-6">
+                  <div className="w-20 h-20 mx-auto bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-2xl">
+                    MT5
+                  </div>
+                </div>
+                <h3 className="text-xl font-orbitron font-bold text-space mb-3">
+                  MetaTrader 5
+                </h3>
+                <p className="text-white/80 font-orbitron font-light">
+                  Industry-leading platform with advanced charting, automated trading, and comprehensive market analysis tools.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Match-Trader */}
+            <Card className="glass-card border-white/20 hover:border-space/40 transition-all duration-300 hover:scale-105">
+              <CardContent className="p-8 text-center">
+                <div className="mb-6">
+                  <div className="w-20 h-20 mx-auto bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-full flex items-center justify-center">
+                    <div className="text-white font-bold text-sm">MT</div>
+                  </div>
+                </div>
+                <h3 className="text-xl font-orbitron font-bold text-space mb-3">
+                  Match-Trader
+                </h3>
+                <p className="text-white/80 font-orbitron font-light">
+                  Powered by Meta-Trade Technologies. Modern interface with superior execution and enhanced trading capabilities.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* TradeLocker */}
+            <Card className="glass-card border-white/20 hover:border-space/40 transition-all duration-300 hover:scale-105">
+              <CardContent className="p-8 text-center">
+                <div className="mb-6">
+                  <div className="w-20 h-20 mx-auto bg-gradient-to-br from-gray-600 to-gray-800 rounded-full flex items-center justify-center">
+                    <div className="text-white font-bold text-xs px-2">TL</div>
+                  </div>
+                </div>
+                <h3 className="text-xl font-orbitron font-bold text-space mb-3">
+                  TradeLocker
+                </h3>
+                <p className="text-white/80 font-orbitron font-light">
+                  Next-generation trading platform with intuitive design, fast execution, and comprehensive market access.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
         <div className="relative max-w-7xl mx-auto text-center z-10">
           <p className="text-xl md:text-3xl text-white/90 mb-8 font-orbitron font-light">
             Clear rules. Real growth. <span className="text-space">Infinite possibilities.</span>
