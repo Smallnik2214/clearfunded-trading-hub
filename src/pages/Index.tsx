@@ -113,19 +113,19 @@ const Index = () => {
                 variant={selectedPhase === "1-Phase" ? "default" : "outline"}
                 onClick={() => setSelectedPhase("1-Phase")}
                 className={selectedPhase === "1-Phase" 
-                  ? "space-button text-white font-orbitron font-semibold px-8 py-4 text-lg" 
+                  ? "moving-gradient text-white font-orbitron font-semibold px-8 py-4 text-lg border-0" 
                   : "glass-card text-white border-white/30 hover:border-white/50 font-orbitron font-semibold px-8 py-4 text-lg"}
               >
-                <span className="moving-gradient-text">Choose 1-Phase</span>
+                Choose 1-Phase
               </Button>
               <Button
                 variant={selectedPhase === "2-Phase" ? "default" : "outline"}
                 onClick={() => setSelectedPhase("2-Phase")}
                 className={selectedPhase === "2-Phase" 
-                  ? "space-button text-white font-orbitron font-semibold px-8 py-4 text-lg" 
+                  ? "moving-gradient text-white font-orbitron font-semibold px-8 py-4 text-lg border-0" 
                   : "glass-card text-white border-white/30 hover:border-white/50 font-orbitron font-semibold px-8 py-4 text-lg"}
               >
-                <span className="moving-gradient-text">Choose 2-Phase</span>
+                Choose 2-Phase
               </Button>
             </div>
 
@@ -184,11 +184,11 @@ const Index = () => {
                     </div>
                     <Button
                       size="lg"
-                      className="moving-gradient text-white py-6 px-8 text-xl font-orbitron font-bold shadow-2xl transform hover:scale-105 transition-all duration-300 border-0 whitespace-nowrap"
+                      className="moving-gradient text-white py-8 px-12 text-xl font-orbitron font-bold shadow-2xl transform hover:scale-105 transition-all duration-300 border-0 whitespace-nowrap"
                       onClick={() => window.location.href = "/auth"}
                     >
                       Begin Your Journey
-                      <ArrowRight className="ml-2 h-3 w-3" />
+                      <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
                   </div>
                 </div>
