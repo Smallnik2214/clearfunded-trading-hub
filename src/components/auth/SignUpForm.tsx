@@ -5,7 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { countryCodes } from "@/data/countryCodes";
-import { countries, regionsByCountry } from "@/data/countries";
+import { countries } from "@/data/countries";
+import { getRegionsForCountry } from "@/utils/regionUtils";
 
 interface SignUpFormProps {
   onSubmit: (formData: {
@@ -52,6 +53,8 @@ export const SignUpForm = ({ onSubmit, onToggleMode, loading }: SignUpFormProps)
     e.preventDefault();
     onSubmit(formData);
   };
+
+  const availableRegions = getRegionsForCountry(formData.country);
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -146,7 +149,7 @@ export const SignUpForm = ({ onSubmit, onToggleMode, loading }: SignUpFormProps)
           </SelectTrigger>
           <SelectContent className="max-h-96 glass-card border-white/20 bg-black/90 backdrop-blur-md z-50">
             {countries.map((countryName) => (
-              <SelectItem key={countryName} value={countryName} className="text-white font-orbitron hover:bg-white/10 focus:bg-white/10">
+              <SelectItem key={`country-${countryName}`} value={countryName} className="text-white font-orbitron hover:bg-white/10 focus:bg-white/10">
                 {countryName}
               </SelectItem>
             ))}
@@ -165,8 +168,8 @@ export const SignUpForm = ({ onSubmit, onToggleMode, loading }: SignUpFormProps)
             <SelectValue placeholder={formData.country ? "Select your region/state" : "Please select a country first"} />
           </SelectTrigger>
           <SelectContent className="max-h-96 glass-card border-white/20 bg-black/90 backdrop-blur-md z-50">
-            {formData.country && regionsByCountry[formData.country] && regionsByCountry[formData.country].map((region) => (
-              <SelectItem key={region} value={region} className="text-white font-orbitron hover:bg-white/10 focus:bg-white/10">
+            {availableRegions.map((region) => (
+              <SelectItem key={`region-${formData.country}-${region}`} value={region} className="text-white font-orbitron hover:bg-white/10 focus:bg-white/10">
                 {region}
               </SelectItem>
             ))}

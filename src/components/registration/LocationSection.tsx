@@ -4,14 +4,16 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { FormData } from "@/types/registration";
 import { countries } from "@/data/countries";
+import { getRegionsForCountry } from "@/utils/regionUtils";
 
 interface LocationSectionProps {
   formData: FormData;
   onFieldChange: (field: string, value: string) => void;
-  availableRegions: string[];
 }
 
-export const LocationSection = ({ formData, onFieldChange, availableRegions }: LocationSectionProps) => {
+export const LocationSection = ({ formData, onFieldChange }: LocationSectionProps) => {
+  const availableRegions = getRegionsForCountry(formData.country);
+
   return (
     <>
       {/* Country */}
@@ -23,7 +25,7 @@ export const LocationSection = ({ formData, onFieldChange, availableRegions }: L
           </SelectTrigger>
           <SelectContent className="max-h-96 glass-card border-white/20 bg-black/90 backdrop-blur-md z-50">
             {countries.map((country) => (
-              <SelectItem key={country} value={country} className="text-white font-orbitron hover:bg-white/10 focus:bg-white/10">
+              <SelectItem key={`country-${country}`} value={country} className="text-white font-orbitron hover:bg-white/10 focus:bg-white/10">
                 {country}
               </SelectItem>
             ))}
@@ -44,7 +46,7 @@ export const LocationSection = ({ formData, onFieldChange, availableRegions }: L
           </SelectTrigger>
           <SelectContent className="max-h-96 glass-card border-white/20 bg-black/90 backdrop-blur-md z-50">
             {availableRegions.map((region) => (
-              <SelectItem key={region} value={region} className="text-white font-orbitron hover:bg-white/10 focus:bg-white/10">
+              <SelectItem key={`region-${formData.country}-${region}`} value={region} className="text-white font-orbitron hover:bg-white/10 focus:bg-white/10">
                 {region}
               </SelectItem>
             ))}
