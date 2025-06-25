@@ -189,8 +189,8 @@ const Dashboard = () => {
           {/* New Account Card - Wide Layout */}
           <Card className="glass-card border-white/20 hover:border-space/40 transition-all duration-300">
             <CardContent className="p-8">
-              <div className="flex flex-col lg:flex-row items-center gap-6">
-                <div className="flex-1">
+              <div className="text-center space-y-6">
+                <div>
                   <h3 className="text-2xl font-orbitron font-bold text-space mb-2">
                     Start Your Trading Journey
                   </h3>
@@ -198,9 +198,9 @@ const Dashboard = () => {
                     Start your first trading challenge and begin your path to funded trading
                   </p>
                 </div>
-                <div className="lg:w-64">
+                <div className="w-full">
                   <Button
-                    className="w-full moving-gradient text-white font-orbitron font-bold text-lg py-4 h-auto"
+                    className="w-full moving-gradient text-white font-orbitron font-bold text-lg py-4 h-auto max-w-md mx-auto"
                     onClick={() => window.location.href = "/challenge-details"}
                   >
                     <Plus className="mr-3 h-6 w-6" />
