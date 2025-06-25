@@ -1,14 +1,17 @@
 import { useState } from "react";
-import { Trophy, TrendingUp, FileText, Award, Users, Calendar, Rss, Download, HelpCircle, Shield, Settings, ChevronLeft, ChevronRight } from "lucide-react";
+import { Trophy, TrendingUp, FileText, Award, Users, Calendar, Rss, Download, HelpCircle, Shield, Settings, ChevronLeft, ChevronRight, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+
 interface DashboardSidebarProps {
   onSettingsClick: () => void;
 }
+
 export const DashboardSidebar = ({
   onSettingsClick
 }: DashboardSidebarProps) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
+
   const menuItems = [{
     icon: TrendingUp,
     label: "Profit Share",
@@ -32,6 +35,11 @@ export const DashboardSidebar = ({
     disabled: false,
     onClick: () => window.location.href = "/faq"
   }, {
+    icon: MessageCircle,
+    label: "Support 24/7",
+    disabled: false,
+    onClick: () => window.open("https://support.clearfunded.com", "_blank")
+  }, {
     icon: Shield,
     label: "Verification",
     disabled: true
@@ -41,6 +49,7 @@ export const DashboardSidebar = ({
     disabled: false,
     onClick: onSettingsClick
   }];
+
   return <div className={`fixed left-0 top-0 h-full z-40 transition-all duration-300 ${isCollapsed ? 'w-16' : 'w-64'}`}>
       <Card className="h-full glass-card border-white/20 rounded-none border-l-0 border-t-0 border-b-0">
         <div className="p-4 space-y-2">
