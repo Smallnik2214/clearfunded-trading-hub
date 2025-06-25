@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import { countries } from "@/data/countries";
 import { countryCodes } from "@/data/countryCodes";
 import { getRegionsForCountry } from "@/utils/regionUtils";
+
 const PersonalInfo = () => {
   const [orderData, setOrderData] = useState<any>(null);
   const [formData, setFormData] = useState({
@@ -270,17 +271,17 @@ const PersonalInfo = () => {
       <footer className="glass-card border-white/20 border-t mt-12 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex justify-center gap-6 text-sm text-white/60">
-            <a href="#" className="hover:text-space transition-colors font-orbitron">Privacy Policy</a>
-            <a href="#" className="hover:text-space transition-colors font-orbitron">Terms and Conditions</a>
-            <a href="#" className="hover:text-space transition-colors font-orbitron">Refund Policy</a>
-            
+            <a href="/privacy" className="hover:text-space transition-colors font-orbitron">Privacy Policy</a>
+            <a href="/terms" className="hover:text-space transition-colors font-orbitron">Terms and Conditions</a>
+            <a href="/refund" className="hover:text-space transition-colors font-orbitron">Refund Policy</a>
             <a href="#" className="hover:text-space transition-colors font-orbitron">Support</a>
           </div>
           <div className="text-center text-sm text-white/50 mt-2 font-orbitron">
-            ©2023 All rights reserved.
+            ©2025 All rights reserved.
           </div>
         </div>
       </footer>
     </div>;
 };
+
 export default PersonalInfo;
