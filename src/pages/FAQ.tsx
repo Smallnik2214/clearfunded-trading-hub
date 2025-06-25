@@ -91,18 +91,17 @@ const FAQ = () => {
   ];
 
   return (
-    <div className="min-h-screen space-bg">
-      <div className="stars"></div>
+    <div className="min-h-screen bg-white">
       <PromoBanner />
       <Header />
       
       <div className="py-16 px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-orbitron font-bold text-space mb-4">
+            <h1 className="text-4xl md:text-5xl font-orbitron font-bold text-black mb-4">
               Clear Funded – FAQ
             </h1>
-            <p className="text-xl text-white/80 font-orbitron font-light">
+            <p className="text-xl text-gray-600 font-orbitron font-light">
               Find answers to common questions about Clear Funded
             </p>
           </div>
@@ -112,21 +111,21 @@ const FAQ = () => {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="glass-card border-white/20 rounded-lg px-6"
+                className="bg-white border border-gray-200 rounded-lg px-6 shadow-sm"
               >
                 <AccordionTrigger className="text-left hover:no-underline">
-                  <span className="font-orbitron font-semibold text-white">{faq.question}</span>
+                  <span className="font-orbitron font-semibold text-black">{faq.question}</span>
                 </AccordionTrigger>
-                <AccordionContent className="text-white/80 pt-2 pb-4 font-orbitron font-light">
+                <AccordionContent className="text-gray-700 pt-2 pb-4 font-orbitron font-light">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
 
-          <div className="text-center mt-12 p-8 glass-card border-white/20 rounded-lg">
-            <h2 className="text-2xl font-orbitron font-bold text-space mb-4">Still Have Questions?</h2>
-            <p className="text-white/80 mb-6 font-orbitron font-light">
+          <div className="text-center mt-12 p-8 bg-white border border-gray-200 rounded-lg shadow-sm">
+            <h2 className="text-2xl font-orbitron font-bold text-black mb-4">Still Have Questions?</h2>
+            <p className="text-gray-600 mb-6 font-orbitron font-light">
               Our support team is available 24/7 to help you with any questions or concerns.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -135,7 +134,7 @@ const FAQ = () => {
               </Button>
               <Button
                 onClick={() => window.location.href = "/auth"}
-                className="glass-card border-white/30 text-white hover:border-space/50 px-6 py-3 font-orbitron font-semibold transition-all duration-300"
+                className="bg-gray-900 border border-gray-300 text-white hover:bg-gray-800 px-6 py-3 font-orbitron font-semibold transition-all duration-300"
               >
                 Start Your Challenge
                 <ArrowRight className="ml-2 h-4 w-4" />
