@@ -10,7 +10,7 @@ import { PhoneSection } from "@/components/registration/PhoneSection";
 import { LocationSection } from "@/components/registration/LocationSection";
 
 const Register = () => {
-  const { formData, handleChange, handleSubmit, getAvailableRegions } = useRegistrationForm();
+  const { formData, handleChange, handleSubmit } = useRegistrationForm();
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -35,7 +35,6 @@ const Register = () => {
                 <LocationSection 
                   formData={formData} 
                   onFieldChange={handleChange} 
-                  availableRegions={getAvailableRegions()}
                 />
 
                 <Button
