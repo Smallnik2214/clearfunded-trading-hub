@@ -1,7 +1,6 @@
 
 import { useState } from "react";
 import { 
-  Home, 
   Trophy, 
   TrendingUp, 
   FileText, 
@@ -27,16 +26,21 @@ export const DashboardSidebar = ({ onSettingsClick }: DashboardSidebarProps) => 
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const menuItems = [
-    { icon: Home, label: "Client Area", disabled: false },
-    { icon: Trophy, label: "Competitions", disabled: true },
     { icon: TrendingUp, label: "Profit Share", disabled: true },
     { icon: FileText, label: "Contracts", disabled: true },
     { icon: Award, label: "Certificates", disabled: true },
-    { icon: Users, label: "Affiliates", disabled: true },
-    { icon: Calendar, label: "Economic Calendar", disabled: true },
-    { icon: Rss, label: "News Feeds", disabled: true },
-    { icon: Download, label: "Downloads", disabled: true },
-    { icon: HelpCircle, label: "Help Center", disabled: true },
+    { 
+      icon: Calendar, 
+      label: "Economic Calendar", 
+      disabled: false, 
+      onClick: () => window.open("https://www.forexfactory.com/calendar", "_blank")
+    },
+    { 
+      icon: HelpCircle, 
+      label: "Help Center", 
+      disabled: false, 
+      onClick: () => window.location.href = "/faq"
+    },
     { icon: Shield, label: "Verification", disabled: true },
     { icon: Settings, label: "Settings", disabled: false, onClick: onSettingsClick },
   ];
@@ -55,7 +59,7 @@ export const DashboardSidebar = ({ onSettingsClick }: DashboardSidebarProps) => 
                   <div className="w-4 h-4 bg-white rounded-sm"></div>
                 </div>
                 <span className="text-white font-orbitron font-bold text-sm">
-                  BLUE GUARDIAN
+                  CLEAR FUNDED
                 </span>
               </div>
             )}
@@ -73,18 +77,15 @@ export const DashboardSidebar = ({ onSettingsClick }: DashboardSidebarProps) => 
           <div className="space-y-1">
             {menuItems.map((item, index) => {
               const Icon = item.icon;
-              const isActive = item.label === "Client Area";
               
               return (
                 <Button
                   key={index}
                   variant="ghost"
                   className={`w-full justify-start gap-3 text-left h-10 px-3 ${
-                    isActive 
-                      ? 'bg-space/20 text-space border border-space/30' 
-                      : item.disabled 
-                        ? 'text-white/40 cursor-not-allowed hover:bg-transparent' 
-                        : 'text-white/80 hover:text-white hover:bg-white/10'
+                    item.disabled 
+                      ? 'text-white/40 cursor-not-allowed hover:bg-transparent' 
+                      : 'text-white/80 hover:text-white hover:bg-white/10'
                   } ${isCollapsed ? 'px-0 justify-center' : ''}`}
                   onClick={item.onClick}
                   disabled={item.disabled}
