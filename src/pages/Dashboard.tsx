@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -57,7 +58,7 @@ const Dashboard = () => {
         </div>
       </div>
     );
-  }
+  };
 
   if (!user) {
     return null;
@@ -185,25 +186,19 @@ const Dashboard = () => {
 
         {/* Main Actions */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* New Challenge Card */}
-          <Card className="lg:col-span-1 glass-card border-white/20 hover:border-space/40 transition-all duration-300">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-space font-orbitron">
-                <Plus className="h-5 w-5" />
-                Start Your First Challenge
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-white/80 text-sm font-orbitron font-light">
-                Ready to begin your trading journey? Choose your account size and start your first challenge.
-              </p>
+          {/* New Account Card */}
+          <Card className="lg:col-span-1 glass-card border-white/20 hover:border-space/40 transition-all duration-300 aspect-[4/3]">
+            <CardContent className="p-8 flex flex-col justify-center items-center h-full">
               <Button
-                className="w-full moving-gradient text-white font-orbitron font-semibold"
+                className="w-full moving-gradient text-white font-orbitron font-bold text-lg py-4 h-auto"
                 onClick={() => window.location.href = "/challenge-details"}
               >
-                START FIRST CHALLENGE
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <Plus className="mr-3 h-6 w-6" />
+                NEW ACCOUNT
               </Button>
+              <p className="text-white/70 text-sm mt-4 text-center font-orbitron font-light">
+                Start your first trading challenge
+              </p>
             </CardContent>
           </Card>
 
