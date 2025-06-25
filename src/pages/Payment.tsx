@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,7 +6,6 @@ import { Badge } from "@/components/ui/badge";
 import { Copy, CheckCircle, Clock, AlertCircle, CreditCard, Wallet } from "lucide-react";
 import { toast } from "sonner";
 import { PageLayout } from "@/components/PageLayout";
-
 const Payment = () => {
   const [orderData, setOrderData] = useState<any>(null);
   const [paymentType, setPaymentType] = useState<"card" | "crypto" | null>(null);
@@ -23,25 +21,21 @@ const Payment = () => {
     ETH: "0x742C4B9b75bB6B86B1Ca6cF74B0BbcE2B0B5a8a3",
     SOL: "7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgHU"
   };
-
   useEffect(() => {
     const savedOrder = localStorage.getItem("challengeOrder");
     if (savedOrder) {
       setOrderData(JSON.parse(savedOrder));
     }
   }, []);
-
   const handleProceedPayment = () => {
     setOrderGenerated(true);
     setWalletAddress(walletAddresses[paymentMethod as keyof typeof walletAddresses]);
     toast.success("Payment order generated! Please send the exact amount to the wallet address.");
   };
-
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
     toast.success("Address copied to clipboard!");
   };
-
   const getStatusIcon = () => {
     switch (paymentStatus) {
       case "pending":
@@ -52,7 +46,6 @@ const Payment = () => {
         return <AlertCircle className="h-5 w-5 text-red-400" />;
     }
   };
-
   const getStatusText = () => {
     switch (paymentStatus) {
       case "pending":
@@ -63,7 +56,6 @@ const Payment = () => {
         return "Payment failed or not received";
     }
   };
-
   const getStatusColor = () => {
     switch (paymentStatus) {
       case "pending":
@@ -74,19 +66,14 @@ const Payment = () => {
         return "bg-red-500/20 text-red-300 border-red-500/30";
     }
   };
-
   if (!orderData) {
-    return (
-      <PageLayout>
+    return <PageLayout>
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-white font-orbitron text-xl">Loading...</div>
         </div>
-      </PageLayout>
-    );
+      </PageLayout>;
   }
-
-  return (
-    <PageLayout showPromoBanner={false}>
+  return <PageLayout showPromoBanner={false}>
       <div className="max-w-4xl mx-auto">
         {/* Progress Steps */}
         <div className="mb-8">
@@ -119,8 +106,7 @@ const Payment = () => {
             <CardTitle className="text-3xl font-bold text-space font-orbitron">Payment</CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
-            {!paymentType ? (
-              <>
+            {!paymentType ? <>
                 {/* Payment Type Selection */}
                 <div>
                   <h3 className="text-xl font-semibold text-white mb-6 font-orbitron text-center">Choose Payment Method</h3>
@@ -131,10 +117,7 @@ const Payment = () => {
                         <CreditCard className="h-12 w-12 text-white/50" />
                         <h4 className="text-lg font-semibold text-white/70 font-orbitron">Card Payment</h4>
                         <p className="text-sm text-red-300 font-orbitron">Currently unavailable for your country</p>
-                        <Button 
-                          disabled 
-                          className="w-full glass-card border-white/20 text-white/50 cursor-not-allowed font-orbitron"
-                        >
+                        <Button disabled className="w-full glass-card border-white/20 text-white/50 cursor-not-allowed font-orbitron">
                           Unavailable
                         </Button>
                       </div>
@@ -146,19 +129,12 @@ const Payment = () => {
                         <Wallet className="h-12 w-12 text-space" />
                         <h4 className="text-lg font-semibold text-white font-orbitron">Crypto Payment</h4>
                         <p className="text-sm text-white/70 font-orbitron">Pay with cryptocurrency</p>
-                        <Button 
-                          onClick={() => setPaymentType("crypto")}
-                          className="w-full moving-gradient text-white font-semibold font-orbitron hover:scale-105 transition-transform duration-300"
-                        >
-                          Continue with Crypto
-                        </Button>
+                        <Button onClick={() => setPaymentType("crypto")} className="w-full moving-gradient text-white font-semibold font-orbitron hover:scale-105 transition-transform duration-300">Pay with Crypto</Button>
                       </div>
                     </div>
                   </div>
                 </div>
-              </>
-            ) : !orderGenerated ? (
-              <>
+              </> : !orderGenerated ? <>
                 {/* Payment Method Selection */}
                 <div>
                   <label className="block text-sm font-medium text-white/80 mb-2 font-orbitron">
@@ -202,23 +178,14 @@ const Payment = () => {
                   </div>
                 </div>
 
-                <Button
-                  onClick={handleProceedPayment}
-                  className="w-full moving-gradient text-white py-6 text-lg font-semibold font-orbitron hover:scale-105 transition-transform duration-300"
-                >
+                <Button onClick={handleProceedPayment} className="w-full moving-gradient text-white py-6 text-lg font-semibold font-orbitron hover:scale-105 transition-transform duration-300">
                   Proceed Payment
                 </Button>
 
-                <Button
-                  onClick={() => setPaymentType(null)}
-                  variant="outline"
-                  className="w-full glass-card border-white/20 text-white hover:bg-white/10 font-orbitron"
-                >
+                <Button onClick={() => setPaymentType(null)} variant="outline" className="w-full glass-card border-white/20 text-white hover:bg-white/10 font-orbitron">
                   Back to Payment Methods
                 </Button>
-              </>
-            ) : (
-              <>
+              </> : <>
                 {/* Payment Status */}
                 <div className="text-center">
                   <Badge className={`${getStatusColor()} px-4 py-2 text-sm font-medium font-orbitron`}>
@@ -250,12 +217,7 @@ const Payment = () => {
                         <div className="flex-1 glass-card border-white/20 p-3 rounded font-mono text-sm break-all text-white">
                           {walletAddress}
                         </div>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => copyToClipboard(walletAddress)}
-                          className="flex-shrink-0 glass-card border-white/20 text-white hover:bg-white/10"
-                        >
+                        <Button variant="outline" size="sm" onClick={() => copyToClipboard(walletAddress)} className="flex-shrink-0 glass-card border-white/20 text-white hover:bg-white/10">
                           <Copy className="h-4 w-4" />
                         </Button>
                       </div>
@@ -290,51 +252,34 @@ const Payment = () => {
                 <div className="glass-card border-white/20 p-4 rounded-lg">
                   <h4 className="font-semibold text-white/80 mb-3 font-orbitron">Admin Controls (Demo)</h4>
                   <div className="flex gap-2">
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => {
-                        setPaymentStatus("confirmed");
-                        toast.success("Payment confirmed by admin!");
-                        setTimeout(() => {
-                          window.location.href = "/dashboard";
-                        }, 2000);
-                      }}
-                      className="glass-card border-green-400/30 text-green-300 hover:bg-green-500/20 font-orbitron"
-                    >
+                    <Button size="sm" variant="outline" onClick={() => {
+                  setPaymentStatus("confirmed");
+                  toast.success("Payment confirmed by admin!");
+                  setTimeout(() => {
+                    window.location.href = "/dashboard";
+                  }, 2000);
+                }} className="glass-card border-green-400/30 text-green-300 hover:bg-green-500/20 font-orbitron">
                       Confirm Payment
                     </Button>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => {
-                        setPaymentStatus("failed");
-                        toast.error("Payment declined by admin");
-                      }}
-                      className="glass-card border-red-400/30 text-red-300 hover:bg-red-500/20 font-orbitron"
-                    >
+                    <Button size="sm" variant="outline" onClick={() => {
+                  setPaymentStatus("failed");
+                  toast.error("Payment declined by admin");
+                }} className="glass-card border-red-400/30 text-red-300 hover:bg-red-500/20 font-orbitron">
                       Decline Payment
                     </Button>
                   </div>
                 </div>
 
-                <Button
-                  onClick={() => {
-                    setOrderGenerated(false);
-                    setPaymentType(null);
-                  }}
-                  variant="outline"
-                  className="w-full glass-card border-white/20 text-white hover:bg-white/10 font-orbitron"
-                >
+                <Button onClick={() => {
+              setOrderGenerated(false);
+              setPaymentType(null);
+            }} variant="outline" className="w-full glass-card border-white/20 text-white hover:bg-white/10 font-orbitron">
                   Start Over
                 </Button>
-              </>
-            )}
+              </>}
           </CardContent>
         </Card>
       </div>
-    </PageLayout>
-  );
+    </PageLayout>;
 };
-
 export default Payment;
