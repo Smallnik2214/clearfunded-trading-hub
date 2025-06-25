@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -10,7 +9,6 @@ import { toast } from "sonner";
 import { countries } from "@/data/countries";
 import { countryCodes } from "@/data/countryCodes";
 import { getRegionsForCountry } from "@/utils/regionUtils";
-
 const PersonalInfo = () => {
   const [orderData, setOrderData] = useState<any>(null);
   const [formData, setFormData] = useState({
@@ -24,58 +22,53 @@ const PersonalInfo = () => {
     phone: "",
     countryCode: "+380"
   });
-
   const [availableRegions, setAvailableRegions] = useState<string[]>([]);
-
   useEffect(() => {
     const savedOrder = localStorage.getItem("challengeOrder");
     if (savedOrder) {
       setOrderData(JSON.parse(savedOrder));
     }
   }, []);
-
   useEffect(() => {
     if (formData.country) {
       const regions = getRegionsForCountry(formData.country);
       setAvailableRegions(regions);
       // Reset region when country changes
       if (formData.region && !regions.includes(formData.region)) {
-        setFormData(prev => ({ ...prev, region: "" }));
+        setFormData(prev => ({
+          ...prev,
+          region: ""
+        }));
       }
     } else {
       setAvailableRegions([]);
     }
   }, [formData.country]);
-
   const handleBack = () => {
     window.location.href = "/challenge-details";
   };
-
   const handleNext = () => {
     if (!formData.firstName || !formData.lastName || !formData.address) {
       toast.error("Please fill in all required fields");
       return;
     }
-
     const updatedOrder = {
       ...orderData,
       personalInfo: formData
     };
-    
     localStorage.setItem("challengeOrder", JSON.stringify(updatedOrder));
     window.location.href = "/payment";
   };
-
   const handleChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
   };
-
   if (!orderData) {
     return <div>Loading...</div>;
   }
-
-  return (
-    <div className="min-h-screen space-bg">
+  return <div className="min-h-screen space-bg">
       <div className="stars"></div>
       
       {/* Header */}
@@ -128,75 +121,43 @@ const PersonalInfo = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="firstName" className="text-white font-orbitron">First name</Label>
-                      <Input
-                        id="firstName"
-                        value={formData.firstName}
-                        onChange={(e) => handleChange("firstName", e.target.value)}
-                        placeholder="First name"
-                        className="mt-1 glass-card border-white/20 text-white placeholder:text-white/50 font-orbitron"
-                      />
+                      <Input id="firstName" value={formData.firstName} onChange={e => handleChange("firstName", e.target.value)} placeholder="First name" className="mt-1 glass-card border-white/20 text-white placeholder:text-white/50 font-orbitron" />
                     </div>
                     <div>
                       <Label htmlFor="lastName" className="text-white font-orbitron">Last name</Label>
-                      <Input
-                        id="lastName"
-                        value={formData.lastName}
-                        onChange={(e) => handleChange("lastName", e.target.value)}
-                        placeholder="Last name"
-                        className="mt-1 glass-card border-white/20 text-white placeholder:text-white/50 font-orbitron"
-                      />
+                      <Input id="lastName" value={formData.lastName} onChange={e => handleChange("lastName", e.target.value)} placeholder="Last name" className="mt-1 glass-card border-white/20 text-white placeholder:text-white/50 font-orbitron" />
                     </div>
                   </div>
 
                   {/* Address */}
                   <div>
                     <Label htmlFor="address" className="text-white font-orbitron">Address</Label>
-                    <Input
-                      id="address"
-                      value={formData.address}
-                      onChange={(e) => handleChange("address", e.target.value)}
-                      placeholder="Address"
-                      className="mt-1 glass-card border-white/20 text-white placeholder:text-white/50 font-orbitron"
-                    />
+                    <Input id="address" value={formData.address} onChange={e => handleChange("address", e.target.value)} placeholder="Address" className="mt-1 glass-card border-white/20 text-white placeholder:text-white/50 font-orbitron" />
                   </div>
 
                   {/* City and ZIP */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="city" className="text-white font-orbitron">City</Label>
-                      <Input
-                        id="city"
-                        value={formData.city}
-                        onChange={(e) => handleChange("city", e.target.value)}
-                        placeholder="City"
-                        className="mt-1 glass-card border-white/20 text-white placeholder:text-white/50 font-orbitron"
-                      />
+                      <Input id="city" value={formData.city} onChange={e => handleChange("city", e.target.value)} placeholder="City" className="mt-1 glass-card border-white/20 text-white placeholder:text-white/50 font-orbitron" />
                     </div>
                     <div>
                       <Label htmlFor="zipCode" className="text-white font-orbitron">ZIP code</Label>
-                      <Input
-                        id="zipCode"
-                        value={formData.zipCode}
-                        onChange={(e) => handleChange("zipCode", e.target.value)}
-                        placeholder="ZIP code"
-                        className="mt-1 glass-card border-white/20 text-white placeholder:text-white/50 font-orbitron"
-                      />
+                      <Input id="zipCode" value={formData.zipCode} onChange={e => handleChange("zipCode", e.target.value)} placeholder="ZIP code" className="mt-1 glass-card border-white/20 text-white placeholder:text-white/50 font-orbitron" />
                     </div>
                   </div>
 
                   {/* Country */}
                   <div>
                     <Label htmlFor="country" className="text-white font-orbitron">Country of Residence</Label>
-                    <Select value={formData.country} onValueChange={(value) => handleChange("country", value)}>
+                    <Select value={formData.country} onValueChange={value => handleChange("country", value)}>
                       <SelectTrigger className="mt-1 glass-card border-white/20 text-white font-orbitron">
                         <SelectValue placeholder="Select your country" />
                       </SelectTrigger>
                       <SelectContent className="max-h-96 bg-gray-900 border border-white/20 shadow-lg z-50">
-                        {countries.map((country) => (
-                          <SelectItem key={country} value={country} className="text-white hover:bg-white/10">
+                        {countries.map(country => <SelectItem key={country} value={country} className="text-white hover:bg-white/10">
                             {country}
-                          </SelectItem>
-                        ))}
+                          </SelectItem>)}
                       </SelectContent>
                     </Select>
                   </div>
@@ -205,47 +166,33 @@ const PersonalInfo = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="region" className="text-white font-orbitron">Region</Label>
-                      <Select 
-                        value={formData.region} 
-                        onValueChange={(value) => handleChange("region", value)}
-                        disabled={!formData.country}
-                      >
+                      <Select value={formData.region} onValueChange={value => handleChange("region", value)} disabled={!formData.country}>
                         <SelectTrigger className="mt-1 glass-card border-white/20 text-white font-orbitron">
                           <SelectValue placeholder={formData.country ? "Select region" : "Please select a country first"} />
                         </SelectTrigger>
                         <SelectContent className="max-h-96 bg-gray-900 border border-white/20 shadow-lg z-50">
-                          {availableRegions.map((region) => (
-                            <SelectItem key={region} value={region} className="text-white hover:bg-white/10">
+                          {availableRegions.map(region => <SelectItem key={region} value={region} className="text-white hover:bg-white/10">
                               {region}
-                            </SelectItem>
-                          ))}
+                            </SelectItem>)}
                         </SelectContent>
                       </Select>
                     </div>
                     <div>
                       <Label htmlFor="phone" className="text-white font-orbitron">Phone</Label>
                       <div className="flex gap-2 mt-1">
-                        <Select value={formData.countryCode} onValueChange={(value) => handleChange("countryCode", value)}>
+                        <Select value={formData.countryCode} onValueChange={value => handleChange("countryCode", value)}>
                           <SelectTrigger className="w-48 glass-card border-white/20 text-white font-orbitron">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent className="max-h-60 bg-gray-900 border border-white/20 shadow-lg z-50">
-                            {countryCodes.map((item) => (
-                              <SelectItem key={item.code} value={item.code} className="text-white hover:bg-white/10">
+                            {countryCodes.map(item => <SelectItem key={item.code} value={item.code} className="text-white hover:bg-white/10">
                                 <span className="flex items-center gap-2">
                                   {item.flag} {item.code} {item.name}
                                 </span>
-                              </SelectItem>
-                            ))}
+                              </SelectItem>)}
                           </SelectContent>
                         </Select>
-                        <Input
-                          id="phone"
-                          value={formData.phone}
-                          onChange={(e) => handleChange("phone", e.target.value)}
-                          placeholder="Phone number"
-                          className="flex-1 glass-card border-white/20 text-white placeholder:text-white/50 font-orbitron"
-                        />
+                        <Input id="phone" value={formData.phone} onChange={e => handleChange("phone", e.target.value)} placeholder="Phone number" className="flex-1 glass-card border-white/20 text-white placeholder:text-white/50 font-orbitron" />
                       </div>
                     </div>
                   </div>
@@ -253,18 +200,11 @@ const PersonalInfo = () => {
 
                 {/* Navigation Buttons */}
                 <div className="flex justify-between mt-8">
-                  <Button
-                    variant="outline"
-                    onClick={handleBack}
-                    className="flex items-center gap-2 space-button text-white font-orbitron hover:scale-105 transition-transform duration-300"
-                  >
+                  <Button variant="outline" onClick={handleBack} className="flex items-center gap-2 space-button text-white font-orbitron hover:scale-105 transition-transform duration-300">
                     <ArrowLeft className="h-4 w-4" />
                     Back
                   </Button>
-                  <Button
-                    onClick={handleNext}
-                    className="moving-gradient text-white flex items-center gap-2 font-orbitron font-semibold hover:scale-105 transition-transform duration-300"
-                  >
+                  <Button onClick={handleNext} className="moving-gradient text-white flex items-center gap-2 font-orbitron font-semibold hover:scale-105 transition-transform duration-300">
                     Next
                     <ArrowRight className="h-4 w-4" />
                   </Button>
@@ -304,12 +244,7 @@ const PersonalInfo = () => {
                       Have a discount code?
                     </Label>
                     <div className="flex gap-2 mt-1">
-                      <Input
-                        placeholder="Enter Promo Code"
-                        value="STAY CLEAR"
-                        readOnly
-                        className="flex-1 glass-card border-white/20 text-white font-orbitron bg-green-500/10"
-                      />
+                      <Input placeholder="Enter Promo Code" value="STAY CLEAR" readOnly className="flex-1 glass-card border-white/20 text-white font-orbitron bg-green-500/10" />
                       <Button variant="outline" size="sm" className="space-button text-white font-orbitron">
                         Applied
                       </Button>
@@ -338,7 +273,7 @@ const PersonalInfo = () => {
             <a href="#" className="hover:text-space transition-colors font-orbitron">Privacy Policy</a>
             <a href="#" className="hover:text-space transition-colors font-orbitron">Terms and Conditions</a>
             <a href="#" className="hover:text-space transition-colors font-orbitron">Refund Policy</a>
-            <a href="#" className="hover:text-space transition-colors font-orbitron">Cookie Policy</a>
+            
             <a href="#" className="hover:text-space transition-colors font-orbitron">Support</a>
           </div>
           <div className="text-center text-sm text-white/50 mt-2 font-orbitron">
@@ -346,8 +281,6 @@ const PersonalInfo = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default PersonalInfo;
