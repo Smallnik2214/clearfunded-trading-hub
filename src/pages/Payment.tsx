@@ -4,12 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { Copy, CheckCircle, Clock, AlertCircle } from "lucide-react";
+import { Copy, CheckCircle, Clock, AlertCircle, CreditCard, Wallet } from "lucide-react";
 import { toast } from "sonner";
 import { PageLayout } from "@/components/PageLayout";
 
 const Payment = () => {
   const [orderData, setOrderData] = useState<any>(null);
+  const [paymentType, setPaymentType] = useState<"card" | "crypto" | null>(null);
   const [paymentMethod, setPaymentMethod] = useState("USDT");
   const [paymentStatus, setPaymentStatus] = useState<"pending" | "confirmed" | "failed">("pending");
   const [orderGenerated, setOrderGenerated] = useState(false);
@@ -118,12 +119,50 @@ const Payment = () => {
             <CardTitle className="text-3xl font-bold text-space font-orbitron">Payment</CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
-            {!orderGenerated ? (
+            {!paymentType ? (
+              <>
+                {/* Payment Type Selection */}
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-6 font-orbitron text-center">Choose Payment Method</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* Card Payment Option */}
+                    <div className="glass-card border-white/20 p-6 rounded-lg opacity-60">
+                      <div className="flex flex-col items-center text-center space-y-4">
+                        <CreditCard className="h-12 w-12 text-white/50" />
+                        <h4 className="text-lg font-semibold text-white/70 font-orbitron">Card Payment</h4>
+                        <p className="text-sm text-red-300 font-orbitron">Currently unavailable for your country</p>
+                        <Button 
+                          disabled 
+                          className="w-full glass-card border-white/20 text-white/50 cursor-not-allowed font-orbitron"
+                        >
+                          Unavailable
+                        </Button>
+                      </div>
+                    </div>
+
+                    {/* Crypto Payment Option */}
+                    <div className="glass-card border-white/20 p-6 rounded-lg hover:border-white/40 transition-colors">
+                      <div className="flex flex-col items-center text-center space-y-4">
+                        <Wallet className="h-12 w-12 text-space" />
+                        <h4 className="text-lg font-semibold text-white font-orbitron">Crypto Payment</h4>
+                        <p className="text-sm text-white/70 font-orbitron">Pay with cryptocurrency</p>
+                        <Button 
+                          onClick={() => setPaymentType("crypto")}
+                          className="w-full moving-gradient text-white font-semibold font-orbitron hover:scale-105 transition-transform duration-300"
+                        >
+                          Continue with Crypto
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : !orderGenerated ? (
               <>
                 {/* Payment Method Selection */}
                 <div>
                   <label className="block text-sm font-medium text-white/80 mb-2 font-orbitron">
-                    Payment Method
+                    Cryptocurrency
                   </label>
                   <Select value={paymentMethod} onValueChange={setPaymentMethod}>
                     <SelectTrigger className="glass-card border-white/20 text-white font-orbitron">
@@ -168,6 +207,14 @@ const Payment = () => {
                   className="w-full moving-gradient text-white py-6 text-lg font-semibold font-orbitron hover:scale-105 transition-transform duration-300"
                 >
                   Proceed Payment
+                </Button>
+
+                <Button
+                  onClick={() => setPaymentType(null)}
+                  variant="outline"
+                  className="w-full glass-card border-white/20 text-white hover:bg-white/10 font-orbitron"
+                >
+                  Back to Payment Methods
                 </Button>
               </>
             ) : (
@@ -270,6 +317,17 @@ const Payment = () => {
                     </Button>
                   </div>
                 </div>
+
+                <Button
+                  onClick={() => {
+                    setOrderGenerated(false);
+                    setPaymentType(null);
+                  }}
+                  variant="outline"
+                  className="w-full glass-card border-white/20 text-white hover:bg-white/10 font-orbitron"
+                >
+                  Start Over
+                </Button>
               </>
             )}
           </CardContent>
