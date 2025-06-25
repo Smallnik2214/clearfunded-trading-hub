@@ -185,25 +185,34 @@ const Dashboard = () => {
         </div>
 
         {/* Main Actions */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* New Account Card */}
-          <Card className="lg:col-span-1 glass-card border-white/20 hover:border-space/40 transition-all duration-300 aspect-[4/3]">
-            <CardContent className="p-8 flex flex-col justify-center items-center h-full">
-              <Button
-                className="w-full moving-gradient text-white font-orbitron font-bold text-lg py-4 h-auto"
-                onClick={() => window.location.href = "/challenge-details"}
-              >
-                <Plus className="mr-3 h-6 w-6" />
-                NEW ACCOUNT
-              </Button>
-              <p className="text-white/70 text-sm mt-4 text-center font-orbitron font-light">
-                Start your first trading challenge
-              </p>
+        <div className="grid grid-cols-1 gap-8">
+          {/* New Account Card - Wide Layout */}
+          <Card className="glass-card border-white/20 hover:border-space/40 transition-all duration-300">
+            <CardContent className="p-8">
+              <div className="flex flex-col lg:flex-row items-center gap-6">
+                <div className="flex-1">
+                  <h3 className="text-2xl font-orbitron font-bold text-space mb-2">
+                    Start Your Trading Journey
+                  </h3>
+                  <p className="text-white/70 font-orbitron font-light">
+                    Start your first trading challenge and begin your path to funded trading
+                  </p>
+                </div>
+                <div className="lg:w-64">
+                  <Button
+                    className="w-full moving-gradient text-white font-orbitron font-bold text-lg py-4 h-auto"
+                    onClick={() => window.location.href = "/challenge-details"}
+                  >
+                    <Plus className="mr-3 h-6 w-6" />
+                    NEW ACCOUNT
+                  </Button>
+                </div>
+              </div>
             </CardContent>
           </Card>
 
           {/* No Active Accounts Message */}
-          <Card className="lg:col-span-2 glass-card border-white/20">
+          <Card className="glass-card border-white/20">
             <CardHeader>
               <CardTitle className="text-space font-orbitron">Your Trading Accounts</CardTitle>
             </CardHeader>
