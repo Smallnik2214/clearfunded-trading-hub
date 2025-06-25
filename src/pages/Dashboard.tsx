@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,6 +7,7 @@ import { Plus, TrendingUp, DollarSign, Calendar, User, Mail, FileText, ArrowRigh
 import { PromoBanner } from "@/components/PromoBanner";
 import { DashboardSidebar } from "@/components/DashboardSidebar";
 import { SettingsModal } from "@/components/SettingsModal";
+import { SupportChatButton } from "@/components/SupportChatButton";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -86,6 +88,9 @@ const Dashboard = () => {
       
       {/* Settings Modal */}
       <SettingsModal isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
+      
+      {/* Support Chat Button */}
+      <SupportChatButton />
       
       {/* Promo Banner */}
       <PromoBanner />

@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 import { Header } from "@/components/Header";
 import { PromoBanner } from "@/components/PromoBanner";
 import { Footer } from "@/components/Footer";
+import { SupportChatButton } from "@/components/SupportChatButton";
 
 interface PageLayoutProps {
   children: ReactNode;
@@ -21,6 +22,9 @@ export const PageLayout = ({ children, showPromoBanner = true }: PageLayoutProps
       </div>
 
       <Footer />
+      
+      {/* Support Chat Button */}
+      <SupportChatButton />
     </div>
   );
 };
