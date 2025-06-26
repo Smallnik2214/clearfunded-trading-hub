@@ -16,9 +16,9 @@ export const Header = () => {
             className="flex-shrink-0 cursor-pointer"
             onClick={() => window.location.href = "/"}
           >
-            <div className="text-4xl font-orbitron font-bold bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
-              CF
-            </div>
+            <h1 className="text-2xl font-orbitron font-bold text-space">
+              CLEAR FUNDED
+            </h1>
           </div>
 
           {/* Desktop Navigation */}
