@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Home, Plus, DollarSign, TrendingUp, Settings, LogOut, MessageCircle, FileText, User } from "lucide-react";
+import { Home, Plus, DollarSign, TrendingUp, Settings, LogOut, MessageCircle, FileText, User, Shield, Users, Calendar, HelpCircle, Award, FileSignature } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
+
 interface DashboardSidebarProps {
   onSettingsClick: () => void;
 }
+
 export const DashboardSidebar = ({
   onSettingsClick
 }: DashboardSidebarProps) => {
@@ -42,15 +44,44 @@ export const DashboardSidebar = ({
           </Button>
 
           <Button variant="ghost" className="w-full justify-start gap-3 text-white hover:bg-white/10 hover:text-space font-orbitron opacity-50 cursor-not-allowed" disabled>
+            <Shield className="h-5 w-5" />
+            Verification
+          </Button>
+
+          <Button variant="ghost" className="w-full justify-start gap-3 text-white hover:bg-white/10 hover:text-space font-orbitron opacity-50 cursor-not-allowed" disabled>
+            <Users className="h-5 w-5" />
+            Affiliate
+            <Badge className="ml-auto text-xs bg-white/20 text-white/60">Soon</Badge>
+          </Button>
+
+          <Button variant="ghost" className="w-full justify-start gap-3 text-white hover:bg-white/10 hover:text-space font-orbitron" onClick={() => window.open("https://www.forexfactory.com/calendar", "_blank")}>
+            <Calendar className="h-5 w-5" />
+            Economic Calendar
+          </Button>
+
+          <Button variant="ghost" className="w-full justify-start gap-3 text-white hover:bg-white/10 hover:text-space font-orbitron" onClick={() => window.location.href = "/faq"}>
+            <HelpCircle className="h-5 w-5" />
+            Help Centre
+          </Button>
+
+          <Button variant="ghost" className="w-full justify-start gap-3 text-white hover:bg-white/10 hover:text-space font-orbitron opacity-50 cursor-not-allowed" disabled>
+            <Award className="h-5 w-5" />
+            Certificates
+          </Button>
+
+          <Button variant="ghost" className="w-full justify-start gap-3 text-white hover:bg-white/10 hover:text-space font-orbitron opacity-50 cursor-not-allowed" disabled>
+            <FileSignature className="h-5 w-5" />
+            Contracts
+          </Button>
+
+          <Button variant="ghost" className="w-full justify-start gap-3 text-white hover:bg-white/10 hover:text-space font-orbitron opacity-50 cursor-not-allowed" disabled>
             <DollarSign className="h-5 w-5" />
             Payouts
-            
           </Button>
 
           <Button variant="ghost" className="w-full justify-start gap-3 text-white hover:bg-white/10 hover:text-space font-orbitron opacity-50 cursor-not-allowed" disabled>
             <TrendingUp className="h-5 w-5" />
             Analytics
-            
           </Button>
 
           <Button variant="ghost" className="w-full justify-start gap-3 text-white hover:bg-white/10 hover:text-space font-orbitron" onClick={handleSupportClick}>
