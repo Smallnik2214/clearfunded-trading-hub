@@ -25,8 +25,8 @@ export const ReviewsSection = () => {
     text: "Outstanding platform with realistic trading conditions. I've been consistently profitable for 6 months now.",
     profit: "$9,750"
   }, {
-    name: "Alex Petrov",
-    location: "Moscow, Russia",
+    name: "Vytautas Kazlauskas",
+    location: "Vilnius, Lithuania",
     rating: 5,
     text: "Clear Funded changed my trading career. Professional support and fair profit splits make all the difference.",
     profit: "$18,300"
