@@ -1,84 +1,148 @@
 import { useState } from "react";
-import { Trophy, TrendingUp, FileText, Award, Users, Calendar, Rss, Download, HelpCircle, Shield, Settings, ChevronLeft, ChevronRight, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { 
+  Home, 
+  Plus, 
+  DollarSign, 
+  TrendingUp, 
+  Settings, 
+  LogOut, 
+  MessageCircle,
+  FileText,
+  User
+} from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface DashboardSidebarProps {
   onSettingsClick: () => void;
 }
 
-export const DashboardSidebar = ({
-  onSettingsClick
-}: DashboardSidebarProps) => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+export const DashboardSidebar = ({ onSettingsClick }: DashboardSidebarProps) => {
+  const { signOut } = useAuth();
 
-  const menuItems = [{
-    icon: TrendingUp,
-    label: "Profit Share",
-    disabled: true
-  }, {
-    icon: FileText,
-    label: "Contracts",
-    disabled: true
-  }, {
-    icon: Award,
-    label: "Certificates",
-    disabled: true
-  }, {
-    icon: Calendar,
-    label: "Economic Calendar",
-    disabled: false,
-    onClick: () => window.open("https://www.forexfactory.com/calendar", "_blank")
-  }, {
-    icon: HelpCircle,
-    label: "Help Center",
-    disabled: false,
-    onClick: () => window.location.href = "/faq"
-  }, {
-    icon: MessageCircle,
-    label: "Support 24/7",
-    disabled: false,
-    onClick: () => window.open("https://support.clearfunded.com", "_blank")
-  }, {
-    icon: Shield,
-    label: "Verification",
-    disabled: true
-  }, {
-    icon: Settings,
-    label: "Settings",
-    disabled: false,
-    onClick: onSettingsClick
-  }];
+  const handleLogout = async () => {
+    await signOut();
+    window.location.href = "/";
+  };
 
-  return <div className={`fixed left-0 top-0 h-full z-40 transition-all duration-300 ${isCollapsed ? 'w-16' : 'w-64'}`}>
-      <Card className="h-full glass-card border-white/20 rounded-none border-l-0 border-t-0 border-b-0">
-        <div className="p-4 space-y-2">
-          {/* Logo/Brand */}
-          <div className="flex items-center justify-between mb-6">
-            {!isCollapsed && <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-space rounded flex items-center justify-center">
-                  
-                </div>
-                <span className="text-white font-orbitron font-bold text-sm">
-                  CLEAR FUNDED
-                </span>
-              </div>}
-            <Button variant="ghost" size="icon" onClick={() => setIsCollapsed(!isCollapsed)} className="text-white/60 hover:text-white hover:bg-white/10 h-8 w-8">
-              {isCollapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
-            </Button>
-          </div>
+  const handleSupportClick = () => {
+    // Open Crisp chat
+    if (window.$crisp) {
+      window.$crisp.push(["do", "chat:open"]);
+    }
+  };
 
-          {/* Menu Items */}
-          <div className="space-y-1">
-            {menuItems.map((item, index) => {
-            const Icon = item.icon;
-            return <Button key={index} variant="ghost" className={`w-full justify-start gap-3 text-left h-10 px-3 ${item.disabled ? 'text-white/40 cursor-not-allowed hover:bg-transparent' : 'text-white/80 hover:text-white hover:bg-white/10'} ${isCollapsed ? 'px-0 justify-center' : ''}`} onClick={item.onClick} disabled={item.disabled}>
-                  <Icon className={`h-4 w-4 ${isCollapsed ? '' : 'flex-shrink-0'}`} />
-                  {!isCollapsed && <span className="font-orbitron text-sm">{item.label}</span>}
-                </Button>;
-          })}
+  return (
+    <div className="fixed left-0 top-0 h-full w-64 glass-card border-r border-white/20 z-40">
+      <div className="p-6">
+        <div className="flex items-center gap-3 mb-8">
+          <div 
+            className="cursor-pointer"
+            onClick={() => window.location.href = "/"}
+          >
+            <h2 className="text-xl font-orbitron font-bold text-space">CLEAR FUNDED</h2>
           </div>
         </div>
-      </Card>
-    </div>;
+
+        <nav className="space-y-2">
+          <Button
+            variant="ghost"
+            className="w-full justify-start gap-3 text-white hover:bg-white/10 hover:text-space font-orbitron"
+            onClick={() => window.location.href = "/dashboard"}
+          >
+            <Home className="h-5 w-5" />
+            Dashboard
+          </Button>
+
+          <Button
+            variant="ghost"
+            className="w-full justify-start gap-3 text-white hover:bg-white/10 hover:text-space font-orbitron"
+            onClick={() => window.location.href = "/challenge-details"}
+          >
+            <Plus className="h-5 w-5" />
+            New Account
+          </Button>
+
+          <Button
+            variant="ghost"
+            className="w-full justify-start gap-3 text-white hover:bg-white/10 hover:text-space font-orbitron opacity-50 cursor-not-allowed"
+            disabled
+          >
+            <DollarSign className="h-5 w-5" />
+            Payouts
+            <Badge variant="secondary" className="ml-auto text-xs">Soon</Badge>
+          </Button>
+
+          <Button
+            variant="ghost"
+            className="w-full justify-start gap-3 text-white hover:bg-white/10 hover:text-space font-orbitron opacity-50 cursor-not-allowed"
+            disabled
+          >
+            <TrendingUp className="h-5 w-5" />
+            Analytics
+            <Badge variant="secondary" className="ml-auto text-xs">Soon</Badge>
+          </Button>
+
+          <Button
+            variant="ghost"
+            className="w-full justify-start gap-3 text-white hover:bg-white/10 hover:text-space font-orbitron"
+            onClick={handleSupportClick}
+          >
+            <MessageCircle className="h-5 w-5" />
+            Support
+          </Button>
+
+          <div className="border-t border-white/20 my-4"></div>
+
+          <Button
+            variant="ghost"
+            className="w-full justify-start gap-3 text-white hover:bg-white/10 hover:text-space font-orbitron"
+            onClick={() => window.location.href = "/terms"}
+          >
+            <FileText className="h-5 w-5" />
+            Terms
+          </Button>
+
+          <Button
+            variant="ghost"
+            className="w-full justify-start gap-3 text-white hover:bg-white/10 hover:text-space font-orbitron"
+            onClick={() => window.location.href = "/privacy"}
+          >
+            <FileText className="h-5 w-5" />
+            Privacy
+          </Button>
+
+          <Button
+            variant="ghost"
+            className="w-full justify-start gap-3 text-white hover:bg-white/10 hover:text-space font-orbitron"
+            onClick={() => window.location.href = "/refund"}
+          >
+            <FileText className="h-5 w-5" />
+            Refund Policy
+          </Button>
+
+          <div className="border-t border-white/20 my-4"></div>
+
+          <Button
+            variant="ghost"
+            className="w-full justify-start gap-3 text-white hover:bg-white/10 hover:text-space font-orbitron"
+            onClick={onSettingsClick}
+          >
+            <Settings className="h-5 w-5" />
+            Settings
+          </Button>
+
+          <Button
+            variant="ghost"
+            className="w-full justify-start gap-3 text-white hover:bg-white/10 hover:text-red-400 font-orbitron"
+            onClick={handleLogout}
+          >
+            <LogOut className="h-5 w-5" />
+            Logout
+          </Button>
+        </nav>
+      </div>
+    </div>
+  );
 };
