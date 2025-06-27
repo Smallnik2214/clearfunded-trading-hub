@@ -1,11 +1,13 @@
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { Copy, CheckCircle, Clock, AlertCircle, CreditCard, Wallet } from "lucide-react";
+import { Copy, CheckCircle, Clock, AlertCircle, CreditCard, Wallet, QrCode } from "lucide-react";
 import { toast } from "sonner";
 import { PageLayout } from "@/components/PageLayout";
+
 const Payment = () => {
   const [orderData, setOrderData] = useState<any>(null);
   const [paymentType, setPaymentType] = useState<"card" | "crypto" | null>(null);
@@ -13,29 +15,55 @@ const Payment = () => {
   const [paymentStatus, setPaymentStatus] = useState<"pending" | "confirmed" | "failed">("pending");
   const [orderGenerated, setOrderGenerated] = useState(false);
   const [walletAddress, setWalletAddress] = useState("");
+  const [showQR, setShowQR] = useState(false);
 
   // Wallet addresses for different cryptocurrencies
   const walletAddresses = {
     USDT: "TQn9Y2khEsLJW1ChVWFMSMeRDow5oREqbu",
     BTC: "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
-    ETH: "0x742C4B9b75bB6B86B1Ca6cF74B0BbcE2B0B5a8a3",
-    SOL: "7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgHU"
+    ETH: "0xc40b2e7Fd07446cA09197d5732D3a55532a27C62",
+    SOL: "7xKXtg2CW87d97TXRuJosgHU",
+    "USDT-ETH": "0xc40b2e7Fd07446cA09197d5732D3a55532a27C62",
+    "USDC-ETH": "0xc40b2e7Fd07446cA09197d5732D3a55532a27C62",
+    BNB: "0xc40b2e7Fd07446cA09197d5732D3a55532a27C62",
+    POL: "0xc40b2e7Fd07446cA09197d5732D3a55532a27C62"
   };
+
+  // Network information for each cryptocurrency
+  const networkInfo = {
+    USDT: "Tron (TRC20)",
+    BTC: "Bitcoin Network",
+    ETH: "Ethereum (ERC20)",
+    SOL: "Solana Network",
+    "USDT-ETH": "Ethereum (ERC20)",
+    "USDC-ETH": "Ethereum (ERC20)",
+    BNB: "Binance Smart Chain (BEP20)",
+    POL: "Polygon Network"
+  };
+
   useEffect(() => {
     const savedOrder = localStorage.getItem("challengeOrder");
     if (savedOrder) {
       setOrderData(JSON.parse(savedOrder));
     }
   }, []);
+
   const handleProceedPayment = () => {
     setOrderGenerated(true);
     setWalletAddress(walletAddresses[paymentMethod as keyof typeof walletAddresses]);
     toast.success("Payment order generated! Please send the exact amount to the wallet address.");
   };
+
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
     toast.success("Address copied to clipboard!");
   };
+
+  const generateQRCode = (address: string) => {
+    // Using a public QR code API
+    return `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(address)}`;
+  };
+
   const getStatusIcon = () => {
     switch (paymentStatus) {
       case "pending":
@@ -46,6 +74,7 @@ const Payment = () => {
         return <AlertCircle className="h-5 w-5 text-red-400" />;
     }
   };
+
   const getStatusText = () => {
     switch (paymentStatus) {
       case "pending":
@@ -56,6 +85,7 @@ const Payment = () => {
         return "Payment failed or not received";
     }
   };
+
   const getStatusColor = () => {
     switch (paymentStatus) {
       case "pending":
@@ -66,6 +96,7 @@ const Payment = () => {
         return "bg-red-500/20 text-red-300 border-red-500/30";
     }
   };
+
   if (!orderData) {
     return <PageLayout>
         <div className="flex items-center justify-center min-h-[60vh]">
@@ -73,6 +104,7 @@ const Payment = () => {
         </div>
       </PageLayout>;
   }
+
   return <PageLayout showPromoBanner={false}>
       <div className="max-w-4xl mx-auto">
         {/* Progress Steps */}
@@ -145,9 +177,13 @@ const Payment = () => {
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent className="glass-card border-white/20">
-                      <SelectItem value="USDT" className="text-white font-orbitron">USDT (Tether)</SelectItem>
-                      <SelectItem value="BTC" className="text-white font-orbitron">BTC (Bitcoin)</SelectItem>
+                      <SelectItem value="USDT" className="text-white font-orbitron">USDT (Tether - TRC20)</SelectItem>
+                      <SelectItem value="USDT-ETH" className="text-white font-orbitron">USDT (Ethereum - ERC20)</SelectItem>
+                      <SelectItem value="USDC-ETH" className="text-white font-orbitron">USDC (Ethereum - ERC20)</SelectItem>
                       <SelectItem value="ETH" className="text-white font-orbitron">ETH (Ethereum)</SelectItem>
+                      <SelectItem value="BNB" className="text-white font-orbitron">BNB (Binance Smart Chain)</SelectItem>
+                      <SelectItem value="POL" className="text-white font-orbitron">POL (Polygon)</SelectItem>
+                      <SelectItem value="BTC" className="text-white font-orbitron">BTC (Bitcoin)</SelectItem>
                       <SelectItem value="SOL" className="text-white font-orbitron">SOL (Solana)</SelectItem>
                     </SelectContent>
                   </Select>
@@ -220,18 +256,35 @@ const Payment = () => {
                         <Button variant="outline" size="sm" onClick={() => copyToClipboard(walletAddress)} className="flex-shrink-0 glass-card border-white/20 text-white hover:bg-white/10">
                           <Copy className="h-4 w-4" />
                         </Button>
+                        <Button variant="outline" size="sm" onClick={() => setShowQR(!showQR)} className="flex-shrink-0 glass-card border-white/20 text-white hover:bg-white/10">
+                          <QrCode className="h-4 w-4" />
+                        </Button>
                       </div>
                     </div>
+
+                    {/* QR Code Display */}
+                    {showQR && (
+                      <div className="glass-card border-white/20 p-4 rounded-lg text-center">
+                        <label className="block text-sm font-medium text-white/70 mb-3 font-orbitron">
+                          QR Code
+                        </label>
+                        <div className="flex justify-center">
+                          <img 
+                            src={generateQRCode(walletAddress)} 
+                            alt="Wallet Address QR Code"
+                            className="border border-white/20 rounded-lg bg-white p-2"
+                          />
+                        </div>
+                        <p className="text-xs text-white/60 mt-2 font-orbitron">Scan to copy wallet address</p>
+                      </div>
+                    )}
 
                     <div>
                       <label className="block text-sm font-medium text-white/70 mb-2 font-orbitron">
                         Network
                       </label>
                       <div className="glass-card border-white/20 p-3 rounded text-white font-orbitron">
-                        {paymentMethod === "USDT" && "Tron (TRC20)"}
-                        {paymentMethod === "BTC" && "Bitcoin Network"}
-                        {paymentMethod === "ETH" && "Ethereum (ERC20)"}
-                        {paymentMethod === "SOL" && "Solana Network"}
+                        {networkInfo[paymentMethod as keyof typeof networkInfo]}
                       </div>
                     </div>
                   </div>
@@ -282,4 +335,5 @@ const Payment = () => {
       </div>
     </PageLayout>;
 };
+
 export default Payment;
