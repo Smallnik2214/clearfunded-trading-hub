@@ -353,28 +353,6 @@ const Payment = () => {
                   </ul>
                 </div>
 
-                {/* Admin Controls (Demo) */}
-                <div className="glass-card border-white/20 p-4 rounded-lg">
-                  <h4 className="font-semibold text-white/80 mb-3 font-orbitron">Admin Controls (Demo)</h4>
-                  <div className="flex gap-2">
-                    <Button size="sm" variant="outline" onClick={() => {
-                  setPaymentStatus("confirmed");
-                  toast.success("Payment confirmed by admin!");
-                  setTimeout(() => {
-                    window.location.href = "/dashboard";
-                  }, 2000);
-                }} className="glass-card border-green-400/30 text-green-300 hover:bg-green-500/20 font-orbitron">
-                      Confirm Payment
-                    </Button>
-                    <Button size="sm" variant="outline" onClick={() => {
-                  setPaymentStatus("failed");
-                  toast.error("Payment declined by admin");
-                }} className="glass-card border-red-400/30 text-red-300 hover:bg-red-500/20 font-orbitron">
-                      Decline Payment
-                    </Button>
-                  </div>
-                </div>
-
                 <Button onClick={() => {
               setOrderGenerated(false);
               setPaymentType(null);
