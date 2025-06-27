@@ -1,9 +1,11 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, XCircle, Clock, Search, AlertCircle } from "lucide-react";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { CheckCircle, XCircle, Clock, Search, AlertCircle, Eye } from "lucide-react";
 import { toast } from "sonner";
 import { PageLayout } from "@/components/PageLayout";
 
@@ -20,6 +22,7 @@ interface Payment {
 const AdminControl = () => {
   const [searchId, setSearchId] = useState("");
   const [foundPayment, setFoundPayment] = useState<Payment | null>(null);
+  const [filterStatus, setFilterStatus] = useState<"all" | "pending" | "confirmed" | "declined">("all");
   const [payments, setPayments] = useState<Payment[]>([
     {
       id: "PAY-1703123456-ABC123XYZ",
@@ -38,6 +41,33 @@ const AdminControl = () => {
       walletAddress: "0xc40b2e7Fd07446cA09197d5732D3a55532a27C62",
       timestamp: "2024-12-27 13:15:10",
       customerEmail: "customer@example.com"
+    },
+    {
+      id: "PAY-1703124001-GHI789RST",
+      amount: "299",
+      currency: "BTC",
+      status: "pending",
+      walletAddress: "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      timestamp: "2024-12-27 15:45:33",
+      customerEmail: "trader@example.com"
+    },
+    {
+      id: "PAY-1703124250-JKL012MNO",
+      amount: "799",
+      currency: "USDT",
+      status: "pending",
+      walletAddress: "TQn9Y2khEsLJW1ChVWFMSMeRDow5oREqbu",
+      timestamp: "2024-12-27 16:20:15",
+      customerEmail: "premium@example.com"
+    },
+    {
+      id: "PAY-1703124500-PQR345STU",
+      amount: "199",
+      currency: "ETH",
+      status: "declined",
+      walletAddress: "0xc40b2e7Fd07446cA09197d5732D3a55532a27C62",
+      timestamp: "2024-12-27 12:10:08",
+      customerEmail: "failed@example.com"
     }
   ]);
 
@@ -96,9 +126,17 @@ const AdminControl = () => {
     }
   };
 
+  const filteredPayments = payments.filter(payment => 
+    filterStatus === "all" || payment.status === filterStatus
+  );
+
+  const pendingPayments = payments.filter(p => p.status === "pending");
+  const confirmedPayments = payments.filter(p => p.status === "confirmed");
+  const declinedPayments = payments.filter(p => p.status === "declined");
+
   return (
     <PageLayout showPromoBanner={false}>
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-space font-orbitron text-center mb-2">
             Admin Control Panel
@@ -108,11 +146,39 @@ const AdminControl = () => {
           </p>
         </div>
 
+        {/* Payment Statistics */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+          <Card className="glass-card border-white/20">
+            <CardContent className="p-6 text-center">
+              <div className="text-2xl font-bold text-white font-orbitron">{payments.length}</div>
+              <div className="text-white/70 font-orbitron">Total Payments</div>
+            </CardContent>
+          </Card>
+          <Card className="glass-card border-white/20">
+            <CardContent className="p-6 text-center">
+              <div className="text-2xl font-bold text-yellow-400 font-orbitron">{pendingPayments.length}</div>
+              <div className="text-white/70 font-orbitron">Pending</div>
+            </CardContent>
+          </Card>
+          <Card className="glass-card border-white/20">
+            <CardContent className="p-6 text-center">
+              <div className="text-2xl font-bold text-green-400 font-orbitron">{confirmedPayments.length}</div>
+              <div className="text-white/70 font-orbitron">Confirmed</div>
+            </CardContent>
+          </Card>
+          <Card className="glass-card border-white/20">
+            <CardContent className="p-6 text-center">
+              <div className="text-2xl font-bold text-red-400 font-orbitron">{declinedPayments.length}</div>
+              <div className="text-white/70 font-orbitron">Declined</div>
+            </CardContent>
+          </Card>
+        </div>
+
         <div className="grid grid-cols-1 gap-8">
           {/* Payment Search */}
           <Card className="glass-card border-white/20">
             <CardHeader>
-              <CardTitle className="text-2xl font-bold text-space font-orbitron">Search & Manage Payment</CardTitle>
+              <CardTitle className="text-2xl font-bold text-space font-orbitron">Search Payment</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="flex gap-2">
@@ -213,46 +279,118 @@ const AdminControl = () => {
             </CardContent>
           </Card>
 
-          {/* Recent Payments */}
+          {/* All Payments Table */}
           <Card className="glass-card border-white/20">
             <CardHeader>
-              <CardTitle className="text-2xl font-bold text-space font-orbitron">Recent Payments</CardTitle>
+              <div className="flex justify-between items-center">
+                <CardTitle className="text-2xl font-bold text-space font-orbitron">All Payments</CardTitle>
+                <div className="flex gap-2">
+                  <Button
+                    onClick={() => setFilterStatus("all")}
+                    variant={filterStatus === "all" ? "default" : "outline"}
+                    className={filterStatus === "all" ? "moving-gradient text-white font-orbitron" : "glass-card border-white/20 text-white hover:bg-white/10 font-orbitron"}
+                    size="sm"
+                  >
+                    All
+                  </Button>
+                  <Button
+                    onClick={() => setFilterStatus("pending")}
+                    variant={filterStatus === "pending" ? "default" : "outline"}
+                    className={filterStatus === "pending" ? "moving-gradient text-white font-orbitron" : "glass-card border-white/20 text-white hover:bg-white/10 font-orbitron"}
+                    size="sm"
+                  >
+                    Pending
+                  </Button>
+                  <Button
+                    onClick={() => setFilterStatus("confirmed")}
+                    variant={filterStatus === "confirmed" ? "default" : "outline"}
+                    className={filterStatus === "confirmed" ? "moving-gradient text-white font-orbitron" : "glass-card border-white/20 text-white hover:bg-white/10 font-orbitron"}
+                    size="sm"
+                  >
+                    Confirmed
+                  </Button>
+                  <Button
+                    onClick={() => setFilterStatus("declined")}
+                    variant={filterStatus === "declined" ? "default" : "outline"}
+                    className={filterStatus === "declined" ? "moving-gradient text-white font-orbitron" : "glass-card border-white/20 text-white hover:bg-white/10 font-orbitron"}
+                    size="sm"
+                  >
+                    Declined
+                  </Button>
+                </div>
+              </div>
             </CardHeader>
             <CardContent>
-              <div className="space-y-3">
-                {payments.slice(0, 5).map((payment) => (
-                  <div key={payment.id} className="glass-card border-white/20 p-4 rounded-lg">
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="font-mono text-sm text-white">{payment.id}</span>
-                      <Badge className={`${getStatusColor(payment.status)} text-xs font-orbitron`}>
-                        {getStatusIcon(payment.status)}
-                        <span className="ml-1 capitalize">{payment.status}</span>
-                      </Badge>
-                    </div>
-                    <div className="flex justify-between text-sm mb-3">
-                      <span className="text-white/70 font-orbitron">${payment.amount} {payment.currency}</span>
-                      <span className="text-white/70 font-orbitron">{payment.timestamp}</span>
-                    </div>
-                    {payment.status === "pending" && (
-                      <div className="flex gap-2">
-                        <Button
-                          size="sm"
-                          onClick={() => updatePaymentStatus(payment.id, "confirmed")}
-                          className="text-xs bg-green-600 hover:bg-green-700 text-white font-orbitron px-3 py-2"
-                        >
-                          Confirm
-                        </Button>
-                        <Button
-                          size="sm"
-                          onClick={() => updatePaymentStatus(payment.id, "declined")}
-                          className="text-xs bg-red-600 hover:bg-red-700 text-white font-orbitron px-3 py-2"
-                        >
-                          Decline
-                        </Button>
-                      </div>
-                    )}
-                  </div>
-                ))}
+              <div className="glass-card border-white/20 rounded-lg overflow-hidden">
+                <Table>
+                  <TableHeader>
+                    <TableRow className="border-white/20">
+                      <TableHead className="text-white/70 font-orbitron">Payment ID</TableHead>
+                      <TableHead className="text-white/70 font-orbitron">Amount</TableHead>
+                      <TableHead className="text-white/70 font-orbitron">Customer</TableHead>
+                      <TableHead className="text-white/70 font-orbitron">Status</TableHead>
+                      <TableHead className="text-white/70 font-orbitron">Timestamp</TableHead>
+                      <TableHead className="text-white/70 font-orbitron">Actions</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {filteredPayments.map((payment) => (
+                      <TableRow key={payment.id} className="border-white/20 hover:bg-white/5">
+                        <TableCell className="font-mono text-sm text-white">
+                          {payment.id}
+                        </TableCell>
+                        <TableCell className="text-white font-orbitron">
+                          ${payment.amount} {payment.currency}
+                        </TableCell>
+                        <TableCell className="text-white font-orbitron">
+                          {payment.customerEmail}
+                        </TableCell>
+                        <TableCell>
+                          <Badge className={`${getStatusColor(payment.status)} text-xs font-orbitron`}>
+                            {getStatusIcon(payment.status)}
+                            <span className="ml-1 capitalize">{payment.status}</span>
+                          </Badge>
+                        </TableCell>
+                        <TableCell className="text-white/70 font-orbitron text-sm">
+                          {payment.timestamp}
+                        </TableCell>
+                        <TableCell>
+                          <div className="flex gap-2">
+                            {payment.status === "pending" ? (
+                              <>
+                                <Button
+                                  size="sm"
+                                  onClick={() => updatePaymentStatus(payment.id, "confirmed")}
+                                  className="text-xs bg-green-600 hover:bg-green-700 text-white font-orbitron px-3 py-2"
+                                >
+                                  <CheckCircle className="h-3 w-3 mr-1" />
+                                  Accept
+                                </Button>
+                                <Button
+                                  size="sm"
+                                  onClick={() => updatePaymentStatus(payment.id, "declined")}
+                                  className="text-xs bg-red-600 hover:bg-red-700 text-white font-orbitron px-3 py-2"
+                                >
+                                  <XCircle className="h-3 w-3 mr-1" />
+                                  Decline
+                                </Button>
+                              </>
+                            ) : (
+                              <Button
+                                size="sm"
+                                onClick={() => setFoundPayment(payment)}
+                                className="text-xs glass-card border-white/20 text-white hover:bg-white/10 font-orbitron px-3 py-2"
+                              >
+                                <Eye className="h-3 w-3 mr-1" />
+                                View
+                              </Button>
+                            )}
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
               </div>
             </CardContent>
           </Card>
