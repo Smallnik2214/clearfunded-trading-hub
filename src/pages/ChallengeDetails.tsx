@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -10,7 +9,7 @@ import { PromoBanner } from "@/components/PromoBanner";
 
 const ChallengeDetails = () => {
   const [challengeType, setChallengeType] = useState<"1-Phase" | "2-Phase">("1-Phase");
-  const [platform, setPlatform] = useState<"MT5" | "TradeLocker" | "cTrader">("MT5");
+  const [platform, setPlatform] = useState<"MT5" | "TradeLocker" | "Match-Trader">("MT5");
   const [balance, setBalance] = useState<string>("5000");
   const [promoCode, setPromoCode] = useState("STAY CLEAR");
 
@@ -39,6 +38,12 @@ const ChallengeDetails = () => {
     }
   };
 
+  const platformIcons = {
+    "MT5": <Monitor className="h-5 w-5" />,
+    "TradeLocker": <TrendingUp className="h-5 w-5" />,
+    "Match-Trader": <BarChart3 className="h-5 w-5" />
+  };
+
   const getPrice = () => {
     const basePrice = pricing[challengeType][balance as keyof typeof pricing["1-Phase"]] || 0;
     // Apply 30% discount for STAY CLEAR promo code (auto-applied)
@@ -53,12 +58,6 @@ const ChallengeDetails = () => {
       return 30;
     }
     return 0;
-  };
-
-  const platformIcons = {
-    "MT5": <Monitor className="h-5 w-5" />,
-    "TradeLocker": <TrendingUp className="h-5 w-5" />,
-    "cTrader": <BarChart3 className="h-5 w-5" />
   };
 
   const handleNext = () => {
@@ -158,7 +157,7 @@ const ChallengeDetails = () => {
                 <div className="mb-8">
                   <h3 className="text-lg font-semibold mb-4 text-white font-orbitron">Trading Platform</h3>
                   <div className="flex gap-4">
-                    {(["MT5", "TradeLocker", "cTrader"] as const).map((platformOption) => (
+                    {(["MT5", "TradeLocker", "Match-Trader"] as const).map((platformOption) => (
                       <Button
                         key={platformOption}
                         variant={platform === platformOption ? "default" : "outline"}
