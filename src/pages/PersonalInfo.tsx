@@ -21,7 +21,7 @@ const PersonalInfo = () => {
     country: "",
     region: "",
     phone: "",
-    countryCode: "+380"
+    countryCode: ""
   });
   const [availableRegions, setAvailableRegions] = useState<string[]>([]);
 
@@ -193,7 +193,7 @@ const PersonalInfo = () => {
                       <div className="flex gap-2 mt-1">
                         <Select value={formData.countryCode} onValueChange={value => handleChange("countryCode", value)}>
                           <SelectTrigger className="w-48 glass-card border-white/20 text-white font-orbitron">
-                            <SelectValue>
+                            <SelectValue placeholder="Select code">
                               {selectedCountryCode ? (
                                 <span className="flex items-center gap-2">
                                   {selectedCountryCode.flag} {selectedCountryCode.code}
