@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -65,6 +64,10 @@ const AdminControl = () => {
     }
 
     toast.success(`Payment ${newStatus === "confirmed" ? "confirmed" : "declined"} successfully!`);
+    
+    // Simulate customer notification by opening the status page in a new tab
+    const statusUrl = `/payment-status?status=${newStatus}&paymentId=${paymentId}`;
+    window.open(statusUrl, '_blank');
   };
 
   const getStatusIcon = (status: string) => {

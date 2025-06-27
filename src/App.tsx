@@ -15,6 +15,7 @@ import Dashboard from "./pages/Dashboard";
 import ChallengeDetails from "./pages/ChallengeDetails";
 import PersonalInfo from "./pages/PersonalInfo";
 import Payment from "./pages/Payment";
+import PaymentStatus from "./pages/PaymentStatus";
 import AdminPayments from "./pages/AdminPayments";
 import AdminControl from "./pages/AdminControl";
 import Terms from "./pages/Terms";
@@ -44,6 +45,7 @@ const App = () => (
             <Route path="/challenge-details" element={<ChallengeDetails />} />
             <Route path="/personal-info" element={<PersonalInfo />} />
             <Route path="/payment" element={<Payment />} />
+            <Route path="/payment-status" element={<PaymentStatus />} />
             <Route path="/admin/payments" element={<AdminPayments />} />
             <Route path="/admincontrol" element={<AdminControl />} />
             <Route path="/terms" element={<Terms />} />
