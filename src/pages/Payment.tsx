@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -15,7 +14,8 @@ const Payment = () => {
   const [paymentStatus, setPaymentStatus] = useState<"pending" | "confirmed" | "failed">("pending");
   const [orderGenerated, setOrderGenerated] = useState(false);
   const [walletAddress, setWalletAddress] = useState("");
-  const [showQR, setShowQR] = useState(false);
+  const [paymentId, setPaymentId] = useState("");
+  const [timeLeft, setTimeLeft] = useState(30 * 60); // 30 minutes in seconds
 
   // Wallet addresses for different cryptocurrencies
   const walletAddresses = {
@@ -48,9 +48,40 @@ const Payment = () => {
     }
   }, []);
 
+  // Timer countdown effect
+  useEffect(() => {
+    if (orderGenerated && paymentStatus === "pending" && timeLeft > 0) {
+      const timer = setInterval(() => {
+        setTimeLeft((prevTime) => {
+          if (prevTime <= 1) {
+            setPaymentStatus("failed");
+            toast.error("Payment time expired");
+            return 0;
+          }
+          return prevTime - 1;
+        });
+      }, 1000);
+
+      return () => clearInterval(timer);
+    }
+  }, [orderGenerated, paymentStatus, timeLeft]);
+
+  const generatePaymentId = () => {
+    return 'PAY-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+  };
+
+  const formatTime = (seconds: number) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+  };
+
   const handleProceedPayment = () => {
+    const newPaymentId = generatePaymentId();
+    setPaymentId(newPaymentId);
     setOrderGenerated(true);
     setWalletAddress(walletAddresses[paymentMethod as keyof typeof walletAddresses]);
+    setTimeLeft(30 * 60); // Reset timer to 30 minutes
     toast.success("Payment order generated! Please send the exact amount to the wallet address.");
   };
 
@@ -222,12 +253,37 @@ const Payment = () => {
                   Back to Payment Methods
                 </Button>
               </> : <>
-                {/* Payment Status */}
-                <div className="text-center">
+                {/* Payment Status with Timer */}
+                <div className="text-center space-y-3">
                   <Badge className={`${getStatusColor()} px-4 py-2 text-sm font-medium font-orbitron`}>
                     {getStatusIcon()}
                     <span className="ml-2">{getStatusText()}</span>
                   </Badge>
+                  {paymentStatus === "pending" && (
+                    <div className="glass-card border-orange-400/30 p-3 rounded-lg bg-orange-500/10">
+                      <div className="flex items-center justify-center gap-2">
+                        <Clock className="h-5 w-5 text-orange-300" />
+                        <span className="text-orange-300 font-orbitron font-semibold">
+                          Time remaining: {formatTime(timeLeft)}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Payment ID */}
+                <div className="glass-card border-white/20 p-4 rounded-lg">
+                  <label className="block text-sm font-medium text-white/70 mb-2 font-orbitron">
+                    Payment ID
+                  </label>
+                  <div className="flex items-center gap-2">
+                    <div className="flex-1 glass-card border-white/20 p-3 rounded font-mono text-sm text-white">
+                      {paymentId}
+                    </div>
+                    <Button variant="outline" size="sm" onClick={() => copyToClipboard(paymentId)} className="flex-shrink-0 glass-card border-white/20 text-white hover:bg-white/10">
+                      <Copy className="h-4 w-4" />
+                    </Button>
+                  </div>
                 </div>
 
                 {/* Payment Details */}
@@ -256,28 +312,23 @@ const Payment = () => {
                         <Button variant="outline" size="sm" onClick={() => copyToClipboard(walletAddress)} className="flex-shrink-0 glass-card border-white/20 text-white hover:bg-white/10">
                           <Copy className="h-4 w-4" />
                         </Button>
-                        <Button variant="outline" size="sm" onClick={() => setShowQR(!showQR)} className="flex-shrink-0 glass-card border-white/20 text-white hover:bg-white/10">
-                          <QrCode className="h-4 w-4" />
-                        </Button>
                       </div>
                     </div>
 
-                    {/* QR Code Display */}
-                    {showQR && (
-                      <div className="glass-card border-white/20 p-4 rounded-lg text-center">
-                        <label className="block text-sm font-medium text-white/70 mb-3 font-orbitron">
-                          QR Code
-                        </label>
-                        <div className="flex justify-center">
-                          <img 
-                            src={generateQRCode(walletAddress)} 
-                            alt="Wallet Address QR Code"
-                            className="border border-white/20 rounded-lg bg-white p-2"
-                          />
-                        </div>
-                        <p className="text-xs text-white/60 mt-2 font-orbitron">Scan to copy wallet address</p>
+                    {/* QR Code - Always Visible */}
+                    <div className="glass-card border-white/20 p-4 rounded-lg text-center">
+                      <label className="block text-sm font-medium text-white/70 mb-3 font-orbitron">
+                        QR Code
+                      </label>
+                      <div className="flex justify-center">
+                        <img 
+                          src={generateQRCode(walletAddress)} 
+                          alt="Wallet Address QR Code"
+                          className="border border-white/20 rounded-lg bg-white p-2"
+                        />
                       </div>
-                    )}
+                      <p className="text-xs text-white/60 mt-2 font-orbitron">Scan to copy wallet address</p>
+                    </div>
 
                     <div>
                       <label className="block text-sm font-medium text-white/70 mb-2 font-orbitron">
@@ -298,6 +349,7 @@ const Payment = () => {
                     <li>• Use the correct network to avoid losing funds</li>
                     <li>• Payment will be confirmed within 10-30 minutes</li>
                     <li>• You'll receive an email confirmation once payment is processed</li>
+                    <li>• Keep your Payment ID for reference</li>
                   </ul>
                 </div>
 
