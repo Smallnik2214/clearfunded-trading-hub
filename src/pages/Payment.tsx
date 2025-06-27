@@ -6,7 +6,6 @@ import { Badge } from "@/components/ui/badge";
 import { Copy, CheckCircle, Clock, AlertCircle, CreditCard, Wallet, QrCode } from "lucide-react";
 import { toast } from "sonner";
 import { PageLayout } from "@/components/PageLayout";
-
 const Payment = () => {
   const [orderData, setOrderData] = useState<any>(null);
   const [paymentType, setPaymentType] = useState<"card" | "crypto" | null>(null);
@@ -42,7 +41,6 @@ const Payment = () => {
     BNB: "Binance Smart Chain (BEP20)",
     POL: "Polygon Network"
   };
-
   useEffect(() => {
     const savedOrder = localStorage.getItem("challengeOrder");
     if (savedOrder) {
@@ -54,7 +52,7 @@ const Payment = () => {
   useEffect(() => {
     if (orderGenerated && paymentStatus === "pending" && timeLeft > 0) {
       const timer = setInterval(() => {
-        setTimeLeft((prevTime) => {
+        setTimeLeft(prevTime => {
           if (prevTime <= 1) {
             setPaymentStatus("failed");
             toast.error("Payment time expired");
@@ -63,21 +61,17 @@ const Payment = () => {
           return prevTime - 1;
         });
       }, 1000);
-
       return () => clearInterval(timer);
     }
   }, [orderGenerated, paymentStatus, timeLeft]);
-
   const generatePaymentId = () => {
     return 'PAY-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9).toUpperCase();
   };
-
   const formatTime = (seconds: number) => {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
     return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
   };
-
   const handleProceedPayment = () => {
     const newPaymentId = generatePaymentId();
     setPaymentId(newPaymentId);
@@ -86,17 +80,14 @@ const Payment = () => {
     setTimeLeft(30 * 60); // Reset timer to 30 minutes
     toast.success("Payment order generated! Please send the exact amount to the wallet address.");
   };
-
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
     toast.success("Address copied to clipboard!");
   };
-
   const generateQRCode = (address: string) => {
     // Using a public QR code API
     return `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(address)}`;
   };
-
   const getStatusIcon = () => {
     switch (paymentStatus) {
       case "pending":
@@ -107,7 +98,6 @@ const Payment = () => {
         return <AlertCircle className="h-5 w-5 text-red-400" />;
     }
   };
-
   const getStatusText = () => {
     switch (paymentStatus) {
       case "pending":
@@ -118,7 +108,6 @@ const Payment = () => {
         return "Payment failed or not received";
     }
   };
-
   const getStatusColor = () => {
     switch (paymentStatus) {
       case "pending":
@@ -129,7 +118,6 @@ const Payment = () => {
         return "bg-red-500/20 text-red-300 border-red-500/30";
     }
   };
-
   if (!orderData) {
     return <PageLayout>
         <div className="flex items-center justify-center min-h-[60vh]">
@@ -137,7 +125,6 @@ const Payment = () => {
         </div>
       </PageLayout>;
   }
-
   return <PageLayout showPromoBanner={false}>
       <div className="max-w-4xl mx-auto">
         {/* Progress Steps */}
@@ -262,16 +249,14 @@ const Payment = () => {
                     {getStatusIcon()}
                     <span className="ml-2">{getStatusText()}</span>
                   </Badge>
-                  {paymentStatus === "pending" && (
-                    <div className="glass-card border-orange-400/30 p-3 rounded-lg bg-orange-500/10">
+                  {paymentStatus === "pending" && <div className="glass-card border-orange-400/30 p-3 rounded-lg bg-orange-500/10">
                       <div className="flex items-center justify-center gap-2">
                         <Clock className="h-5 w-5 text-orange-300" />
                         <span className="text-orange-300 font-orbitron font-semibold">
                           Time remaining: {formatTime(timeLeft)}
                         </span>
                       </div>
-                    </div>
-                  )}
+                    </div>}
                 </div>
 
                 {/* Payment ID */}
@@ -324,11 +309,7 @@ const Payment = () => {
                         QR Code
                       </label>
                       <div className="flex justify-center">
-                        <img 
-                          src={generateQRCode(walletAddress)} 
-                          alt="Wallet Address QR Code"
-                          className="border border-white/20 rounded-lg bg-white p-2"
-                        />
+                        <img src={generateQRCode(walletAddress)} alt="Wallet Address QR Code" className="border border-white/20 rounded-lg bg-white p-2" />
                       </div>
                       <p className="text-xs text-white/60 mt-2 font-orbitron">Scan to copy wallet address</p>
                     </div>
@@ -356,17 +337,11 @@ const Payment = () => {
                   </ul>
                 </div>
 
-                <Button onClick={() => {
-              setOrderGenerated(false);
-              setPaymentType(null);
-            }} variant="outline" className="w-full glass-card border-white/20 text-white hover:bg-white/10 font-orbitron">
-                  Start Over
-                </Button>
+                
               </>}
           </CardContent>
         </Card>
       </div>
     </PageLayout>;
 };
-
 export default Payment;
