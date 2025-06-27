@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -23,7 +24,8 @@ const Payment = () => {
     "USDC-TRC20": "TLXsC9ZbC44kbAJa6roMxDZGurL3ULf6Pr",
     BTC: "bc1qtga7dv6tf0zmhx38wg9gcfdjvhls6xpp360uuj",
     ETH: "0xc40b2e7Fd07446cA09197d5732D3a55532a27C62",
-    SOL: "7xKXtg2CW87d97TXRuJosgHU",
+    SOL: "GSrTJGEuGBusgVFe7uo94Mho8AMkaM3r5Zwx2enJXZp2",
+    "USDC-SOL": "GSrTJGEuGBusgVFe7uo94Mho8AMkaM3r5Zwx2enJXZp2",
     "USDT-ETH": "0xc40b2e7Fd07446cA09197d5732D3a55532a27C62",
     "USDC-ETH": "0xc40b2e7Fd07446cA09197d5732D3a55532a27C62",
     BNB: "0xc40b2e7Fd07446cA09197d5732D3a55532a27C62",
@@ -37,6 +39,7 @@ const Payment = () => {
     BTC: "Bitcoin Network",
     ETH: "Ethereum (ERC20)",
     SOL: "Solana Network",
+    "USDC-SOL": "Solana Network",
     "USDT-ETH": "Ethereum (ERC20)",
     "USDC-ETH": "Ethereum (ERC20)",
     BNB: "Binance Smart Chain (BEP20)",
@@ -213,6 +216,7 @@ const Payment = () => {
                       <SelectItem value="USDC-TRC20" className="text-white font-orbitron">USDC (Tron - TRC20)</SelectItem>
                       <SelectItem value="USDT-ETH" className="text-white font-orbitron">USDT (Ethereum - ERC20)</SelectItem>
                       <SelectItem value="USDC-ETH" className="text-white font-orbitron">USDC (Ethereum - ERC20)</SelectItem>
+                      <SelectItem value="USDC-SOL" className="text-white font-orbitron">USDC (Solana)</SelectItem>
                       <SelectItem value="ETH" className="text-white font-orbitron">ETH (Ethereum)</SelectItem>
                       <SelectItem value="BNB" className="text-white font-orbitron">BNB (Binance Smart Chain)</SelectItem>
                       <SelectItem value="POL" className="text-white font-orbitron">POL (Polygon)</SelectItem>
