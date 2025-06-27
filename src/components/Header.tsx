@@ -17,7 +17,7 @@ export const Header = () => {
             onClick={() => window.location.href = "/"}
           >
             <h1 className="text-2xl font-orbitron font-bold text-space">
-              CLEAR FUNDED
+              MATCH-TRADER
             </h1>
           </div>
 

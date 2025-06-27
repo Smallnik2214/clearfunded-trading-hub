@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -88,7 +87,7 @@ const ChallengeDetails = () => {
           <div className="flex items-center justify-between h-16">
             <div className="cursor-pointer" onClick={() => window.location.href = "/"}>
               <h1 className="text-2xl font-orbitron font-bold text-space">
-                CLEAR FUNDED
+                MATCH-TRADER
               </h1>
             </div>
             
@@ -264,7 +263,7 @@ const ChallengeDetails = () => {
                   {/* Funded Account */}
                   <Card className="glass-card border-green-500/30 bg-green-500/10">
                     <CardHeader>
-                      <CardTitle className="text-evaluation font-orbitron">Clear Funded Account</CardTitle>
+                      <CardTitle className="text-evaluation font-orbitron">Match-Trader Funded Account</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <div className="grid grid-cols-2 gap-4 text-sm">
