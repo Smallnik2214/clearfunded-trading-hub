@@ -19,7 +19,8 @@ const Payment = () => {
 
   // Wallet addresses for different cryptocurrencies
   const walletAddresses = {
-    USDT: "TQn9Y2khEsLJW1ChVWFMSMeRDow5oREqbu",
+    USDT: "TLXsC9ZbC44kbAJa6roMxDZGurL3ULf6Pr",
+    "USDC-TRC20": "TLXsC9ZbC44kbAJa6roMxDZGurL3ULf6Pr",
     BTC: "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
     ETH: "0xc40b2e7Fd07446cA09197d5732D3a55532a27C62",
     SOL: "7xKXtg2CW87d97TXRuJosgHU",
@@ -32,6 +33,7 @@ const Payment = () => {
   // Network information for each cryptocurrency
   const networkInfo = {
     USDT: "Tron (TRC20)",
+    "USDC-TRC20": "Tron (TRC20)",
     BTC: "Bitcoin Network",
     ETH: "Ethereum (ERC20)",
     SOL: "Solana Network",
@@ -209,6 +211,7 @@ const Payment = () => {
                     </SelectTrigger>
                     <SelectContent className="glass-card border-white/20">
                       <SelectItem value="USDT" className="text-white font-orbitron">USDT (Tether - TRC20)</SelectItem>
+                      <SelectItem value="USDC-TRC20" className="text-white font-orbitron">USDC (Tron - TRC20)</SelectItem>
                       <SelectItem value="USDT-ETH" className="text-white font-orbitron">USDT (Ethereum - ERC20)</SelectItem>
                       <SelectItem value="USDC-ETH" className="text-white font-orbitron">USDC (Ethereum - ERC20)</SelectItem>
                       <SelectItem value="ETH" className="text-white font-orbitron">ETH (Ethereum)</SelectItem>
