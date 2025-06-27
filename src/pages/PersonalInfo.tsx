@@ -24,6 +24,7 @@ const PersonalInfo = () => {
     countryCode: "+380"
   });
   const [availableRegions, setAvailableRegions] = useState<string[]>([]);
+
   useEffect(() => {
     const savedOrder = localStorage.getItem("challengeOrder");
     if (savedOrder) {
@@ -45,9 +46,11 @@ const PersonalInfo = () => {
       setAvailableRegions([]);
     }
   }, [formData.country]);
+
   const handleBack = () => {
     window.location.href = "/challenge-details";
   };
+
   const handleNext = () => {
     if (!formData.firstName || !formData.lastName || !formData.address) {
       toast.error("Please fill in all required fields");
@@ -60,16 +63,23 @@ const PersonalInfo = () => {
     localStorage.setItem("challengeOrder", JSON.stringify(updatedOrder));
     window.location.href = "/payment";
   };
+
   const handleChange = (field: string, value: string) => {
     setFormData(prev => ({
       ...prev,
       [field]: value
     }));
   };
+
   if (!orderData) {
     return <div>Loading...</div>;
   }
-  return <div className="min-h-screen space-bg">
+
+  // Get the selected country code data for display
+  const selectedCountryCode = countryCodes.find(item => item.code === formData.countryCode);
+
+  return (
+    <div className="min-h-screen space-bg">
       <div className="stars"></div>
       
       {/* Header */}
@@ -183,7 +193,15 @@ const PersonalInfo = () => {
                       <div className="flex gap-2 mt-1">
                         <Select value={formData.countryCode} onValueChange={value => handleChange("countryCode", value)}>
                           <SelectTrigger className="w-48 glass-card border-white/20 text-white font-orbitron">
-                            <SelectValue />
+                            <SelectValue>
+                              {selectedCountryCode ? (
+                                <span className="flex items-center gap-2">
+                                  {selectedCountryCode.flag} {selectedCountryCode.code}
+                                </span>
+                              ) : (
+                                "Select code"
+                              )}
+                            </SelectValue>
                           </SelectTrigger>
                           <SelectContent className="max-h-60 bg-gray-900 border border-white/20 shadow-lg z-50">
                             {countryCodes.map(item => <SelectItem key={item.code} value={item.code} className="text-white hover:bg-white/10">
@@ -281,7 +299,8 @@ const PersonalInfo = () => {
           </div>
         </div>
       </footer>
-    </div>;
+    </div>
+  );
 };
 
 export default PersonalInfo;
