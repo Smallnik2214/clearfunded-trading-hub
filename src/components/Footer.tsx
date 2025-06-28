@@ -37,7 +37,7 @@ export const Footer = () => {
               <li><a href="/terms" className="text-white/80 hover:text-space transition-colors font-orbitron">Terms & Conditions</a></li>
               <li><a href="/privacy" className="text-white/80 hover:text-space transition-colors font-orbitron">Privacy Policy</a></li>
               <li><a href="/refund" className="text-white/80 hover:text-space transition-colors font-orbitron">Refund Policy</a></li>
-              <li><a href="#" className="text-white/80 hover:text-space transition-colors font-orbitron">Risk Disclosure</a></li>
+              
             </ul>
           </div>
 
@@ -48,7 +48,7 @@ export const Footer = () => {
               <p>Street 12, Al Barsha 1</p>
               <p>80042 Dubai, UAE</p>
               <p>main@clear-funded.com</p>
-              <p>www.clearfunded.xyz</p>
+              
             </div>
           </div>
         </div>
