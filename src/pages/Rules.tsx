@@ -1,14 +1,11 @@
-
 import { Header } from "@/components/Header";
 import { PromoBanner } from "@/components/PromoBanner";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { AlertTriangle, CheckCircle, DollarSign, Clock, Shield, TrendingUp } from "lucide-react";
-
 const Rules = () => {
-  return (
-    <div className="min-h-screen space-bg">
+  return <div className="min-h-screen space-bg">
       <div className="stars"></div>
       <PromoBanner />
       <Header />
@@ -242,17 +239,14 @@ const Rules = () => {
 
               <div>
                 <h4 className="font-semibold mb-2 text-space font-orbitron">💻 Platforms</h4>
-                <p className="text-white/80 font-inter">Clear Funded offers: MetaTrader 5, Tradelocker, Ctrader</p>
+                <p className="text-white/80 font-inter">Clear Funded offers: MetaTrader 5, Tradelocker, Match-Trader</p>
               </div>
             </CardContent>
           </Card>
 
           <div className="text-center">
             <h2 className="text-2xl font-bold text-space mb-4 font-orbitron">Ready to Start Your Challenge?</h2>
-            <button
-              onClick={() => window.location.href = "/register"}
-              className="moving-gradient text-white px-8 py-3 rounded-lg font-semibold transition-colors font-orbitron"
-            >
+            <button onClick={() => window.location.href = "/register"} className="moving-gradient text-white px-8 py-3 rounded-lg font-semibold transition-colors font-orbitron">
               Start Trading Challenge
             </button>
           </div>
@@ -260,8 +254,6 @@ const Rules = () => {
       </div>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Rules;
