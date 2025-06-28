@@ -1,9 +1,6 @@
-
 import { Facebook, Twitter, Instagram, Linkedin, Youtube } from "lucide-react";
-
 export const Footer = () => {
-  return (
-    <footer className="relative space-bg py-12 px-4 overflow-hidden">
+  return <footer className="relative space-bg py-12 px-4 overflow-hidden">
       <div className="stars"></div>
       <div className="relative max-w-7xl mx-auto z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
@@ -50,7 +47,7 @@ export const Footer = () => {
             <div className="text-sm text-white/80 space-y-2 font-orbitron">
               <p>Street 12, Al Barsha 1</p>
               <p>80042 Dubai, UAE</p>
-              <p>support@clearfunded.xyz</p>
+              <p>main@clear-funded.com</p>
               <p>www.clearfunded.xyz</p>
             </div>
           </div>
@@ -83,6 +80,5 @@ export const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
