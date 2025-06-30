@@ -10,13 +10,7 @@ export const Footer = () => {
             <p className="text-white/80 text-sm mb-4 font-orbitron">
               Clear rules. Real growth.
             </p>
-            <div className="flex space-x-4">
-              <Facebook className="h-5 w-5 text-white/60 hover:text-space transition-colors cursor-pointer" />
-              <Twitter className="h-5 w-5 text-white/60 hover:text-space transition-colors cursor-pointer" />
-              <Instagram className="h-5 w-5 text-white/60 hover:text-space transition-colors cursor-pointer" />
-              <Linkedin className="h-5 w-5 text-white/60 hover:text-space transition-colors cursor-pointer" />
-              <Youtube className="h-5 w-5 text-white/60 hover:text-space transition-colors cursor-pointer" />
-            </div>
+            
           </div>
 
           {/* Quick Links */}
