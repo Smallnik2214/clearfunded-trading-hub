@@ -4,6 +4,7 @@ import { Header } from "@/components/Header";
 import { PromoBanner } from "@/components/PromoBanner";
 import { Footer } from "@/components/Footer";
 import { SupportChatButton } from "@/components/SupportChatButton";
+import { GcashBanner } from "@/components/GcashBanner";
 
 interface PageLayoutProps {
   children: ReactNode;
@@ -25,6 +26,9 @@ export const PageLayout = ({ children, showPromoBanner = true }: PageLayoutProps
       
       {/* Support Chat Button */}
       <SupportChatButton />
+      
+      {/* Gcash Banner */}
+      <GcashBanner />
     </div>
   );
 };
