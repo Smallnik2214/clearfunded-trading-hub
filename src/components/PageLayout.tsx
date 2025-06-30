@@ -12,6 +12,8 @@ interface PageLayoutProps {
 }
 
 export const PageLayout = ({ children, showPromoBanner = true }: PageLayoutProps) => {
+  console.log("PageLayout rendering with GcashBanner");
+  
   return (
     <div className="min-h-screen space-bg">
       <div className="stars"></div>

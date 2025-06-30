@@ -4,6 +4,8 @@ import { X } from "lucide-react";
 
 export const GcashBanner = () => {
   const [isVisible, setIsVisible] = useState(true);
+  
+  console.log("GcashBanner rendering, isVisible:", isVisible);
 
   if (!isVisible) return null;
 
@@ -22,7 +24,10 @@ export const GcashBanner = () => {
           </div>
           
           <button
-            onClick={() => setIsVisible(false)}
+            onClick={() => {
+              console.log("Banner close clicked");
+              setIsVisible(false);
+            }}
             className="text-white hover:text-green-200 transition-colors p-1 rounded-full hover:bg-green-700"
             aria-label="Close banner"
           >
