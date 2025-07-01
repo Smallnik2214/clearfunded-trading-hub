@@ -4,7 +4,6 @@ import { Header } from "@/components/Header";
 import { PromoBanner } from "@/components/PromoBanner";
 import { Footer } from "@/components/Footer";
 import { SupportChatButton } from "@/components/SupportChatButton";
-import { GcashBanner } from "@/components/GcashBanner";
 
 interface PageLayoutProps {
   children: ReactNode;
@@ -12,8 +11,6 @@ interface PageLayoutProps {
 }
 
 export const PageLayout = ({ children, showPromoBanner = true }: PageLayoutProps) => {
-  console.log("PageLayout rendering with GcashBanner");
-  
   return (
     <div className="min-h-screen space-bg">
       <div className="stars"></div>
@@ -28,9 +25,6 @@ export const PageLayout = ({ children, showPromoBanner = true }: PageLayoutProps
       
       {/* Support Chat Button */}
       <SupportChatButton />
-      
-      {/* Gcash Banner */}
-      <GcashBanner />
     </div>
   );
 };
